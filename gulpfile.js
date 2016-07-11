@@ -119,7 +119,7 @@ gulp.task('lib:watch', function () {
 // Web Application
 // =====================================================================================================================
 /**
- * Compila la hoja de estilos con Less.
+ * Compila la hoja de estilos de la aplicación web con Less.
  */
 gulp.task('web:build-css', function() {
     return gulp.src('web/css/main.less')
@@ -144,6 +144,11 @@ gulp.task('web:update-lib', function() {
 		], { base: 'lib/' })
 		.pipe(gulp.dest('web/'));
 });
+
+/**
+ * Construye la aplicación web.
+ */
+gulp.task('web:build', gulp.series('web:update-lib', 'web:build-css'));
 
 /**
  * Detección de cambios de la aplicación web.
