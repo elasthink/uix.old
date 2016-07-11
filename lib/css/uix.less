@@ -1,0 +1,434 @@
+/*
+ * Hoja de estilos base.
+ *
+ * @author angel.teran
+ */
+
+@import (reference) "uix-theme.less";
+
+html, body {
+  height: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background: @background;
+  font-family: @font;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+select,input,button,textarea {
+  font-family: @font;
+  font-size: 16px;
+  font-weight: 300;
+  appearance: none;
+}
+
+h1,h2,h3,h4,h5 {
+  font-weight: 300;
+}
+
+/* Button
+ * ------------------------------------------------------------------------------------------------------------------ */
+.ui-button {
+  position: relative;
+  display: inline-block;
+  height: 44px;
+  line-height: 44px;
+  padding: 0 16px;
+  border: 0;
+  margin: 0;
+  border-radius: 2px;
+  outline: 0;
+  color: #fff;
+  background: @color1;
+  font-family: @font;
+  font-size: 16px;
+  vertical-align: top;
+  transition: background 0.1s;
+  cursor: pointer;
+
+  &.icon {
+    padding: 0;
+    font-size: 44px;
+    line-height: 1;
+  }
+
+  &:hover {
+    background: @color11;
+  }
+  &:active,&.active {
+    background: @color12;
+  }
+
+  &.ui-gray {
+    background: @color2;
+
+    &:hover {
+      background: @color21;
+    }
+    &:active,&.active {
+      background: @color22;
+    }
+  }
+
+  &.ui-link {
+    color: #666;
+    background: transparent;
+
+    &:hover {
+      color: #2ae;
+    }
+
+    &:active,&.active {
+      background: rgba(128, 128, 128, 0.1);
+    }
+  }
+}
+
+/* Text
+ * ------------------------------------------------------------------------------------------------------------------ */
+.ui-text-box {
+  display: block;
+  color: #444;
+  background: #fff;
+  width: 100%;
+  min-height: 44px;
+  line-height: 24px;
+  padding: 8px;
+  border: 2px solid #aaa;
+  border-radius: 2px;
+  outline: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: border 0.25s;
+
+  &:hover {
+    border-color: #888;
+  }
+
+  &:focus {
+    border-color: #2ae;
+  }
+}
+
+.ui-text-line:extend(.ui-text-box all) {
+  background: transparent;
+  border-width: 0 0 2px;
+  border-radius: 0;
+}
+
+/* Check
+ * ------------------------------------------------------------------------------------------------------------------ */
+.ui-check {
+  display: inline-block;
+  position: relative;
+  height: 44px;
+  line-height: 44px;
+  margin: 0;
+
+  > input {
+    display: none;
+  }
+
+  > label {
+    display: block;
+    padding-right: 16px;
+    color: #888;
+    transition: color 0.25s;
+    cursor: pointer;
+
+    > span {
+      display: block;
+      float: left;
+      width: 24px;
+      height: 24px;
+      line-height: 1;
+      margin: 10px 8px 10px 4px;
+      color: transparent;
+      background: #ccc;
+      transition: background 0.25s;
+    }
+
+    &:hover {
+      color: #666;
+    }
+
+    &:hover > span {
+      background: #aaa;
+    }
+  }
+
+  > input:checked + label > span {
+    color: #fff;
+    background: #2ae;
+  }
+}
+
+/* Select
+ * ------------------------------------------------------------------------------------------------------------------ */
+.ui-select {
+  display: block;
+  color: #444;
+  @svgData: %("data:image/svg+xml;utf8,%s", escape("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 31 40'><path d='M20.38,17L22,18.65,15.5,25,9,18.65,10.63,17l4.88,4.8Z' fill='#888'/></svg>"));
+  background: #fff url(@svgData) no-repeat right center;
+  background-size: 31px 40px;
+  width: 100%;
+  min-height: 44px;
+  line-height: 24px;
+  padding: 8px;
+  border: 2px solid #aaa;
+  border-radius: 2px;
+  outline: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: border 0.25s;
+
+  &:hover {
+    border-color: #888;
+  }
+
+  &:focus {
+    border-color: #2ae;
+  }
+}
+
+/* Forms
+ * ------------------------------------------------------------------------------------------------------------------ */
+@errorColor: #f44;
+
+.ui-form {
+}
+
+.ui-line {
+  margin-bottom: 12px;
+
+  > label {
+    display: block;
+    line-height: 28px;
+    color: #888;
+  }
+
+  &.ui-error {
+
+    .ui-text-box,.ui-select {
+      border-color: #f44;
+    }
+  }
+
+  .ui-error-msg {
+    display: block;
+    line-height: 24px;
+    color: @errorColor;
+    font-size: 15px;
+    animation: ui-fade-in 0.5s;
+  }
+}
+
+.ui-text-box.ui-error,
+.ui-text-line.ui-error,
+.ui-select.ui-error {
+  border-color: @errorColor;
+}
+
+.ui-actions {
+  min-height: 44px;
+  margin: 24px 0 12px;
+
+  .ui-button {
+    min-width: 132px;
+    margin-right: 16px;
+  }
+}
+
+/* Dialogs
+ * ------------------------------------------------------------------------------------------------------------------ */
+.ui-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.95);
+  transition: opacity 0.25s linear 0s;
+}
+
+.ui-dialog-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+}
+
+.ui-dialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 24px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transform: translate(-50%, -50%);
+  transition: all 0.25s;
+
+  h1 {
+    margin: 0 0 4px;
+    color: #2ae;
+    font-size: 22px;
+    font-weight: 300;
+  }
+
+  h2 {
+    margin: 0 0 8px;
+    color: #666;
+    font-size: 16px;
+    font-weight: 300;
+  }
+
+  .ui-actions {
+    margin: 16px 0 0;
+    text-align: right;
+
+    .ui-button {
+      margin: 0 0 0 16px;
+    }
+  }
+
+  &.hide {
+    // top: 60%;
+    transform: translate(-50%, -50%) scale(1.25,1.25);
+  }
+
+  @media screen and (max-width: 640px) {
+    padding: 16px;
+
+    h1 {
+      font-size: 18px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .ui-actions {
+      text-align: center;
+
+      .ui-button {
+        min-width: 96px;
+        padding: 0 12px;
+        margin-right: 8px;
+
+        &.ui-right {
+          margin: 0 0 0 8px;
+        }
+      }
+    }
+  }
+}
+
+.ui-dialog-icon {
+  display: block;
+  float: left;
+  width: 72px;
+  height: 72px;
+  color: #2ae;
+  font-size: 72px !important;
+
+  @media screen and (max-width: 640px) {
+    float: none;
+    width: 100%;
+    height: 64px;
+    margin-bottom: 8px;
+    font-size: 64px !important;
+    text-align: center;
+  }
+}
+
+.ui-dialog-body {
+  margin-left: 88px;
+
+  @media screen and (max-width: 640px) {
+    margin-left: 0;
+  }
+}
+
+/* Dropdowns
+ * ------------------------------------------------------------------------------------------------------------------ */
+.ui-dropdown {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 200px;
+  padding: 6px 0;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  background: #fff;
+  background-clip: padding-box;
+  font-size: 16px;
+  transition: opacity 0.25s;
+}
+
+.ui-dropdown-item {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 8px 0 16px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+  &:hover {
+    background: #f8f8f8;
+  }
+
+  &:active {
+    color: #2ae;
+  }
+}
+
+
+/* Animations
+ * ------------------------------------------------------------------------------------------------------------------ */
+
+/* Fade In */
+@keyframes ui-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Commons
+ * ------------------------------------------------------------------------------------------------------------------ */
+
+
+/*
+.ui-button, .ui-select {
+  box-sizing: border-box;
+  appearance: none;
+  transition: all 0.1s;
+  user-select: none;
+  cursor: pointer;
+}
+*/
+
+.hide {
+  opacity: 0;
+}
+
+.display-none {
+  display: none !important;
+}
+
+@glyphs-rev: 2;
+
+/* Icons
+ * ------------------------------------------------------------------------------------------------------------------ */
+@import (less) "glyphs.css";
