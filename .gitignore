@@ -8,3 +8,5 @@ web/css/*.css
 web/css/uix*.*
 web/fonts/glyphs/
 web/js/uix*.*
+web/js/app.js
+web/views/templates.js

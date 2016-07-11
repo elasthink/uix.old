@@ -9,6 +9,7 @@ var gulp            = require('gulp'),
     uglify          = require('gulp-uglify'),
     less            = require('gulp-less'),
 	ejs             = require('gulp-ejs'),
+    ejsCompiler     = require('gulp-ejs-compiler'),
 	autoprefixer    = require('gulp-autoprefixer'),
     minifyCss       = require('gulp-minify-css'),
 	iconfont        = require('gulp-iconfont'),
@@ -75,8 +76,8 @@ gulp.task('lib:build-css', gulp.series(
 gulp.task('lib:build-js', function () {
     return gulp.src([
             'lib/js/uix.js',
-            'lib/js/plugins/taps/uix_taps.js',
-            'lib/js/plugins/views/uix_views.js'
+            'lib/js/plugins/taps/*.js',
+            'lib/js/plugins/views/*.js'
         ])
         .pipe(concat('uix_all.js'))
         .pipe(gulp.dest('lib/js'))
@@ -122,14 +123,63 @@ gulp.task('lib:watch', function () {
  * Compila la hoja de estilos de la aplicación web con Less.
  */
 gulp.task('web:build-css', function() {
-    return gulp.src('web/css/main.less')
+    return gulp.src([
+            'web/css/main.less',
+            'web/views/**/*.less'
+        ])
+
         .pipe(less({
             paths: ['web/css']
         }))
         .pipe(autoprefixer({
             browsers: ['last 2 versions']
         }))
+        .pipe(concat('app.css'))
         .pipe(gulp.dest('web/css'));
+});
+
+/**
+ * Precompilación de plantillas EJS.
+ */
+gulp.task('web:build-ejs', function () {
+    var suffix = '/layout',
+        settings = {
+            namespace: function(templateName, codeString) {
+                var i = templateName.length - suffix.length;
+                if (templateName.indexOf(suffix, i) !== -1) {
+                    templateName = templateName.substr(0, i);
+                }
+                return 'View.templates[\'' + templateName + '\'] = ' + codeString + ';';
+            }
+        };
+    return gulp.src([
+            'web/views/**/*.ejs'
+        ])
+        //.pipe(debug({title: 'EJS:'}))
+        .pipe(ejsCompiler({
+            compileDebug: false,
+            debug: false,
+            _with: false,
+            localsName: 'options',
+            // escape: ...
+            client: true
+        }, settings))
+        //.on('error', gutil.log)
+        .pipe(concat('templates.js'))
+        .pipe(gulp.dest('web/views'));
+});
+
+/**
+ * Copia, transformación y concatenación de librerías Javascript propias en orden de inclusión.
+ */
+gulp.task('web:build-js', function () {
+    return gulp.src([
+            'web/js/main.js',
+            'web/views/**/handler.js',
+            'web/views/templates.js'
+        ])
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest('web/js'));
 });
 
 /**
@@ -141,21 +191,36 @@ gulp.task('web:update-lib', function() {
             'lib/css/uix-theme.less',
 			'lib/fonts/glyphs/**',
 			'lib/js/*.js'
-		], { base: 'lib/' })
+		], {
+            base: 'lib/'
+        })
 		.pipe(gulp.dest('web/'));
 });
 
 /**
  * Construye la aplicación web.
  */
-gulp.task('web:build', gulp.series('web:update-lib', 'web:build-css'));
+gulp.task('web:build', gulp.series('web:update-lib', 'web:build-css', 'web:build-ejs', 'web:build-js'));
 
 /**
  * Detección de cambios de la aplicación web.
  */
 gulp.task('web:watch', function () {
     // Cambios en la hoja de estilos
-    gulp.watch(['web/css/*.less'], gulp.series('web:build-css'));
+    gulp.watch([
+            'web/css/*.less',
+            'web/views/**/*.less'
+        ], gulp.series('web:build-css'));
+
+    // Cambios en las plantillas EJS
+    gulp.watch(['web/views/**/*.ejs'], gulp.series('web:build-ejs'));
+
+    // Cambios en los scripts de la aplicación
+    gulp.watch([
+            'web/js/main.js',
+            'web/views/**/handler.js',
+            'web/views/templates.js'
+        ], gulp.series('web:build-js'));
 
     // Actualización de la librería en la aplicación web
     gulp.watch([

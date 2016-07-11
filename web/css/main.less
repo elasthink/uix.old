@@ -14,10 +14,11 @@ body {
   overflow: auto;
 
   .logo {
-      width: 96px;
-      height: 44px;
+      width: 70px;
+      height: 32px;
       color: @color1;
       background: transparent url(../img/logo.svg) no-repeat;
+      background-size: contain;
       font-size: 28px;
       font-weight: bold;
       margin: 16px;
@@ -31,13 +32,17 @@ body {
     padding-left: 12px;
     line-height: 40px;
     border-left: 4px solid #ddd;
-    padding-left: 12px;
     color: #666;
     text-decoration: none;
 
-    &:hover {
+    &:hover,
+    &.nav-selected {
       color: #2ae;
+    }
+
+    &.nav-selected {
       border-color: #2ae;
+      // background: linear-gradient(to right, #fff, rgba(255,255,255,0.25));
     }
   }
 
