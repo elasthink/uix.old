@@ -16,6 +16,7 @@ var gulp            = require('gulp'),
     concat      	= require('gulp-concat'),
 	rename          = require('gulp-rename'),
     zip             = require('gulp-zip'),
+    del         	= require('del'),
     package         = require('./package.json');
 
 
@@ -25,7 +26,7 @@ var gulp            = require('gulp'),
 // =====================================================================================================================
 /**
  * Genera la fuente de iconos, en diferentes formatos (eot, svg, ttf, woff), y el css con la definición de los mismos.
- */
+ *
 gulp.task('lib:build-glyphs', function() {
 	var time = Math.round(Date.now() / 1000);
 	return gulp.src(['lib/glyphs/*.svg'])
@@ -41,77 +42,60 @@ gulp.task('lib:build-glyphs', function() {
 			gulp.src('lib/css/glyphs.ejs')
 				.pipe(ejs({
                     glyphs: glyphs,
-					timestamp: time
+					timestamp: '' // time
 				}, {ext: '.css'}))
 				.pipe(gulp.dest('lib/css'));
 		})
 		.pipe(gulp.dest('lib/fonts/glyphs'));
 });
+*/
 
 /**
- * Compila la hoja de estilos con Less.
- */
-gulp.task('lib:build-css', gulp.series(
-    function _css() {
-        return gulp.src('lib/css/uix.less')
-            .pipe(less({
-				paths: [ 'lib/css' ]
-			}))
-            .pipe(autoprefixer({
-                browsers: ['last 2 versions']
-            }))
-            .pipe(gulp.dest('lib/css'));
-    },
-    function _min() {
-        return gulp.src('lib/css/uix.css')
-            .pipe(rename('uix.min.css'))
-            .pipe(minifyCss())
-            .pipe(gulp.dest('lib/css'));
-    }
-));
+ * Compila la hoja de estilos con LESS.
+ *
+gulp.task('lib:build-css', function() {
+    return gulp.src('lib/css/uix.less')
+        .pipe(less())
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions']
+        }))
+        .pipe(gulp.dest('lib/css'))
+        .pipe(rename('uix.min.css'))
+        .pipe(minifyCss())
+        .pipe(gulp.dest('lib/css'));
+});
+*/
 
 /**
- * Genera el script completo de la librería, incluyendo los plugins.
+ * Genera el script completo de la librería, incluyendo los scritps de los plugins.
  */
 gulp.task('lib:build-js', function () {
     return gulp.src([
-            'lib/js/uix.js',
-            'lib/js/plugins/taps/*.js',
-            'lib/js/plugins/views/*.js'
+            'lib/uix-core.js',
+            'lib/plugins/**/*.js'
         ])
-        .pipe(concat('uix_all.js'))
-        .pipe(gulp.dest('lib/js'))
-        .pipe(rename('uix_all.min.js'))
+        .pipe(concat('uix.js'))
+        .pipe(gulp.dest('lib/'))
+        .pipe(rename('uix.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('lib/js'));
+        .pipe(gulp.dest('lib/'));
 });
-
-/**
- * Construye la librería al completo.
- */
-gulp.task('lib:build', gulp.parallel(gulp.series('lib:build-glyphs', 'lib:build-css'), 'lib:build-js'));
 
 /**
  * Empaqueta la librería para su distribución.
  */
-gulp.task('lib:dist', function () {
+gulp.task('lib:dist', gulp.series('lib:build-js', function _pack() {
 	return gulp.src('lib/**')
 		.pipe(zip('uix-' + package.version + '.zip'))
-		.pipe(gulp.dest('dist'));
-});
+		.pipe(gulp.dest('dist/lib'));
+}));
 
 /**
  * Detección de cambios en la librería.
  */
 gulp.task('lib:watch', function () {
-    // Cambios en los iconos o en la plantilla de generación de la hoja de estilos
-	gulp.watch(['lib/glyphs/*.svg', 'lib/css/glyphs.ejs'], gulp.series('lib:build-glyphs'));
-
-	// Cambios en ficheros Less y CSS
-	gulp.watch(['lib/css/*.less', 'lib/css/glyphs.css'], gulp.series('lib:build-css'));
 	// Cambios en scripts
-	gulp.watch('lib/js/uix.js', gulp.series('lib:build-js'));
-
+	gulp.watch(['lib/js/uix-core.js', 'lib/js/plugins/**/*.js'], gulp.series('lib:build-js'));
 });
 
 
@@ -120,22 +104,71 @@ gulp.task('lib:watch', function () {
 // Web Application
 // =====================================================================================================================
 /**
+ * Actualiza todos los ficheros de la librería en la aplicación web.
+ */
+gulp.task('web:update-lib', function() {
+    return gulp.src([
+        'lib/**'
+    ])
+        .pipe(gulp.dest('web/lib/uix'));
+});
+
+/**
+ * Genera la fuente de iconos, en diferentes formatos (eot, svg, ttf, woff), y el css con la definición de los mismos.
+ */
+gulp.task('web:build-glyphs', function() {
+    var time = Math.round(Date.now() / 1000);
+    return gulp.src(['web/lib/uix/glyphs/*.svg'])
+        .pipe(iconfont({
+            fontName: 'glyphs',
+            fontHeight: 1000,
+            prependUnicode: false,
+            formats: ['ttf', 'eot', 'woff', 'svg'], // woff?
+            normalize: true,
+            timestamp: time
+        }))
+        .on('glyphs', function(glyphs) {
+            gulp.src('web/lib/uix/css/glyphs.less.ejs')
+                .pipe(ejs({
+                    glyphs: glyphs,
+                    timestamp: '' // time
+                }, {
+                    ext: ''
+                }))
+                .pipe(gulp.dest('web/css'));
+        })
+        .pipe(gulp.dest('build/web/fonts/glyphs'));
+});
+
+/**
  * Compila la hoja de estilos de la aplicación web con Less.
  */
 gulp.task('web:build-css', function() {
     return gulp.src([
-            'web/css/main.less',
+            'web/css/*.less',
             'web/views/**/*.less'
         ])
-
-        .pipe(less({
-            paths: ['web/css']
-        }))
+        .pipe(less())
         .pipe(autoprefixer({
             browsers: ['last 2 versions']
         }))
         .pipe(concat('app.css'))
-        .pipe(gulp.dest('web/css'));
+        .pipe(gulp.dest('build/web/css'));
+});
+
+/**
+ * Compila la hoja de estilos de la aplicación web con Less.
+ */
+gulp.task('web:build-uix-css', function() {
+    return gulp.src([
+        'web/lib/uix/css/uix.less'
+    ])
+    .pipe(less())
+    .pipe(autoprefixer({
+        browsers: ['last 2 versions']
+    }))
+    .pipe(concat('uix.css'))
+    .pipe(gulp.dest('build/web/css'));
 });
 
 /**
@@ -170,7 +203,7 @@ gulp.task('web:build-ejs', function () {
 });
 
 /**
- * Copia, transformación y concatenación de librerías Javascript propias en orden de inclusión.
+ * Copia, transformación y concatenación de scripts de la aplicación.
  */
 gulp.task('web:build-js', function () {
     return gulp.src([
@@ -179,54 +212,92 @@ gulp.task('web:build-js', function () {
             'web/views/templates.js'
         ])
         .pipe(concat('app.js'))
-        .pipe(gulp.dest('web/js'));
+        .pipe(gulp.dest('build/web/js'));
 });
 
 /**
- * Actualiza los cambios de la librería en la aplicación web.
+ * Copia, transformación y concatenación de librerías Javascript.
  */
-gulp.task('web:update-lib', function() {
-	return gulp.src([
-			'lib/css/uix*.css',
-            'lib/css/uix-theme.less',
-			'lib/fonts/glyphs/**',
-			'lib/js/*.js'
-		], {
-            base: 'lib/'
-        })
-		.pipe(gulp.dest('web/'));
+gulp.task('web:build-lib', function () {
+    return gulp.src([
+        'web/lib/uix/uix.js'
+    ])
+    .pipe(concat('lib.js'))
+    .pipe(gulp.dest('build/web/js'));
+});
+
+/**
+ * Copia del resto de ficheros que no requieren ninguna transformación.
+ */
+gulp.task('web:build-etc', function () {
+    return gulp.src([
+        'web/*.*',
+        'web/img/**'
+    ], {
+        base: 'web/'
+    })
+    .pipe(gulp.dest('build/web/'));
 });
 
 /**
  * Construye la aplicación web.
  */
-gulp.task('web:build', gulp.series('web:update-lib', 'web:build-css', 'web:build-ejs', 'web:build-js'));
+gulp.task('web:build', gulp.series('web:update-lib', 'web:build-glyphs', 'web:build-css', 'web:build-uix-css', 'web:build-ejs', 'web:build-js', 'web:build-lib', 'web:build-etc'));
+
+/**
+ * Tarea para limpiar el directorio temporal de construcción de la aplicación web.
+ */
+gulp.task('web:clean', function () {
+    return del('build/web/');
+});
 
 /**
  * Detección de cambios de la aplicación web.
  */
 gulp.task('web:watch', function () {
-    // Cambios en la hoja de estilos
+    // Cambios en los ficheros de la librería
     gulp.watch([
-            'web/css/*.less',
-            'web/views/**/*.less'
-        ], gulp.series('web:build-css'));
+        'lib/**'
+    ], gulp.series('web:update-lib'));
+
+    // Cambios en los iconos o en la plantilla de generación de la definición de estilos
+    gulp.watch([
+        'web/lib/uix/glyphs/*.svg',
+        'web/lib/uix/css/glyphs.less.ejs'
+    ], gulp.series('web:build-glyphs'));
+
+    // Cambios en la hoja de estilos de la librería
+    gulp.watch([
+        'web/lib/uix/css/*.less'
+    ], gulp.series('web:build-uix-css'));
+
+    // Cambios en las hojas de estilos de la aplicación
+    gulp.watch([
+        'web/css/*.less',
+        'web/views/**/*.less',
+        'web/lib/uix/css/uix-theme.less'
+    ], gulp.series('web:build-css'));
 
     // Cambios en las plantillas EJS
-    gulp.watch(['web/views/**/*.ejs'], gulp.series('web:build-ejs'));
+    gulp.watch([
+        'web/views/**/*.ejs'
+    ], gulp.series('web:build-ejs'));
 
     // Cambios en los scripts de la aplicación
     gulp.watch([
-            'web/js/main.js',
-            'web/views/**/handler.js',
-            'web/views/templates.js'
-        ], gulp.series('web:build-js'));
+        'web/js/main.js',
+        'web/views/**/handler.js',
+        'web/views/templates.js'
+    ], gulp.series('web:build-js'));
 
-    // Actualización de la librería en la aplicación web
+    // Cambios en librerías
     gulp.watch([
-        'lib/js/*.js',
-        'lib/css/uix*.css',
-        'lib/css/uix-theme.less',
-        'lib/fonts/glyphs/**'
-    ], gulp.series('web:update-lib'));
+        'web/lib/uix/uix.js'
+    ], gulp.series('web:build-lib'));
+
+    // Cambios en otros ficheros
+    gulp.watch([
+        'web/*.*',
+        'web/img/**',
+    ], gulp.series('web:build-etc'));
 });

@@ -8,7 +8,7 @@ View.define('home', {
      * @see View.prototype.ready
      */
     ready: function() {
-        alert('Yepa!');
+        //alert('Yepa!');
     }
 
 });

@@ -4,7 +4,7 @@
   "description": "User Interface eXtension",
   "dependencies": {},
   "devDependencies": {
-    "del": "^1.2.0",
+    "del": "^2.2.1",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-concat": "^2.6.0",
