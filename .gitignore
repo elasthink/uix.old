@@ -9,6 +9,5 @@ lib/uix.min.js
 
 # web
 web/css/glyphs.less
-web/fonts/glyphs/
-web/lib/uix/
 web/views/templates.js
+web/lib/uix/
