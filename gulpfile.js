@@ -13,6 +13,7 @@ var gulp            = require('gulp'),
 	autoprefixer    = require('gulp-autoprefixer'),
     minifyCss       = require('gulp-minify-css'),
 	iconfont        = require('gulp-iconfont'),
+    changed      	= require('gulp-changed'),
     concat      	= require('gulp-concat'),
 	rename          = require('gulp-rename'),
     zip             = require('gulp-zip'),
@@ -24,48 +25,6 @@ var gulp            = require('gulp'),
 // =====================================================================================================================
 // Library
 // =====================================================================================================================
-/**
- * Genera la fuente de iconos, en diferentes formatos (eot, svg, ttf, woff), y el css con la definición de los mismos.
- *
-gulp.task('lib:build-glyphs', function() {
-	var time = Math.round(Date.now() / 1000);
-	return gulp.src(['lib/glyphs/*.svg'])
-		.pipe(iconfont({
-			fontName: 'glyphs',
-			fontHeight: 1000,
-			prependUnicode: false,
-			formats: ['ttf', 'eot', 'woff', 'svg'], // woff?
-            normalize: true,
-			timestamp: time
-		}))
-		.on('glyphs', function(glyphs) {
-			gulp.src('lib/css/glyphs.ejs')
-				.pipe(ejs({
-                    glyphs: glyphs,
-					timestamp: '' // time
-				}, {ext: '.css'}))
-				.pipe(gulp.dest('lib/css'));
-		})
-		.pipe(gulp.dest('lib/fonts/glyphs'));
-});
-*/
-
-/**
- * Compila la hoja de estilos con LESS.
- *
-gulp.task('lib:build-css', function() {
-    return gulp.src('lib/css/uix.less')
-        .pipe(less())
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions']
-        }))
-        .pipe(gulp.dest('lib/css'))
-        .pipe(rename('uix.min.css'))
-        .pipe(minifyCss())
-        .pipe(gulp.dest('lib/css'));
-});
-*/
-
 /**
  * Genera el script completo de la librería, incluyendo los scritps de los plugins.
  */
@@ -95,7 +54,7 @@ gulp.task('lib:dist', gulp.series('lib:build-js', function _pack() {
  */
 gulp.task('lib:watch', function () {
 	// Cambios en scripts
-	gulp.watch(['lib/js/uix-core.js', 'lib/js/plugins/**/*.js'], gulp.series('lib:build-js'));
+	gulp.watch(['lib/uix-core.js', 'lib/plugins/**/*.js'], gulp.series('lib:build-js'));
 });
 
 
@@ -107,10 +66,12 @@ gulp.task('lib:watch', function () {
  * Actualiza todos los ficheros de la librería en la aplicación web.
  */
 gulp.task('web:update-lib', function() {
+    var dest = 'web/lib/uix';
     return gulp.src([
         'lib/**'
     ])
-        .pipe(gulp.dest('web/lib/uix'));
+    .pipe(changed(dest))
+    .pipe(gulp.dest(dest));
 });
 
 /**
@@ -254,7 +215,7 @@ gulp.task('web:clean', function () {
 /**
  * Detección de cambios de la aplicación web.
  */
-gulp.task('web:watch', function () {
+gulp.task('web:watch', /*gulp.parallel('lib:watch', */function() {
     // Cambios en los ficheros de la librería
     gulp.watch([
         'lib/**'
@@ -300,4 +261,4 @@ gulp.task('web:watch', function () {
         'web/*.*',
         'web/img/**',
     ], gulp.series('web:build-etc'));
-});
+}/*)*/);
