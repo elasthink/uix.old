@@ -136,15 +136,13 @@ gulp.task('web:build-uix-css', function() {
  * Precompilación de plantillas EJS.
  */
 gulp.task('web:build-ejs', function () {
-    var suffix = '/layout',
-        settings = {
+    var settings = {
             namespace: function(templateName, codeString) {
-                var i = templateName.length - suffix.length;
-                if (templateName.indexOf(suffix, i) !== -1) {
-                    templateName = templateName.substr(0, i);
-                }
-                return 'View.templates[\'' + templateName + '\'] = ' + codeString + ';';
+                return 'View.putTemplate(\'' + templateName + '\', ' + codeString + ');';
             }
+        },
+        escape = function(markup) {
+            return View.escape(markup);
         };
     return gulp.src([
             'web/views/**/*.ejs'
@@ -155,7 +153,7 @@ gulp.task('web:build-ejs', function () {
             debug: false,
             _with: false,
             localsName: 'options',
-            // escape: ...
+            escape: escape,
             client: true
         }, settings))
         //.on('error', gutil.log)
