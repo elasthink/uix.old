@@ -75,6 +75,37 @@ gulp.task('web:update-lib', function() {
 });
 
 /**
+ * Compone la página de inicio.
+ */
+gulp.task('web:build-index', gulp.series(
+    gulp.parallel(
+        function _js() {
+            return gulp.src('web/index.js')
+                .pipe(gulp.dest('build/web'));
+        },
+        function _css() {
+            return gulp.src('web/index.less')
+                .pipe(less())
+                .pipe(autoprefixer({
+                    browsers: ['last 2 versions']
+                }))
+                .pipe(gulp.dest('build/web'));
+        }
+    ),
+    function _ejs() {
+        return gulp.src('web/index.ejs')
+            .pipe(gulp.dest('build/web'))
+            .pipe(ejs({}, {
+                ext: '.html'
+            }))
+            .pipe(gulp.dest('build/web'));
+    },
+    function _clean() {
+        return del(['build/web/*.*', '!**/index.html']);
+    }
+));
+
+/**
  * Genera la fuente de iconos, en diferentes formatos (eot, svg, ttf, woff), y el css con la definición de los mismos.
  */
 gulp.task('web:build-glyphs', function() {
@@ -190,7 +221,6 @@ gulp.task('web:build-lib', function () {
  */
 gulp.task('web:build-etc', function () {
     return gulp.src([
-        'web/*.*',
         'web/img/**'
     ], {
         base: 'web/'
@@ -201,7 +231,7 @@ gulp.task('web:build-etc', function () {
 /**
  * Construye la aplicación web.
  */
-gulp.task('web:build', gulp.series('web:update-lib', 'web:build-glyphs', 'web:build-css', 'web:build-uix-css', 'web:build-ejs', 'web:build-js', 'web:build-lib', 'web:build-etc'));
+gulp.task('web:build', gulp.series('web:build-index', 'web:update-lib', 'web:build-glyphs', 'web:build-css', 'web:build-uix-css', 'web:build-ejs', 'web:build-js', 'web:build-lib', 'web:build-etc'));
 
 /**
  * Tarea para limpiar el directorio temporal de construcción de la aplicación web.
@@ -218,6 +248,11 @@ gulp.task('web:watch', /*gulp.parallel('lib:watch', */function() {
     gulp.watch([
         'lib/**'
     ], gulp.series('web:update-lib'));
+
+    // Cambios en la hoja de estilos de la librería
+    gulp.watch([
+        'web/index.*'
+    ], gulp.series('web:build-index'));
 
     // Cambios en los iconos o en la plantilla de generación de la definición de estilos
     gulp.watch([
