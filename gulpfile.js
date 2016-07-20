@@ -18,6 +18,7 @@ var gulp            = require('gulp'),
 	rename          = require('gulp-rename'),
     zip             = require('gulp-zip'),
     del         	= require('del'),
+    exec            = require('child_process').exec,
     package         = require('./package.json');
 
 
@@ -232,6 +233,24 @@ gulp.task('web:build-etc', function () {
  * Construye la aplicación web.
  */
 gulp.task('web:build', gulp.series('web:build-index', 'web:update-lib', 'web:build-glyphs', 'web:build-css', 'web:build-uix-css', 'web:build-ejs', 'web:build-js', 'web:build-lib', 'web:build-etc'));
+
+/**
+ * Tarea para arrancar el servidor y ejecutar la aplicación web.
+ */
+gulp.task('web:run', function(done) {
+    var p = exec('nodemon --debug index.js', function callback(err) { // stdout, stderr
+        if (err !== null) {
+            console.error(err.toString());
+        }
+        done(err);
+    });
+    p.stdout.on('data', function(data) {
+        process.stdout.write(data);
+    });
+    p.stderr.on('data', function(data) {
+        process.stderr.write(data);
+    });
+});
 
 /**
  * Tarea para limpiar el directorio temporal de construcción de la aplicación web.

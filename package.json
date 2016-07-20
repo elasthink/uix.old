@@ -2,7 +2,10 @@
   "name": "uix",
   "version": "0.1.0",
   "description": "User Interface eXtension",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.14.0",
+    "morgan": "^1.7.0"
+  },
   "devDependencies": {
     "del": "^2.2.1",
     "gulp": "gulpjs/gulp#4.0",
@@ -28,6 +31,6 @@
     "url": "https://github.com/elasthink/uix/issues"
   },
   "homepage": "https://github.com/elasthink/uix#readme",
-  "author": "angel-teran",
+  "author": "terangel",
   "license": "ISC"
 }
