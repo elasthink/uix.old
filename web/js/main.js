@@ -17,6 +17,15 @@ var app = {
         {
             path: '/',
             view: 'home'
+        },
+        {
+            path: '/widgets',
+            routes: [
+                {
+                    path: '/button',
+                    view: 'widgets/button'
+                }
+            ]
         }
     ],
 
@@ -46,7 +55,15 @@ var app = {
             topLevel: true
         });
 
-        this.viewport.open('/');
+        this.open('/');
+    },
+
+    /**
+     * Abre la ruta especificada.
+     * @param {string} path Ruta especificada.
+     */
+    open: function(path) {
+        this.viewport.open(path);
     }
 
 };

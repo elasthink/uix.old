@@ -1,8 +1,7 @@
 /**
- * Página de inicio.
- * @alias HomeView
+ * Referencia de 'ui-button'.
  */
-View.define('home', {
+View.define('widgets/button', {
 
     /**
      * @see View.prototype.ready
