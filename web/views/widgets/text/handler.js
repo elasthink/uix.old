@@ -1,8 +1,7 @@
 /**
- * Página de inicio.
- * @alias HomePage
+ * Referencia de 'ui-text'.
  */
-View.define('home', {
+View.define('widgets/text', {
 
     /**
      * @see View.prototype.ready
@@ -10,5 +9,4 @@ View.define('home', {
     ready: function() {
         // ...
     }
-
 });

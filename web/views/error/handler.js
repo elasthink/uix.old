@@ -1,8 +1,8 @@
 /**
- * Página de inicio.
- * @alias HomePage
+ * Página de error.
+ * @alias ErrorPage
  */
-View.define('home', {
+View.define('error', {
 
     /**
      * @see View.prototype.ready

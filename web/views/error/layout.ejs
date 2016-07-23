@@ -1,0 +1,59 @@
+<%
+    var title, desc1;
+    switch (error.status) {
+        case 400: // bad_request
+            title = _('Sorry, something went wrong');
+            desc1 = _('The request cannot be fulfilled due to bad syntax.');
+            break;
+        case 401: // unauthorized
+            title = _('You are not logged in');
+            desc1 = _('Please log in and try again.');
+            break;
+        case 403: // forbidden
+            title = _('Sorry, something went wrong');
+            desc1 = _('You are not authorized to view this page.');
+            break;
+        case 404: // not_found
+            // TODO: Revisar definición de textos para cada caso
+            title = _('{0} Not Found');
+            desc1 = _('We\'re sorry, but the {0} you are looking for is missing.');
+            switch (error.resource) {
+                case 'lyrics':
+                    title = title.format(_('Lyrics'));
+                    desc1 = desc1.format(_('lyrics'));
+                    break;
+                case 'course':
+                    title = title.format(_('Course'));
+                    desc1 = desc1.format(_('course'));
+                    break;
+                default:
+                    title = title.format(_('Page'));
+                    desc1 = desc1.format(_('page'));
+            }
+            break;
+        case 503: // service_unavailable
+            title = _('Out Of Service');
+            desc1 = _('The service will be restored as soon as possible. Try again later.');
+            break;
+        default:
+            title = _('Sorry, something went wrong');
+            desc1 = _('An error has occurred and your request could not be completed.');
+    }
+%>
+<div id="error-view" class="view hide">
+<% /*
+    <div class="error-home">
+        <span class="icon-home"></span>
+        <label>< %=_('Go Home')% ></label>
+    </div>
+*/ %>
+    <div class="error-body">
+        <span class="error-icon icon-warn"></span>
+        <div class="error-info">
+            <h1><%-title%></h1>
+            <h2><%-desc1%></h2>
+            <button class="ui-button" onclick="app.open('/');"><%=_('GO HOME')%></button>
+        </div>
+    </div>
+    <img class="error-girl" src="/img/girl<%=_serial%>.jpg" />
+</div>

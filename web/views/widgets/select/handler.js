@@ -1,8 +1,7 @@
 /**
- * Página de inicio.
- * @alias HomePage
+ * Referencia de 'ui-select'.
  */
-View.define('home', {
+View.define('widgets/select', {
 
     /**
      * @see View.prototype.ready

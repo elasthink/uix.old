@@ -24,6 +24,14 @@ var app = {
                 {
                     path: '/button',
                     view: 'widgets/button'
+                },
+                {
+                    path: '/select',
+                    view: 'widgets/select'
+                },
+                {
+                    path: '/text',
+                    view: 'widgets/text'
                 }
             ]
         }
