@@ -34,6 +34,10 @@ var app = {
                     view: 'widgets/text'
                 }
             ]
+        },
+        {
+            path: '/views',
+            view: 'views/overview'
         }
     ],
 
