@@ -28,12 +28,12 @@ var gulp            = require('gulp'),
 // Library
 // =====================================================================================================================
 /**
- * Genera el script completo de la librería, incluyendo los scritps de los plugins.
+ * Genera el script completo de la librería, incluyendo los scritps de los add-ons.
  */
 gulp.task('lib:build-js', function () {
     return gulp.src([
             'lib/uix-core.js',
-            'lib/plugins/**/*.js'
+            'lib/add-ons/**/*.js'
         ])
         .pipe(concat('uix.js'))
         .pipe(gulp.dest('lib/'))
@@ -56,7 +56,7 @@ gulp.task('lib:dist', gulp.series('lib:build-js', function _pack() {
  */
 gulp.task('lib:watch', function () {
 	// Cambios en scripts
-	gulp.watch(['lib/uix-core.js', 'lib/plugins/**/*.js'], gulp.series('lib:build-js'));
+	gulp.watch(['lib/uix-core.js', 'lib/add-ons/**/*.js'], gulp.series('lib:build-js'));
 });
 
 
@@ -223,7 +223,8 @@ gulp.task('web:build-lib', function () {
  */
 gulp.task('web:build-etc', function () {
     return gulp.src([
-        'web/img/**'
+        'web/img/**',
+        'web/test/**'
     ], {
         base: 'web/'
     })
@@ -311,7 +312,7 @@ gulp.task('web:watch', /*gulp.parallel('lib:watch', */function() {
 
     // Cambios en otros ficheros
     gulp.watch([
-        'web/*.*',
         'web/img/**',
+        'web/test/**'
     ], gulp.series('web:build-etc'));
 }/*)*/);

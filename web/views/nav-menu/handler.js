@@ -9,7 +9,7 @@ View.define('nav-menu', {
      */
     ready: function() {
         this.root.addEventListener('click', function (event) {
-            if (event.target.matches('a.nav-item')) {
+            if (event.target.matches('a')) {
                 if (event.ctrlKey || event.shiftKey || event.metaKey) {
                     return;
                 }

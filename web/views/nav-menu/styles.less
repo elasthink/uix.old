@@ -5,49 +5,55 @@
   top: 0;
   left: 0;
   width: 268px;
-  border-right: 1px solid #eee;
   min-height: 100%;
-  background: #f2f2f2;
+  color: #fff;
+  background: linear-gradient(to bottom, #2ae, #4df);
   overflow: auto;
   z-index: 1;
+  /* TODO: Scroll suave para iOS */
+}
 
-  .logo {
-    width: 70px;
-    height: 32px;
-    color: @color1;
-    background: transparent url(../img/logo.svg) no-repeat;
-    background-size: contain;
-    font-size: 28px;
-    font-weight: bold;
-    margin: 16px;
-  }
+.nav-head {
+  padding: 16px;
+}
 
-  .nav-section {
-  }
+.nav-logo {
+  display: block;
+  margin-bottom: 4px;
+}
 
-  .nav-item {
-    display: block;
-    padding-left: 12px;
-    line-height: 40px;
-    border-left: 4px solid #ddd;
-    color: #666;
-    text-decoration: none;
+.nav-legend {
+  color: rgba(255,255,255,0.8);
+  font-size: 14px;
 
-    &:hover,
-    &.nav-selected {
-      color: #2ae;
-    }
-
-    &.nav-selected {
-      border-color: #2ae;
-      // background: linear-gradient(to right, #fff, rgba(255,255,255,0.25));
-    }
-  }
-
-  .nav-top {
-    color: #444;
+  b {
     font-weight: 300;
-    font-size: 18px;
   }
+}
 
+.nav-section, .nav-item {
+  display: block;
+  padding-left: 12px;
+  color: #fff;
+  line-height: 36px;
+  text-decoration: none;
+
+  &:hover,
+  &.nav-selected {
+    background: rgba(255,255,255,0.2);
+  }
+  &.nav-selected {
+    font-weight: 500;
+  }
+}
+
+.nav-section {
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.nav-item {
+  padding-left: 20px;
+  font-size: 16px;
 }

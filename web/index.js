@@ -34,12 +34,12 @@ function launch() {
     };
 
     importFiles([
-        { type: 'stylesheet', href: 'css/uix.css' },
-        { type: 'stylesheet', href: 'css/app.css' },
-        { type: 'javascript', href: 'js/lib.js' }
+        { type: 'stylesheet', href: '/css/uix.css' },
+        { type: 'stylesheet', href: '/css/app.css' },
+        { type: 'javascript', href: '/js/lib.js' }
     ], function() {
         importFiles([
-            { type: 'javascript', href: 'js/app.js' }
+            { type: 'javascript', href: '/js/app.js' }
         ], function() {
             app.start();
         });

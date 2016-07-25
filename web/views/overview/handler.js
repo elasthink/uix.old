@@ -1,8 +1,8 @@
 /**
  * Página de inicio.
- * @alias HomePage
+ * @alias OverviewPage
  */
-View.define('home', {
+View.define('overview', {
 
     /**
      * @see View.prototype.ready

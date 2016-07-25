@@ -16,7 +16,7 @@ var app = {
     routes: [
         {
             path: '/',
-            view: 'home'
+            view: 'overview'
         },
         {
             path: '/widgets',
@@ -36,8 +36,13 @@ var app = {
             ]
         },
         {
-            path: '/views',
-            view: 'views/overview'
+            path: '/add-ons',
+            routes: [
+                {
+                    path: '/views',
+                    view: 'add-ons/views'
+                }
+            ]
         }
     ],
 
@@ -67,7 +72,7 @@ var app = {
             topLevel: true
         });
 
-        this.open('/');
+        this.open(location.pathname);
     },
 
     /**

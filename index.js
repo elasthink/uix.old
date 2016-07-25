@@ -18,6 +18,8 @@ var logger          = require('morgan');
 var app = express();
 app.set('port', 3300);
 
+var staticPath = path.join(__dirname, 'build/web');
+
 // Middlewares
 //app.use(favicon(__dirname + '/static/favicon.ico'));
 app.use(logger('dev')); // TODO: Condicional al entorno de desarrollo ???
@@ -27,7 +29,15 @@ app.use(logger('dev')); // TODO: Condicional al entorno de desarrollo ???
 //app.use(bodyParser.urlencoded({ extended: true }));
 //app.use(multer());
 
-app.use(express.static(path.join(__dirname, 'build/web')));
+app.use(express.static(staticPath));
+
+app.use('/test/views/*', function(req, res, next) {
+    res.sendFile(path.join(staticPath, 'test/views/index.html'));
+});
+
+app.use('/*', function(req, res, next) {
+    res.sendFile(path.join(staticPath, 'index.html'));
+});
 
 var server = http.createServer(app);
 server.listen(app.get('port'), function(){
