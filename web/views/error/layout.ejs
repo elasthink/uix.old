@@ -1,6 +1,10 @@
 <%
+    var _ = function(str) {
+        return str;
+    };
+
     var title, desc1;
-    switch (error.status) {
+    switch (options.error.status) {
         case 400: // bad_request
             title = _('Sorry, something went wrong');
             desc1 = _('The request cannot be fulfilled due to bad syntax.');
@@ -17,7 +21,7 @@
             // TODO: Revisar definición de textos para cada caso
             title = _('{0} Not Found');
             desc1 = _('We\'re sorry, but the {0} you are looking for is missing.');
-            switch (error.resource) {
+            switch (options.error.resource) {
                 case 'lyrics':
                     title = title.format(_('Lyrics'));
                     desc1 = desc1.format(_('lyrics'));
@@ -55,5 +59,4 @@
             <button class="ui-button" onclick="app.open('/');"><%=_('GO HOME')%></button>
         </div>
     </div>
-    <img class="error-girl" src="/img/girl<%=_serial%>.jpg" />
 </div>

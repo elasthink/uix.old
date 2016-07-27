@@ -11,15 +11,15 @@ var testSuite = {
      */
     routes: [
         {
-            path: '/test/views/v1',
+            path: '/test/views/v1/:color',
             view: 'test/views/v1'
         },
         {
-            path: '/test/views/v2',
+            path: '/test/views/v2/:color',
             view: 'test/views/v2'
         },
         {
-            path: '/test/views/v3',
+            path: '/test/views/v3/:color',
             view: 'test/views/v3'
         }
     ],
@@ -42,6 +42,11 @@ var testSuite = {
     /**
      * ...
      */
+    state: {},
+
+    /**
+     * ...
+     */
     start: function() {
         console.log('Starting tests...');
 
@@ -60,11 +65,18 @@ var testSuite = {
 
         var self = this;
         testPanel.querySelector('.btn-restart').addEventListener('click', function(event) {
-            window.location = '/test/views/index.html';
+            window.location = '/test/views/';
         });
         testPanel.querySelector('.btn-next').addEventListener('click', function(event) {
             self.next();
         });
+
+        var path = location.pathname;
+        if (path !== '/test/views/') {
+            this.viewport.open(path, {
+                history: false
+            });
+        }
     },
 
     /**
@@ -92,12 +104,29 @@ var testSuite = {
 };
 
 // ---------------------------------------------------------------------------------------------------------------------
+
 // Test 1
 testSuite.pushTest({
     title: 'Open test view 1',
     handler: function(callback) {
-        this.viewport.open('/test/views/v1');
-        callback();
+        var self = this;
+        this.viewport.open('/test/views/v1/f44', function(err) {
+            if (err) {
+                callback(err);
+            }
+            // Se comprueba que dentro del viewport se encuentre la vista
+            var vp = self.viewport.container;
+            if (vp.childElementCount !== 1 ||
+                    !uix.matches(vp.firstElementChild, '.test-view1')) {
+                callback(new Error('The DOM is wrong'));
+            }
+            // Se comprueba la pila
+            if (self.viewport.views.length !== 1 ||
+                    self.viewport.views[0] instanceof View.handlers['test/views/v1']) {
+                callback(new Error('The view stack is wrong'));
+            }
+            callback();
+        });
     }
 });
 
@@ -105,8 +134,28 @@ testSuite.pushTest({
 testSuite.pushTest({
     title: 'Open test view 2',
     handler: function(callback) {
-        this.viewport.open('/test/views/v2');
-        callback();
+        var self = this;
+        this.viewport.open('/test/views/v2/4f6', function(err) {
+            if (err) {
+                callback(err);
+            }
+            // Le damos un tiempo para que se complete la transición...
+            setTimeout(function() {
+                // Se comprueba que dentro del viewport se encuentre la vista y solo la vista
+                var vp = self.viewport.container;
+                if (vp.childElementCount !== 1 ||
+                    !uix.matches(vp.firstElementChild, '.test-view2')) {
+                    callback(new Error('The DOM is wrong'));
+                }
+                // Se comprueba la pila
+                if (self.viewport.views.length !== 2 ||
+                    self.viewport.views[1] instanceof View.handlers['test/views/v2']) {
+                    callback(new Error('The view stack is wrong'));
+                }
+                callback();
+
+            }, 500);
+        });
     }
 });
 
@@ -114,12 +163,13 @@ testSuite.pushTest({
 testSuite.pushTest({
     title: 'Open test view 3',
     handler: function(callback) {
-        this.viewport.open('/test/views/v3');
+        this.viewport.open('/test/views/v3/2af');
         callback(new Error('...'));
     }
 });
 
 // Test 4
+/*
 testSuite.pushTest({
     title: 'Back to view 2 with reload',
     handler: function(callback) {
@@ -129,3 +179,4 @@ testSuite.pushTest({
         callback();
     }
 });
+*/
