@@ -107,23 +107,23 @@ var testSuite = {
 
 // Test 1
 testSuite.pushTest({
-    title: 'Open test view 1',
+    title: 'Abrir una primera vista',
     handler: function(callback) {
         var self = this;
         this.viewport.open('/test/views/v1/f44', function(err) {
             if (err) {
-                callback(err);
+                return callback(err);
             }
             // Se comprueba que dentro del viewport se encuentre la vista
             var vp = self.viewport.container;
             if (vp.childElementCount !== 1 ||
                     !uix.matches(vp.firstElementChild, '.test-view1')) {
-                callback(new Error('The DOM is wrong'));
+                return callback(new Error('The DOM is wrong'));
             }
             // Se comprueba la pila
             if (self.viewport.views.length !== 1 ||
-                    self.viewport.views[0] instanceof View.handlers['test/views/v1']) {
-                callback(new Error('The view stack is wrong'));
+                    !(self.viewport.views[0].view instanceof View.handlers['test/views/v1'])) {
+                return callback(new Error('The view stack is wrong'));
             }
             callback();
         });
@@ -132,25 +132,25 @@ testSuite.pushTest({
 
 // Test 2
 testSuite.pushTest({
-    title: 'Open test view 2',
+    title: 'Abrir una segunda vista',
     handler: function(callback) {
         var self = this;
         this.viewport.open('/test/views/v2/4f6', function(err) {
             if (err) {
-                callback(err);
+                return callback(err);
             }
             // Le damos un tiempo para que se complete la transición...
             setTimeout(function() {
                 // Se comprueba que dentro del viewport se encuentre la vista y solo la vista
                 var vp = self.viewport.container;
                 if (vp.childElementCount !== 1 ||
-                    !uix.matches(vp.firstElementChild, '.test-view2')) {
-                    callback(new Error('The DOM is wrong'));
+                        !uix.matches(vp.firstElementChild, '.test-view2')) {
+                    return callback(new Error('The DOM is wrong'));
                 }
                 // Se comprueba la pila
                 if (self.viewport.views.length !== 2 ||
-                    self.viewport.views[1] instanceof View.handlers['test/views/v2']) {
-                    callback(new Error('The view stack is wrong'));
+                        !(self.viewport.views[1].view instanceof View.handlers['test/views/v2'])) {
+                    return callback(new Error('The view stack is wrong'));
                 }
                 callback();
 
@@ -161,22 +161,115 @@ testSuite.pushTest({
 
 // Test 3
 testSuite.pushTest({
-    title: 'Open test view 3',
+    title: 'Volver a la vista anterior',
     handler: function(callback) {
-        this.viewport.open('/test/views/v3/2af');
-        callback(new Error('...'));
+        var self = this;
+        this.viewport.back(function(err) {
+            if (err) {
+                return callback(err);
+            }
+            // Le damos un tiempo para que se complete la transición...
+            setTimeout(function() {
+                // Se comprueba que dentro del viewport se encuentre la vista y solo la vista
+                var vp = self.viewport.container;
+                if (vp.childElementCount !== 1 ||
+                        !uix.matches(vp.firstElementChild, '.test-view1')) {
+                    return callback(new Error('The DOM is wrong'));
+                }
+                // Se comprueba la pila
+                if (self.viewport.views.length !== 1 ||
+                        !(self.viewport.views[0].view instanceof View.handlers['test/views/v1'])) {
+                    return callback(new Error('The view stack is wrong'));
+                }
+                callback();
+
+            }, 500);
+        });
     }
 });
 
 // Test 4
-/*
 testSuite.pushTest({
-    title: 'Back to view 2 with reload',
+    title: 'Comprobar que solo queda una instancia de una vista de tipo \'single\' en memoria',
     handler: function(callback) {
-        this.viewport.back('/test/views/v2', {
-            reload: true
+        var self = this;
+        this.viewport.open('/test/views/v1/fa4', function(err) {
+            if (err) {
+                return callback(err);
+            }
+            // Le damos un tiempo para que se complete la transición...
+            setTimeout(function() {
+                // Se comprueba que dentro del viewport solo quede una vista
+                var vp = self.viewport.container;
+                if (vp.childElementCount !== 1 ||
+                        !uix.matches(vp.firstElementChild, '.test-view1')) {
+                    return callback(new Error('The DOM is wrong'));
+                }
+                // Se comprueba la pila
+                if (self.viewport.views.length !== 1 ||
+                        !(self.viewport.views[0].view instanceof View.handlers['test/views/v1']) ||
+                        self.viewport.views[0].path !== '/test/views/v1/fa4') {
+                    return callback(new Error('The view stack is wrong'));
+                }
+                callback();
+
+            }, 500);
         });
-        callback();
     }
 });
-*/
+
+// Test 5
+testSuite.pushTest({
+    title: 'Comprobar que no se excede el número de instancias máximo establecido para un tipo de vista',
+    handler: function(callback) {
+        var self = this;
+        this.viewport.open('/test/views/v2/333', function(err) {
+            if (err) {
+                return callback(err);
+            }
+            self.viewport.open('/test/views/v2/666', function(err) {
+                if (err) {
+                    return callback(err);
+                }
+                self.viewport.open('/test/views/v2/999', function(err) {
+                    if (err) {
+                        return callback(err);
+                    }
+                    // Se comprueba la pila
+                    var views = self.viewport.views;
+                    if (views[2].path !== '/test/views/v2/999' ||
+                            views[1].path !== '/test/views/v2/666') {
+                        return callback(new Error('The view stack is wrong'));
+                    }
+                    callback();
+                });
+            });
+        });
+    }
+});
+
+// Test 6
+testSuite.pushTest({
+    title: 'Comprobar que no se conserva ninguna instancia de una vista de tipo \'none\'',
+    handler: function(callback) {
+        var self = this;
+        this.viewport.open('/test/views/v3/000', function(err) {
+            if (err) {
+                return callback(err);
+            }
+            self.viewport.open('/test/views/v2/888', function(err) {
+                if (err) {
+                    return callback(err);
+                }
+                // Se comprueba la pila
+                var views = self.viewport.views;
+                for (var i = 0; i < views.length; i++) {
+                    if (views[i].view instanceof View.handlers['test/views/v3']) {
+                        return callback(new Error('The view stack is wrong'));
+                    }
+                }
+                callback();
+            });
+        });
+    }
+});
