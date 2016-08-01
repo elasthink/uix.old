@@ -74,7 +74,7 @@ var testSuite = {
         var path = location.pathname;
         if (path !== '/test/views/') {
             this.viewport.open(path, {
-                history: false
+                history: View.History.NONE
             });
         }
     },
@@ -112,19 +112,21 @@ testSuite.pushTest({
     title: 'Abrir una primera vista',
     handler: function(callback) {
         var self = this;
-        this.viewport.open('/test/views/v1/f44', function(err) {
+        this.viewport.open('/test/views/v1/f44', {
+            transition: View.Transition.FADE
+        }, function(err) {
             if (err) {
                 return callback(err);
             }
             // Se comprueba que dentro del viewport se encuentre la vista
             var vp = self.viewport.container;
             if (vp.childElementCount !== 1 ||
-                    !uix.matches(vp.firstElementChild, '.test-view1')) {
+                !uix.matches(vp.firstElementChild, '.test-view1')) {
                 return callback(new Error('The DOM is wrong'));
             }
             // Se comprueba la pila
             if (self.viewport.views.length !== 1 ||
-                    !(self.viewport.views[0].view instanceof View.handlers['test/views/v1'])) {
+                !(self.viewport.views[0].view instanceof View.handlers['test/views/v1'])) {
                 return callback(new Error('The view stack is wrong'));
             }
             callback();
@@ -137,7 +139,9 @@ testSuite.pushTest({
     title: 'Abrir una segunda vista',
     handler: function(callback) {
         var self = this;
-        this.viewport.open('/test/views/v2/4f6', function(err) {
+        this.viewport.open('/test/views/v2/4f6', {
+            transition: View.Transition.FADE
+        }, function(err) {
             if (err) {
                 return callback(err);
             }
@@ -162,7 +166,9 @@ testSuite.pushTest({
     title: 'Volver a la vista anterior',
     handler: function(callback) {
         var self = this;
-        this.viewport.back(function(err) {
+        this.viewport.back({
+            transition: View.Transition.FADE
+        }, function(err) {
             if (err) {
                 return callback(err);
             }
@@ -187,7 +193,9 @@ testSuite.pushTest({
     title: 'Comprobar que solo queda una instancia de una vista de tipo \'single\' en memoria',
     handler: function(callback) {
         var self = this;
-        this.viewport.open('/test/views/v1/fa4', function(err) {
+        this.viewport.open('/test/views/v1/fa4', {
+            transition: View.Transition.FADE
+        }, function(err) {
             if (err) {
                 return callback(err);
             }
@@ -213,15 +221,21 @@ testSuite.pushTest({
     title: 'Comprobar que no se excede el número de instancias máximo establecido para un tipo de vista',
     handler: function(callback) {
         var self = this;
-        this.viewport.open('/test/views/v2/333', function(err) {
+        this.viewport.open('/test/views/v2/333', {
+            transition: View.Transition.FADE
+        }, function(err) {
             if (err) {
                 return callback(err);
             }
-            self.viewport.open('/test/views/v2/666', function(err) {
+            self.viewport.open('/test/views/v2/666', {
+                transition: View.Transition.FADE
+            }, function(err) {
                 if (err) {
                     return callback(err);
                 }
-                self.viewport.open('/test/views/v2/999', function(err) {
+                self.viewport.open('/test/views/v2/999', {
+                    transition: View.Transition.FADE
+                }, function(err) {
                     if (err) {
                         return callback(err);
                     }
@@ -243,11 +257,15 @@ testSuite.pushTest({
     title: 'Comprobar que no se conserva ninguna instancia de una vista de tipo \'none\'',
     handler: function(callback) {
         var self = this;
-        this.viewport.open('/test/views/v3/48c', function(err) {
+        this.viewport.open('/test/views/v3/48c', {
+            transition: View.Transition.FADE
+        }, function(err) {
             if (err) {
                 return callback(err);
             }
-            self.viewport.open('/test/views/v2/888', function(err) {
+            self.viewport.open('/test/views/v2/888', {
+                transition: View.Transition.FADE
+            }, function(err) {
                 if (err) {
                     return callback(err);
                 }
@@ -275,7 +293,9 @@ testSuite.pushTest({
         }
         var prev = views[1];
 
-        this.viewport.open('/test/views/v2/999', function(err) {
+        this.viewport.open('/test/views/v2/999', {
+            transition: View.Transition.FADE
+        }, function(err) {
             if (err) {
                 return callback(err);
             }
@@ -300,7 +320,8 @@ testSuite.pushTest({
         var prev = views[1];
 
         this.viewport.open('/test/views/v2/888', {
-            reload: true
+            reload: true,
+            transition: View.Transition.FADE
         }, function(err) {
             if (err) {
                 return callback(err);
@@ -327,7 +348,8 @@ testSuite.pushTest({
         var prev = views[0];
 
         this.viewport.back('/test/views/v1/fa4', {
-            reload: true
+            reload: true,
+            transition: View.Transition.FADE
         }, function(err) {
             if (err) {
                 return callback(err);

@@ -4,8 +4,10 @@ View.define('test/views/v3', {
 
     loadTimes: 0,
 
-    ready: function() {
-        // ...
+    ready: function(root) {
+        root.querySelector('.btn-back').addEventListener('click', function() {
+            testSuite.viewport.back();
+        });
     },
 
     load: function(options, complete) {

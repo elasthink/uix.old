@@ -1,0 +1,34 @@
+[class*="test-view"] {
+  .btn-back,
+  .btn-next {
+    position: absolute;
+    top: 0;
+    margin: 8px;
+  }
+  .btn-back {
+    left: 0;
+  }
+  .btn-next {
+    right: 0;
+  }
+
+  .test-button {
+    background: transparent;
+    border: 2px solid rgba(0,0,0,0.5);
+    color: rgba(0,0,0,0.5);
+    font-weight: 600;
+    box-sizing: content-box;
+    min-width: 72px;
+  }
+
+  .test-button:hover {
+    background: rgba(0,0,0,0.1);
+  }
+  .test-button:active {
+    background: rgba(0,0,0,0.2);
+  }
+
+  .test-button[disabled] {
+    opacity: 0.25;
+  }
+}

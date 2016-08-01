@@ -30,7 +30,7 @@ var gulp            = require('gulp'),
 /**
  * Genera el script completo de la librería, incluyendo los scritps de los add-ons.
  */
-gulp.task('lib:build-js', function () {
+gulp.task('lib:build', function () {
     return gulp.src([
             'lib/uix-core.js',
             'lib/add-ons/**/*.js'
@@ -45,7 +45,7 @@ gulp.task('lib:build-js', function () {
 /**
  * Empaqueta la librería para su distribución.
  */
-gulp.task('lib:dist', gulp.series('lib:build-js', function _pack() {
+gulp.task('lib:dist', gulp.series('lib:build', function _pack() {
 	return gulp.src('lib/**')
 		.pipe(zip('uix-' + package.version + '.zip'))
 		.pipe(gulp.dest('dist/lib'));
@@ -56,7 +56,7 @@ gulp.task('lib:dist', gulp.series('lib:build-js', function _pack() {
  */
 gulp.task('lib:watch', function () {
 	// Cambios en scripts
-	gulp.watch(['lib/uix-core.js', 'lib/add-ons/**/*.js'], gulp.series('lib:build-js'));
+	gulp.watch(['lib/uix-core.js', 'lib/add-ons/**/*.js'], gulp.series('lib:build'));
 });
 
 
@@ -234,7 +234,7 @@ gulp.task('web:build-etc', function () {
 /**
  * Construye la aplicación web.
  */
-gulp.task('web:build', gulp.series('web:build-index', 'web:update-lib', 'web:build-glyphs', 'web:build-css', 'web:build-uix-css', 'web:build-ejs', 'web:build-js', 'web:build-lib', 'web:build-etc'));
+gulp.task('web:build', gulp.series('lib:build', 'web:build-index', 'web:update-lib', 'web:build-glyphs', 'web:build-css', 'web:build-uix-css', 'web:build-ejs', 'web:build-js', 'web:build-lib', 'web:build-etc'));
 
 /**
  * Tarea para arrancar el servidor y ejecutar la aplicación web.

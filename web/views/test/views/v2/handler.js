@@ -4,8 +4,15 @@ View.define('test/views/v2', {
 
     loadTimes: 0,
 
-    ready: function() {
-        // ...
+    ready: function(root) {
+        root.querySelector('.btn-back').addEventListener('click', function() {
+            testSuite.viewport.back();
+        });
+        root.querySelector('.btn-next').addEventListener('click', function() {
+            testSuite.viewport.open('/test/views/v3/48c', {
+                transition: 'slide:left'
+            });
+        });
     },
 
     load: function(options, complete) {
