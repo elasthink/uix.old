@@ -113,7 +113,7 @@ testSuite.pushTest({
     handler: function(callback) {
         var self = this;
         this.viewport.open('/test/views/v1/f44', {
-            transition: View.Transition.FADE
+            transition: 'fade'
         }, function(err) {
             if (err) {
                 return callback(err);
@@ -140,7 +140,7 @@ testSuite.pushTest({
     handler: function(callback) {
         var self = this;
         this.viewport.open('/test/views/v2/4f6', {
-            transition: View.Transition.FADE
+            transition: 'fade'
         }, function(err) {
             if (err) {
                 return callback(err);
@@ -167,7 +167,7 @@ testSuite.pushTest({
     handler: function(callback) {
         var self = this;
         this.viewport.back({
-            transition: View.Transition.FADE
+            transition: 'fade'
         }, function(err) {
             if (err) {
                 return callback(err);
@@ -194,7 +194,7 @@ testSuite.pushTest({
     handler: function(callback) {
         var self = this;
         this.viewport.open('/test/views/v1/fa4', {
-            transition: View.Transition.FADE
+            transition: 'fade'
         }, function(err) {
             if (err) {
                 return callback(err);
@@ -222,19 +222,19 @@ testSuite.pushTest({
     handler: function(callback) {
         var self = this;
         this.viewport.open('/test/views/v2/333', {
-            transition: View.Transition.FADE
+            transition: 'fade'
         }, function(err) {
             if (err) {
                 return callback(err);
             }
             self.viewport.open('/test/views/v2/666', {
-                transition: View.Transition.FADE
+                transition: 'fade'
             }, function(err) {
                 if (err) {
                     return callback(err);
                 }
                 self.viewport.open('/test/views/v2/999', {
-                    transition: View.Transition.FADE
+                    transition: 'fade'
                 }, function(err) {
                     if (err) {
                         return callback(err);
@@ -258,13 +258,13 @@ testSuite.pushTest({
     handler: function(callback) {
         var self = this;
         this.viewport.open('/test/views/v3/48c', {
-            transition: View.Transition.FADE
+            transition: 'fade'
         }, function(err) {
             if (err) {
                 return callback(err);
             }
             self.viewport.open('/test/views/v2/888', {
-                transition: View.Transition.FADE
+                transition: 'fade'
             }, function(err) {
                 if (err) {
                     return callback(err);
@@ -294,7 +294,7 @@ testSuite.pushTest({
         var prev = views[1];
 
         this.viewport.open('/test/views/v2/999', {
-            transition: View.Transition.FADE
+            transition: 'fade'
         }, function(err) {
             if (err) {
                 return callback(err);
@@ -321,7 +321,7 @@ testSuite.pushTest({
 
         this.viewport.open('/test/views/v2/888', {
             reload: true,
-            transition: View.Transition.FADE
+            transition: 'fade'
         }, function(err) {
             if (err) {
                 return callback(err);
@@ -349,7 +349,7 @@ testSuite.pushTest({
 
         this.viewport.back('/test/views/v1/fa4', {
             reload: true,
-            transition: View.Transition.FADE
+            transition: 'fade'
         }, function(err) {
             if (err) {
                 return callback(err);
