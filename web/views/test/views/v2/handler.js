@@ -2,6 +2,8 @@ View.define('test/views/v2', {
 
     keepInstances: 2,
 
+    // transition: 'slide:right',
+
     loadTimes: 0,
 
     ready: function(root) {
@@ -10,7 +12,7 @@ View.define('test/views/v2', {
         });
         root.querySelector('.btn-next').addEventListener('click', function() {
             testSuite.viewport.open('/test/views/v3/48c', {
-                transition: 'slide:left'
+                // transition: 'slide:up'
             });
         });
     },
