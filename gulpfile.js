@@ -154,7 +154,7 @@ gulp.task('web:build-css', function() {
 });
 
 /**
- * Compila la hoja de estilos de la aplicación web con Less.
+ * Compila la hoja de estilos de la librería con Less.
  */
 gulp.task('web:build-uix-css', function() {
     return gulp.src([
