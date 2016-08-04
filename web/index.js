@@ -1,6 +1,5 @@
 /**
- * Objeto de control de inicialización de la aplicación.
- * @type {object}
+ * Función de lanzamiento de la aplicación.
  */
 function launch() {
 

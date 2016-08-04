@@ -32,14 +32,15 @@ var gulp            = require('gulp'),
  * Genera el script completo de la librería, incluyendo los scritps de los add-ons.
  */
 gulp.task('lib:build', function () {
+    var name = 'uix'; // 'uix-' + package.version;
     return gulp.src([
             'lib/uix-core.js',
             'lib/add-ons/**/*.js'
         ])
         .pipe(prettyError())
-        .pipe(concat('uix.js'))
+        .pipe(concat(name + '.js'))
         .pipe(gulp.dest('lib/'))
-        .pipe(rename('uix.min.js'))
+        .pipe(rename(name + '.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('lib/'));
 });
@@ -216,7 +217,7 @@ gulp.task('web:build-js', function () {
  */
 gulp.task('web:build-lib', function () {
     return gulp.src([
-        'web/lib/uix/uix.js'
+        'web/lib/uix/uix-0.1.0.js'
     ])
     .pipe(concat('lib.js'))
     .pipe(gulp.dest('build/web/js'));

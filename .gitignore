@@ -4,8 +4,8 @@ build/
 node_modules/
 
 # lib
-lib/uix.js
-lib/uix.min.js
+lib/*.*
+!lib/uix-core.js
 
 # web
 web/css/glyphs.less
