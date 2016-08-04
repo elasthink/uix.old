@@ -245,7 +245,8 @@ gulp.task('web:build', gulp.series('lib:build', 'web:build-index', 'web:update-l
  * Tarea para arrancar el servidor y ejecutar la aplicación web.
  */
 gulp.task('web:run', function(done) {
-    var p = exec('nodemon --debug index.js', function callback(err) { // stdout, stderr
+    var p = exec('nodemon index.js 3300', function callback(err) { // stdout, stderr
+                       // --debug
         if (err !== null) {
             console.error(err.toString());
         }
