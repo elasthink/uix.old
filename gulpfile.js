@@ -18,7 +18,7 @@ var gulp            = require('gulp'),
 	rename          = require('gulp-rename'),
     debug         	= require('gulp-debug'),
     zip             = require('gulp-zip'),
-    prettyError     = require('gulp-prettyerror'),
+    plumber         = require('gulp-plumber'),
     del         	= require('del'),
     exec            = require('child_process').exec,
     package         = require('./package.json');
@@ -37,7 +37,7 @@ gulp.task('lib:build', function () {
             'lib/uix-core.js',
             'lib/add-ons/**/*.js'
         ])
-        .pipe(prettyError())
+        .pipe(plumber())
         .pipe(concat(name + '.js'))
         .pipe(gulp.dest('lib/'))
         .pipe(rename(name + '.min.js'))
@@ -76,7 +76,7 @@ gulp.task('web:update-lib', function() {
         'lib/**'
     ])
     .pipe(changed(dest))
-    .pipe(prettyError())
+    .pipe(plumber())
     .pipe(gulp.dest(dest));
 });
 
@@ -184,7 +184,7 @@ gulp.task('web:build-ejs', function () {
     return gulp.src([
             'web/views/**/*.ejs'
         ])
-        .pipe(prettyError())
+        .pipe(plumber())
         //.pipe(debug({title: 'EJS:'}))
         .pipe(ejsCompiler({
             compileDebug: false,
