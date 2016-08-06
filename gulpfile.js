@@ -75,8 +75,8 @@ gulp.task('web:update-lib', function() {
     return gulp.src([
         'lib/**'
     ])
-    .pipe(changed(dest))
     .pipe(plumber())
+    .pipe(changed(dest))
     .pipe(gulp.dest(dest));
 });
 
