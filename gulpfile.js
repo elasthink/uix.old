@@ -35,6 +35,7 @@ gulp.task('lib:build', function () {
     var name = 'uix'; // 'uix-' + package.version;
     return gulp.src([
             'lib/uix-core.js',
+            'lib/polyfills/**/*.js',
             'lib/add-ons/**/*.js'
         ])
         .pipe(plumber())
