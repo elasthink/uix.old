@@ -60,7 +60,11 @@ gulp.task('lib:dist', gulp.series('lib:build', function _pack() {
  */
 gulp.task('lib:watch', function () {
 	// Cambios en scripts
-	gulp.watch(['lib/uix-core.js', 'lib/add-ons/**/*.js'], gulp.series('lib:build'));
+	gulp.watch([
+        'lib/uix-core.js',
+        'lib/polyfills/**/*.js',
+        'lib/add-ons/**/*.js'
+    ], gulp.series('lib:build'));
 });
 
 
