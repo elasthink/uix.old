@@ -222,7 +222,7 @@ gulp.task('web:build-js', function () {
  */
 gulp.task('web:build-lib', function () {
     return gulp.src([
-        'web/lib/uix/uix-0.1.0.js'
+        'web/lib/uix/uix.js'
     ])
     .pipe(concat('lib.js'))
     .pipe(gulp.dest('build/web/js'));
