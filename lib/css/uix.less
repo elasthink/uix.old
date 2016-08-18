@@ -50,7 +50,9 @@ h1,h2,h3,h4,h5 {
   font-size: 16px;
   vertical-align: top;
   transition: background 0.1s;
+  user-select: none;
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 
   &.icon {
     padding: 0;
@@ -58,8 +60,10 @@ h1,h2,h3,h4,h5 {
     line-height: 1;
   }
 
-  &:hover {
-    background: @color11;
+  @media (hover:hover) {
+    &:hover {
+      background: @color11;
+    }
   }
   &:active,&.active {
     background: @color12;
@@ -68,8 +72,10 @@ h1,h2,h3,h4,h5 {
   &.ui-gray {
     background: @color2;
 
-    &:hover {
-      background: @color21;
+    @media (hover:hover) {
+      &:hover {
+        background: @color21;
+      }
     }
     &:active,&.active {
       background: @color22;
@@ -80,10 +86,11 @@ h1,h2,h3,h4,h5 {
     color: #666;
     background: transparent;
 
-    &:hover {
-      color: #2ae;
+    @media (hover:hover) {
+      &:hover {
+        color: #2ae;
+      }
     }
-
     &:active,&.active {
       background: rgba(128, 128, 128, 0.1);
     }
@@ -107,8 +114,10 @@ h1,h2,h3,h4,h5 {
   box-sizing: border-box;
   transition: border 0.25s;
 
-  &:hover {
-    border-color: #888;
+  @media (hover:hover) {
+    &:hover {
+      border-color: #888;
+    }
   }
 
   &:focus {
@@ -154,12 +163,13 @@ h1,h2,h3,h4,h5 {
       transition: background 0.25s;
     }
 
-    &:hover {
-      color: #666;
-    }
-
-    &:hover > span {
-      background: #aaa;
+    @media (hover:hover) {
+      &:hover {
+        color: #666;
+      }
+      &:hover > span {
+        background: #aaa;
+      }
     }
   }
 
@@ -188,8 +198,10 @@ h1,h2,h3,h4,h5 {
   box-sizing: border-box;
   transition: border 0.25s;
 
-  &:hover {
-    border-color: #888;
+  @media (hover:hover) {
+    &:hover {
+      border-color: #888;
+    }
   }
 
   &:focus {
@@ -244,6 +256,28 @@ h1,h2,h3,h4,h5 {
     margin-right: 16px;
   }
 }
+
+/* Custom Scroll Bars
+ * ------------------------------------------------------------------------------------------------------------------ */
+/* Funcionalidad Experimental...
+.ui-vscroll {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  width: 12px;
+  height: 100%;
+  background: #888;
+}
+
+.ui-vscroll-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #f00;
+}
+*/
 
 /* Dialogs
  * ------------------------------------------------------------------------------------------------------------------ */
@@ -384,8 +418,10 @@ h1,h2,h3,h4,h5 {
   text-overflow: ellipsis;
   overflow: hidden;
 
-  &:hover {
-    background: #f8f8f8;
+  @media (hover:hover) {
+    &:hover {
+      background: #f8f8f8;
+    }
   }
 
   &:active {
