@@ -18,6 +18,7 @@ var gulp            = require('gulp'),
 	rename          = require('gulp-rename'),
     debug         	= require('gulp-debug'),
     zip             = require('gulp-zip'),
+    mocha         	= require('gulp-mocha'),
     plumber         = require('gulp-plumber'),
     del         	= require('del'),
     exec            = require('child_process').exec,
@@ -35,6 +36,7 @@ gulp.task('lib:build', function () {
     var name = 'uix'; // 'uix-' + package.version;
     return gulp.src([
             'lib/uix-core.js',
+            'lib/util/**/*.js',
             'lib/polyfills/**/*.js',
             'lib/add-ons/**/*.js'
         ])
@@ -62,9 +64,18 @@ gulp.task('lib:watch', function () {
 	// Cambios en scripts
 	gulp.watch([
         'lib/uix-core.js',
+        'lib/util/**/*.js',
         'lib/polyfills/**/*.js',
         'lib/add-ons/**/*.js'
     ], gulp.series('lib:build'));
+});
+
+/**
+ * Ejecuta las pruebas de la librería.
+ */
+gulp.task('lib:test', function () {
+    return gulp.src('lib/test/index.js')
+        .pipe(mocha());
 });
 
 
