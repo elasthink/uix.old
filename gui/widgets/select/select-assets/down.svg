@@ -1,0 +1,17 @@
+<svg id="down.svg" xmlns="http://www.w3.org/2000/svg" width="31" height="40" viewBox="0 0 31 40">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        opacity: 0.1;
+      }
+
+      .cls-2 {
+        fill: #888;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <rect id="gui" class="cls-1" width="31" height="40"/>
+  <path id="down" class="cls-2" d="M297.375,55L299,56.653,292.5,63,286,56.653,287.625,55l4.875,4.8Z" transform="translate(-277 -38)"/>
+</svg>
