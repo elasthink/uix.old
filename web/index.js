@@ -37,6 +37,7 @@ function launch() {
         { type: 'stylesheet', href: '/css/app.css' },
         { type: 'javascript', href: '/js/lib.js' }
     ], function() {
+        hljs.initHighlightingOnLoad();
         importFiles([
             { type: 'javascript', href: '/js/app.js' }
         ], function() {

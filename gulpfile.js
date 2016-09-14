@@ -160,7 +160,8 @@ gulp.task('web:build-glyphs', function() {
 gulp.task('web:build-css', function() {
     return gulp.src([
             'web/css/*.less',
-            'web/views/**/*.less'
+            'web/views/**/*.less',
+            'web/lib/highlight/styles.css'
         ])
         .pipe(less())
         .pipe(autoprefixer({
@@ -233,7 +234,8 @@ gulp.task('web:build-js', function () {
  */
 gulp.task('web:build-lib', function () {
     return gulp.src([
-        'web/lib/uix/uix.js'
+        'web/lib/uix/uix.js',
+        'web/lib/highlight/highlight.js'
     ])
     .pipe(concat('lib.js'))
     .pipe(gulp.dest('build/web/js'));
@@ -312,7 +314,8 @@ gulp.task('web:watch', /*gulp.parallel('lib:watch', */function() {
     gulp.watch([
         'web/css/*.less',
         'web/views/**/*.less',
-        'web/lib/uix/css/uix-theme.less'
+        'web/lib/uix/css/uix-theme.less',
+        'web/lib/highlight/styles.css'
     ], gulp.series('web:build-css'));
 
     // Cambios en las plantillas EJS

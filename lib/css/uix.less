@@ -34,12 +34,14 @@ h1,h2,h3,h4,h5 {
 
 /* Button
  * ------------------------------------------------------------------------------------------------------------------ */
+@side-padding: 16px;
+
 .ui-button {
   position: relative;
   display: inline-block;
   height: 44px;
   line-height: 44px;
-  padding: 0 16px;
+  padding: 0 @side-padding;
   border: 0;
   margin: 0;
   border-radius: 2px;
@@ -55,10 +57,30 @@ h1,h2,h3,h4,h5 {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 
   &.icon {
-    padding: 0;
-    font-size: 44px;
-    line-height: 1;
+    padding: 10px;
   }
+
+  &.left-icon {
+    padding-left: 0;
+
+    > .icon {
+      float: left;
+    }
+  }
+
+  &.right-icon {
+    padding-right: 0;
+
+    > .icon {
+      float: right;
+    }
+  }
+
+  & > .icon {
+    padding: 10px;
+    //margin-left: -@side-padding;
+  }
+
 
   @media (hover:hover) {
     &:hover {
@@ -69,7 +91,7 @@ h1,h2,h3,h4,h5 {
     background: @color12;
   }
 
-  &.ui-gray {
+  &.btn-gray {
     background: @color2;
 
     @media (hover:hover) {
@@ -82,17 +104,18 @@ h1,h2,h3,h4,h5 {
     }
   }
 
-  &.ui-link {
-    color: #666;
+  &.btn-link {
+    color: @color22;
     background: transparent;
 
     @media (hover:hover) {
       &:hover {
-        color: #2ae;
+        color: @color1;
       }
     }
     &:active,&.active {
-      background: rgba(128, 128, 128, 0.1);
+      color: @color12;
+      //background: rgba(128, 128, 128, 0.1);
     }
   }
 }

@@ -62,7 +62,9 @@ var app = {
      * Función de inicio.
      */
     start: function() {
-        this.navMenu = View.create('nav-menu').include(document.getElementById('page'), function(err) {
+        this.navMenu = View.create('nav-menu').include(document.getElementById('nav-menu'), {
+            replace: true
+        }, function(err) {
             //alert('Home Ok!');
         });
 

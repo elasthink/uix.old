@@ -1,3 +1,30 @@
+<%
+    var code;
+%>
 <div id="ui-button-page" class="ui-view">
     <h1>ui-button</h1>
+
+    <h2>Text button</h2>
+    <%-code = '<button class="ui-button">Press Me</button>'%>
+    <pre><code class="html hljs"><%=code%></code></pre>
+
+    <h2>Text and icon button</h2>
+    <%-code = '<button class="ui-button left-icon"><span class="icon icon-star"></span>Press Me</button>'%>
+    <pre><code class="html hljs"><%=code%></code></pre>
+
+    <%-code = '<button class="ui-button right-icon"><span class="icon icon-star"></span>Press Me</button>'%>
+    <pre><code class="html hljs"><%=code%></code></pre>
+
+    <h2>Icon button</h2>
+    <%-code = '<button class="ui-button icon icon-star"></button>'%>
+    <pre><code class="html hljs"><%=code%></code></pre>
+
+    <h2>Gray button</h2>
+    <%-code = '<button class="ui-button btn-gray left-icon"><span class="icon icon-star"></span>Press Me</button>'%>
+    <pre><code class="html hljs"><%=code%></code></pre>
+
+    <h2>Link button</h2>
+    <%-code = '<button class="ui-button btn-link left-icon"><span class="icon icon-star"></span>Press Me</button>'%>
+    <pre><code class="html hljs"><%=code%></code></pre>
+
 </div>
