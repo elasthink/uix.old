@@ -13,7 +13,7 @@ html, body {
 body {
   padding: 0;
   margin: 0;
-  background: @background;
+  background: @bg1;
   font-family: @font;
   font-size: 16px;
   font-weight: 300;
@@ -47,11 +47,11 @@ h1,h2,h3,h4,h5 {
   border-radius: 2px;
   outline: 0;
   color: #fff;
-  background: @color1;
+  background: @c1;
   font-family: @font;
   font-size: 16px;
   vertical-align: top;
-  transition: background 0.1s;
+  transition: all 0.1s;
   user-select: none;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -84,37 +84,37 @@ h1,h2,h3,h4,h5 {
 
   @media (hover:hover) {
     &:hover {
-      background: @color11;
+      background: @c1w1;
     }
   }
   &:active,&.active {
-    background: @color12;
+    background: @c1b1;
   }
 
   &.btn-gray {
-    background: @color2;
+    background: @c2;
 
     @media (hover:hover) {
       &:hover {
-        background: @color21;
+        background: @c2w1;
       }
     }
     &:active,&.active {
-      background: @color22;
+      background: @c2b1;
     }
   }
 
   &.btn-link {
-    color: @color22;
+    color: @c2;
     background: transparent;
 
     @media (hover:hover) {
       &:hover {
-        color: @color1;
+        color: @c2b1;
       }
     }
     &:active,&.active {
-      color: @color12;
+      color: @c1;
       //background: rgba(128, 128, 128, 0.1);
     }
   }
