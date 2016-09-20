@@ -11,7 +11,7 @@ function launch() {
             count = files.length,
             check = function() {
                 count--;
-                if (count === 0) {
+                if (count === 0 && callback) {
                     callback();
                 }
             };
