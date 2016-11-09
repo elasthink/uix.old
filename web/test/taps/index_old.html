@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tap Test</title>
+    <script type="application/javascript">
+        var logger;
+        var log = function(msg) {
+            msg = '[' + performance.now().toFixed(3) + '] ' + msg;
+            console.log(msg);
+            logger.innerHTML += msg + '\n';
+        };
+
+        var info = function(event) {
+            log(event.type); // + ': ' + JSON.stringify(event));
+        };
+        var events = ['touchstart'/*, 'touchmove'*/, 'touchend', 'mouseover'/*, 'mousemove'*/, 'mousedown', 'mouseup', 'click'];
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.body;
+
+            logger = document.getElementById('log');
+            for (var i = 0; i < events.length; i++) {
+                el.addEventListener(events[i], info);
+            }
+
+
+            el.addEventListener('touchend', function(event) {
+                log('touchend.preventDefault! ' + el.id);
+                event.preventDefault();
+            }, true);
+        });
+    </script>
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            position: relative;
+        }
+        #foo {
+            width: 50%;
+            height: 100%;
+            background: #888;
+        }
+        #bar {
+            display: block;
+            width: 100%;
+            height: 250px;
+            line-height: 250px;
+            color: #fff;
+            background: #aaa;
+            text-decoration: none;
+            text-align: center;
+            font-family: arial;
+        }
+        #bar:hover {
+            background: #f00;
+        }
+        #log {
+            float: right;
+            width: 50%;
+            height: 100%;
+            background: #f0f0f0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin: 0;
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+</head>
+<body>
+
+<pre id="log"></pre>
+<div id="foo">
+    <a id="bar" href="#">HELLO WORLD!!!</a>
+</div>
+
+
+</body>
+</html>

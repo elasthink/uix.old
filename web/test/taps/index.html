@@ -3,31 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Tap Test</title>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <!-- <script type="application/javascript" src="taps.js"></script> -->
     <script type="application/javascript">
-        var logger;
-        var log = function(msg) {
-            msg = '[' + performance.now().toFixed(3) + '] ' + msg;
-            console.log(msg);
-            logger.innerHTML += msg + '\n';
-        };
+        var events = [
+            'touchstart', 'touchmove', 'touchend', 'touchcancel',
+            'mousedown'/*, 'mousemove'*/, 'mouseup', 'mouseleave',
+            'tap', 'doubletap', 'press', 'swipe', 'drag'
+        ];
+        function log(msg) {
+            console.log('[' + performance.now().toFixed(3) + '] ' + msg);
+        }
+        function logEvent(event) {
+            log(event.target.id + '.' + event.type);
+            if (event.type.startsWith('touch') && event.touches.length > 0) {
+                for (var i = 0; i < event.touches.length; i++) {
+                    log(event.touches[i].identifier + ': ' + event.touches[i].pageX.toFixed(3) + ',' + event.touches[i].pageY.toFixed(3));
+                }
+            }
+        }
 
-        var info = function(event) {
-            log(event.type); // + ': ' + JSON.stringify(event));
-        };
-        var events = ['touchstart'/*, 'touchmove'*/, 'touchend', 'mouseover'/*, 'mousemove'*/, 'mousedown', 'mouseup', 'click'];
         document.addEventListener('DOMContentLoaded', function() {
-            var el = document.body;
-
-            logger = document.getElementById('log');
+            var board = document.getElementById('board');
             for (var i = 0; i < events.length; i++) {
-                el.addEventListener(events[i], info);
+                board.addEventListener(events[i], logEvent, false);
+            }
+            var cards = board.querySelectorAll('.card');
+            for (var i = 0; i < cards.length; i++) {
+                for (var j = 0; j < events.length; j++) {
+                    cards[i].addEventListener(events[j], logEvent, true);
+                }
+            }
+
+            // Acciones concretas
+            for (var i = 0; i < cards.length; i++) {
+                cards[i].addEventListener('tap', function (event) {
+
+
+                }, true);
+                cards[i].addEventListener('doubletap', function (event) {
+
+
+                }, true);
+                cards[i].addEventListener('press', function (event) {
+
+
+                }, true);
+                cards[i].addEventListener('swipe', function (event) {
+
+
+                }, true);
+                cards[i].addEventListener('drag', function (event) {
+
+
+                }, true);
             }
 
 
-            el.addEventListener('touchend', function(event) {
-                log('touchend.preventDefault! ' + el.id);
-                event.preventDefault();
-            }, true);
         });
     </script>
     <style>
@@ -36,48 +68,59 @@
             margin: 0;
             width: 100%;
             height: 100%;
-        }
-        body {
-            position: relative;
-        }
-        #foo {
-            width: 50%;
-            height: 100%;
-            background: #888;
-        }
-        #bar {
-            display: block;
-            width: 100%;
-            height: 250px;
-            line-height: 250px;
-            color: #fff;
-            background: #aaa;
-            text-decoration: none;
-            text-align: center;
             font-family: arial;
         }
-        #bar:hover {
-            background: #f00;
+        #board {
+            position: absolute;
+            top: 32px;
+            left: 32px;
+            bottom: 32px;
+            right: 32px;
+            border: 8px solid rgba(0,0,0,0.1);
+            color: #822;
+            background: #f44;
+            font-size: 32px;
+            cursor: pointer;
+            user-select: none;
         }
-        #log {
-            float: right;
-            width: 50%;
-            height: 100%;
-            background: #f0f0f0;
-            overflow-y: auto;
-            overflow-x: hidden;
-            margin: 0;
-            -webkit-overflow-scrolling: touch;
+        #board > b {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: 300;
+            pointer-events: none;
+        }
+
+        .card {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            width: 120px;
+            height: 180px;
+            line-height: 180px;
+            border: 4px solid rgba(0,0,0,0.2);
+            border-radius: 4px;
+            box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
+            color: #282;
+            background: #4f4;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        #card2 {
+            top: auto;
+            left: auto;
+            right: 16px;
+            bottom: 16px;
         }
     </style>
 </head>
 <body>
-
-<pre id="log"></pre>
-<div id="foo">
-    <a id="bar" href="#">HELLO WORLD!!!</a>
-</div>
-
-
+    <div id="board">
+        <b>Touch Me</b>
+        <div id="card1" class="card">Card 1</div>
+        <div id="card2" class="card">Card 2</div>
+    </div>
 </body>
 </html>
