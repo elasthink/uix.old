@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <title>Tap Test</title>
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-    <!-- <script type="application/javascript" src="taps.js"></script> -->
+    <script type="application/javascript" src="taps.js"></script>
     <script type="application/javascript">
         var events = [
-            'touchstart', 'touchmove', 'touchend', 'touchcancel',
-            'mousedown'/*, 'mousemove'*/, 'mouseup', 'mouseleave',
+//            'touchstart', 'touchmove', 'touchend', 'touchcancel',
+//            'mousedown'/*, 'mousemove'*/, 'mouseup', 'mouseleave',
             'tap', 'doubletap', 'press', 'swipe', 'drag'
         ];
         function log(msg) {
@@ -25,9 +25,11 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             var board = document.getElementById('board');
+            /*
             for (var i = 0; i < events.length; i++) {
                 board.addEventListener(events[i], logEvent, false);
             }
+            */
             var cards = board.querySelectorAll('.card');
             for (var i = 0; i < cards.length; i++) {
                 for (var j = 0; j < events.length; j++) {
@@ -54,7 +56,8 @@
 
                 }, true);
                 cards[i].addEventListener('drag', function (event) {
-
+                    event.target.style.top = event.detail.y + 'px';
+                    event.target.style.left = event.detail.x + 'px';
 
                 }, true);
             }
