@@ -7,62 +7,94 @@
     <script type="application/javascript" src="taps.js"></script>
     <script type="application/javascript">
         var events = [
-//            'touchstart', 'touchmove', 'touchend', 'touchcancel',
-//            'mousedown'/*, 'mousemove'*/, 'mouseup', 'mouseleave',
-            'tap', 'doubletap', 'press', 'swipe', 'drag'
+            'touchstart', 'touchmove', 'touchend', 'touchcancel',
+            'mousedown'/*, 'mousemove'*/, 'mouseup', 'mouseleave',
+            'tap', 'doubletap', 'press', 'swipe', 'dragstart', 'drag', 'dragend'
         ];
         function log(msg) {
             console.log('[' + performance.now().toFixed(3) + '] ' + msg);
         }
         function logEvent(event) {
             log(event.target.id + '.' + event.type);
+            /*
             if (event.type.startsWith('touch') && event.touches.length > 0) {
                 for (var i = 0; i < event.touches.length; i++) {
                     log(event.touches[i].identifier + ': ' + event.touches[i].pageX.toFixed(3) + ',' + event.touches[i].pageY.toFixed(3));
                 }
             }
+            */
         }
 
         document.addEventListener('DOMContentLoaded', function() {
             var board = document.getElementById('board');
-            /*
             for (var i = 0; i < events.length; i++) {
                 board.addEventListener(events[i], logEvent, false);
             }
-            */
-            var cards = board.querySelectorAll('.card');
-            for (var i = 0; i < cards.length; i++) {
+
+            var balls = board.querySelectorAll('.ball');
+            for (var i = 0; i < balls.length; i++) {
                 for (var j = 0; j < events.length; j++) {
-                    cards[i].addEventListener(events[j], logEvent, true);
+                    balls[i].addEventListener(events[j], logEvent, true);
                 }
             }
 
+            var text = board.querySelector('b');
+            for (var i = 0; i < events.length; i++) {
+                text.addEventListener(events[i], logEvent, false);
+            }
+
             // Acciones concretas
-            for (var i = 0; i < cards.length; i++) {
-                cards[i].addEventListener('tap', function (event) {
+             for (var i = 0; i < balls.length; i++) {
+                balls[i].addEventListener('tap', function (event) {
 
 
                 }, true);
-                cards[i].addEventListener('doubletap', function (event) {
+                balls[i].addEventListener('doubletap', function (event) {
 
 
                 }, true);
-                cards[i].addEventListener('press', function (event) {
+                balls[i].addEventListener('press', function (event) {
 
 
                 }, true);
-                cards[i].addEventListener('swipe', function (event) {
+                balls[i].addEventListener('swipe', function (event) {
 
 
                 }, true);
-                cards[i].addEventListener('drag', function (event) {
-                    event.target.style.top = event.detail.y + 'px';
-                    event.target.style.left = event.detail.x + 'px';
-
+                balls[i].addEventListener('dragstart', function (event) {
+                    var el = event.target;
+                    el.dataset.dragX = el.offsetLeft;
+                    el.dataset.dragY = el.offsetTop;
+                });
+                balls[i].addEventListener('drag', function (event) {
+                    var el = event.target;
+                    el.style.top = parseFloat(el.dataset.dragY) + event.detail.dy + 'px';
+                    el.style.left = parseFloat(el.dataset.dragX) + event.detail.dx + 'px';
                 }, true);
             }
 
+            // Evitamos el comportamiento por defecto frente al arrastre
+            document.documentElement.addEventListener('touchmove', function(event) {
+                event.preventDefault();
+            }, true);
 
+            // Por delegación de eventos
+            /*
+            board.addEventListener('dragstart', function(event) {
+                var el = event.target;
+                if (el.className === 'ball') {
+                    el.dataset.dragX = el.offsetLeft;
+                    el.dataset.dragY = el.offsetTop;
+                }
+            }, true);
+            board.addEventListener('drag', function (event) {
+                var el = event.target;
+                if (el.className === 'ball') {
+                    el.style.top = parseFloat(el.dataset.dragY) + event.detail.dy + 'px';
+                    el.style.left = parseFloat(el.dataset.dragX) + event.detail.dx + 'px';
+                }
+            }, true);
+            */
         });
     </script>
     <style>
@@ -72,6 +104,7 @@
             width: 100%;
             height: 100%;
             font-family: arial;
+            background: #ccc;
         }
         #board {
             position: absolute;
@@ -79,51 +112,70 @@
             left: 32px;
             bottom: 32px;
             right: 32px;
-            border: 8px solid rgba(0,0,0,0.1);
-            color: #822;
-            background: #f44;
+            border: 8px solid #ddd;
+            color: #aaa;
+            background: #eee;
             font-size: 32px;
             cursor: pointer;
             user-select: none;
+            text-align: center;
+            overflow: hidden;
         }
         #board > b {
             position: absolute;
+            display: block;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-weight: 300;
-            pointer-events: none;
+            /* pointer-events: none; */
         }
 
-        .card {
+        .ball {
             position: absolute;
             top: 16px;
             left: 16px;
-            width: 120px;
-            height: 180px;
-            line-height: 180px;
-            border: 4px solid rgba(0,0,0,0.2);
-            border-radius: 4px;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 62px;
             box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
-            color: #282;
-            background: #4f4;
+            color: #fff;
+            /* background: #4f4; */
+            background: radial-gradient(closest-side at 40% 40%, #2ae, #0e83be);
             font-size: 24px;
             text-align: center;
         }
 
-        #card2 {
-            top: auto;
+        #ball2 {
             left: auto;
             right: 16px;
+            background: radial-gradient(closest-side at 40% 40%, #0f0, #00cc00);
+        }
+
+        #ball3 {
+            top: auto;
             bottom: 16px;
+            background: radial-gradient(closest-side at 40% 40%, #f00, #cc0000);
+        }
+
+        #ball4 {
+            top: auto;
+            bottom: 16px;
+            left: auto;
+            right: 16px;
+            background: radial-gradient(closest-side at 40% 40%, #ff0, #cccc00);
         }
     </style>
 </head>
 <body>
     <div id="board">
-        <b>Touch Me</b>
-        <div id="card1" class="card">Card 1</div>
-        <div id="card2" class="card">Card 2</div>
+        <b id="text">Touch My Balls</b>
+        <div id="ball1" class="ball"></div>
+        <div id="ball2" class="ball"></div>
+        <div id="ball3" class="ball"></div>
+        <div id="ball4" class="ball"></div>
     </div>
 </body>
 </html>

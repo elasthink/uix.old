@@ -5,7 +5,7 @@
      *
      * @type {number}
      */
-    var motionThreshold = 25;
+    var motionThreshold = 5;
 
     /**
      *
@@ -34,96 +34,99 @@
 
     // Variables -------------------------------------------------------------------------------------------------------
     /**
-     * Mapa de seguimiento de eventos de interacción táctil o de ratón.
-     * El identificador de la entrada se forma añadiendo al método de interacción táctil (touch) o de ratón (mouse) el
-     * identificador del punto de contacto en eventos táctiles (touch:0, touch:1...).
-     * @see https://developer.mozilla.org/en-US/docs/Web/API/Touch/identifier
-     * @type {Object.<string, TrackEntry>}
+     * Seguimiento de eventos de interacción táctil o de ratón.
+     * @type {Object}
      */
-    var trackMap = {};
+    var track = {
 
-    /**
-     * Indica el número de puntos de contacto activos en cada instante.
-     * @type {number}
-     */
-    var touching = 0;
+        /**
+         * Representa una entrada del mapa de seguimiento de eventos de interacción táctil o de ratón.
+         * @typedef {Object} TrackEntry
+         * @property {EventTarget} target Referencia al elemento donde se origina el evento.
+         * @property {number} startTime Tiempo de inicio de la secuencia de eventos.
+         * @property {number} endTime Tiempo de finalización de la secuencia de eventos.
+         * @property {number} dt Tiempo transcurrido entre el inicio y el final de la secuencia.
+         * @property {number} x0 Coordenada X inicial.
+         * @property {number} y0 Coordenada Y inicial.
+         * @property {number} x Coordenada X actual.
+         * @property {number} y Coordenada Y actual.
+         * @property {number} dx Desplazamiento de la coordenada X.
+         * @property {number} dy Desplazamiento de la coordenada Y.
+         * @property {?('horizontal'|'vertical')} orientation Orientación del desplazamiento.
+         * @property {?('up'|'right'|'down'|'left')} direction Dirección del desplazamiento.
+         * @property {number} [pressTimer] Temporizador para lanzar el evento de pulsación larga (press).
+         * @property {?{target: EventTarget, time: number}} prev Referencia al elemento implicado en la interacción anterior y
+         * el tiempo de finalización de la misma.
+         */
 
-    /**
-     * Indica el tiempo de finalización del último evento táctil.
-     * @type {number}
-     */
-    var touchEndTime = 0;
+        /**
+         * Mapa de seguimiento de eventos de interacción táctil o de ratón.
+         * El identificador de la entrada se forma añadiendo al método de interacción táctil (touch) o de ratón (mouse)
+         * el identificador del punto de contacto en eventos táctiles (touch:0, touch:1...).
+         * @see https://developer.mozilla.org/en-US/docs/Web/API/Touch/identifier
+         * @type {Object.<string, TrackEntry>}
+         */
+        map: {},
 
+        /**
+         * Indica el número de puntos de contacto activos en cada instante.
+         * @type {number}
+         */
+        touching: 0,
 
+        /**
+         * Indica el tiempo de finalización del último evento táctil.
+         * @type {number}
+         */
+        touchEndTime: 0,
 
-    // Tratamiento de eventos táctiles ---------------------------------------------------------------------------------
-    /**
-     * Tratamiento del inicio de un evento táctil.
-     * @param {TouchEvent} event Evento táctil recibido.
-     */
-    function touchStart(event) {
-        if (!event.changedTouches) {
-            return;
-        }
-        // Se evalua todos los puntos de contacto
-        for (var i = 0, id, px, py, e; i < event.changedTouches.length; i++) {
-            id = 'touch:' + event.changedTouches[i].identifier;
-            px = event.changedTouches[i].pageX;
-            py = event.changedTouches[i].pageY;
-
-            // Se crea la nueva entrada en el mapa de seguimiento de eventos
-            trackMap[id] = e = {
-                target: event.target,
+        /**
+         * Crea la entrada para seguimiento de una nueva interacción táctil o de ratón.
+         * @param {string} id Identificador de entrada.
+         * @param {EventTarget} target Elemento implicado en la interacción.
+         * @param {number} x Coordenada X.
+         * @param {number} y Coordenada Y.
+         */
+        start: function(id, target, x, y) {
+            // Se crea la nueva entrada
+            this.map[id] = {
+                target: target,
                 startTime: performance.now(),
                 endTime: 0,
                 dt: 0,
-                x0: px,
-                y0: py,
-                x: px,
-                y: py,
+                x0: x,
+                y0: y,
+                x: x,
+                y: y,
                 dx: 0,
                 dy: 0,
                 orientation: null,
                 direction: null,
                 // Si hay una entrada anterior se guarda la referencia al elemento implicado en la interacción y el
                 // tiempo de finalización de la misma
-                prev: trackMap[id] ? {
-                    target: trackMap[id].target,
-                    time: trackMap[id].endTime
+                prev: this.map[id] ? {
+                    target: this.map[id].target,
+                    time: this.map[id].endTime
                 } : null
             };
 
-            // Temporizador para lanzar el evento de pulsación larga
-            trackMap[id].pressTimer = setTimeout(function() {
+            // Se crea el temporizador para lanzar el evento de pulsación larga transcurrido el tiempo establecido
+            var e = this.map[id];
+            this.map[id].pressTimer = setTimeout(function() {
                 fire(e, 'press');
             }, pressTime);
+        },
 
-            // Se añade el tratamiento de los eventos posteriores
-            if (touching === 0) {
-                document.documentElement.addEventListener('touchmove', touchMove, true);
-                document.documentElement.addEventListener('touchend', touchEnd, true);
-                document.documentElement.addEventListener('touchcancel', touchEnd, true);
-            }
-
-            // Se incrementa el contador de interacciones táctiles activas
-            touching++;
-
-        } // for (var i = 0, id; i < event.changedTouches.length; i++)
-    }
-
-    /**
-     * Tratamiento del evento de desplazamiento táctil.
-     * @param {TouchEvent} event Evento táctil recibido.
-     */
-    function touchMove(event) {
-        if (!event.changedTouches) {
-            return;
-        }
-        // Se evalua todos los puntos de contacto
-        for (var i = 0, entry; i < event.changedTouches.length; i++) {
-            entry = trackMap['touch:' + event.changedTouches[i].identifier];
-            entry.x = event.changedTouches[i].pageX;
-            entry.y = event.changedTouches[i].pageY;
+        /**
+         * Tratamiento de los eventos de desplazamiento.
+         * @param {string} id Identificador de la entrada.
+         * @param {number} x Coordenada X.
+         * @param {number} y Coordenada Y.
+         */
+        move: function(id, x, y) {
+            var entry = this.map[id];
+            entry.x = x;
+            entry.y = y;
             entry.dx = entry.x - entry.x0;
             entry.dy = entry.y - entry.y0;
 
@@ -145,21 +148,86 @@
                         entry.orientation = 'vertical';
                         entry.direction = (entry.dy > 0) ? 'down' : 'up';
                     }
+                    fire(entry, 'dragstart');
                 }
-
-                /* TODO: Evaluar que pasa con los eventos delegados y la posibilidad de cambio de target (ver jquery.finger)
-                var target = event.target;
-                while (target && target !== start.target) {
-                    target = target.parentNode;
-                }
-                if (target !== start.target) {
-                    target = start.target;
-                    stopHandler.call(this, $.Event(stopEvent + '.' + namespace, event));
-                    return;
-                } */
-                // TODO: Usamos el target de la entrada pero una vez aclaremos el punto anterior evaluar que target especificar
                 fire(entry, 'drag');
             }
+        },
+
+        /**
+         * Tratamiento del final de una interacción.
+         * @param {string} id Identificador de la entrada.
+         * @param {boolean} [cancel] Indica si cancelar la interacción.
+         */
+        end: function(id, cancel) {
+            var entry = this.map[id];
+
+            // Se cancela el evento de pulsación larga (press)
+            clearTimeout(entry.pressTimer);
+
+            // Se comprueba el tipo de evento
+            if (cancel) {
+                delete this.map[id];
+                return;
+            }
+
+            // Se actualiza el tiempo de finalización y se calcula el tiempo transcurrido
+            entry.endTime = performance.now();
+            entry.dt = entry.endTime - entry.startTime;
+
+            // Se lanzan los eventos correspondientes
+            if (entry.orientation) {
+                if (entry.dt < swipeTime) {
+                    fire(entry, 'swipe');
+                }
+                fire(entry, 'dragend');
+
+            } else if (entry.prev && entry.prev.target === event.target &&
+                (entry.endTime - entry.prev.time) < doubleTapTime) {
+                fire(entry, 'doubletap');
+
+            } else {
+                fire(entry, 'tap');
+            }
+        }
+    };
+
+    // Tratamiento de eventos táctiles ---------------------------------------------------------------------------------
+    /**
+     * Tratamiento del inicio de un evento táctil.
+     * @param {TouchEvent} event Evento táctil recibido.
+     */
+    function touchStart(event) {
+        if (!event.changedTouches) {
+            return;
+        }
+        // Se evalua todos los puntos de contacto
+        for (var i = 0; i < event.changedTouches.length; i++) {
+            // Se crea la nueva entrada para seguimiento de la interacción
+            track.start('touch:' + event.changedTouches[i].identifier, event.target,
+                event.changedTouches[i].pageX, event.changedTouches[i].pageY);
+
+            // Si es el primero punto de contacto, se añade el tratamiento de los eventos posteriores
+            if (track.touching === 0) {
+                on('touchmove', touchMove, true);
+                on(['touchend', 'touchcancel'], touchEnd, true);
+            }
+
+            // Se incrementa el contador de puntos de contacto activos
+            track.touching++;
+        }
+    }
+
+    /**
+     * Tratamiento del evento de desplazamiento táctil.
+     * @param {TouchEvent} event Evento táctil recibido.
+     */
+    function touchMove(event) {
+        // Se evalua todos los puntos de contacto
+        for (var i = 0; i < event.changedTouches.length; i++) {
+            // Se realiza el tratamiento del desplazamiento para cada punto de contacto
+            track.move('touch:' + event.changedTouches[i].identifier,
+                event.changedTouches[i].pageX, event.changedTouches[i].pageY);
         }
     }
 
@@ -168,227 +236,118 @@
      * @param {TouchEvent} event Evento táctil recibido.
      */
     function touchEnd(event) {
-        if (!event.changedTouches) {
-            return;
-        }
         // Se evalua todos los puntos de contacto
-        for (var i = 0, id, entry; i < event.changedTouches.length; i++) {
-            id = 'touch:' + event.changedTouches[i].identifier;
-            entry = trackMap[id];
-
-            // Se cancela el evento de pulsación larga (press)
-            clearTimeout(entry.pressTimer);
-
-            // Se comprueba el tipo de evento
-            if (event.type === 'touchend') {
-                entry.endTime = performance.now();
-                entry.dt = entry.endTime - entry.startTime;
-                if (entry.orientation) {
-                    if (entry.dt < swipeTime) {
-                        fire(entry, 'swipe');
-                    }
-                    // TODO: Tiene sentido emitirlo o en el tratamiento anterior del evento 'touchmove' ya estamos notificando los últimos cambios de coordenadas?
-                    // fire(entry, 'drag');
-
-                } else if (entry.prev && entry.prev.target === event.target &&
-                        (entry.endTime - entry.prev.time) < doubleTapTime) {
-                    fire(entry, 'doubletap');
-
-                } else {
-                    fire(entry, 'tap');
-                }
-                event.preventDefault();
-            } else {
-                // Si se cancela la interacción se elimina la entrada
-                delete trackMap[id];
-            }
+        for (var i = 0, e; i < event.changedTouches.length; i++) {
+            track.end('touch:' + event.changedTouches[i].identifier, event.type !== 'touchend');
 
             // Se decrementa el número de puntos de contacto activos y se guarda el tiempo final
-            touching--;
-            touchEndTime = entry.endTime;
+            track.touching--;
+            track.touchEndTime = performance.now();
 
         } // for (var i = 0, entry; i < event.changedTouches.length; i++)
 
-        // Se elimina el tratamiento de eventos
-        if (touching === 0) {
-            document.documentElement.removeEventListener('touchmove', touchMove, true);
-            document.documentElement.removeEventListener('touchend', touchEnd, true);
-            document.documentElement.removeEventListener('touchcancel', touchEnd, true);
+        // Evitamos el tratamiento por defecto
+        event.preventDefault();
+
+        // Se elimina el tratamiento de eventos añadidos
+        if (track.touching === 0) {
+            off('touchmove', touchMove, true);
+            off(['touchend', 'touchcancel'], touchEnd, true);
         }
     }
-
 
 
     // Tratamiento de eventos de ratón ---------------------------------------------------------------------------------
     /**
      * Tratamiento del inicio de un evento de ratón.
-     * @param event
+     * @param {Event} event Evento recibido.
      */
     function mouseStart(event) {
+        var now = performance.now();
         // Se comprueba si hay una interacción táctil activa o si el tiempo desde la última es menor que el margen
-        // establecido, descartando todos los eventos de ratón que lleguen bajo esas condiciones
-        if (touching > 0 || touchEndTime < touchGap) {
+        // establecido, descartando todos los eventos de ratón que lleguen en esos casos
+        if (track.touching > 0 || (now - track.touchEndTime) < touchGap) {
             event.preventDefault();
             return;
         }
 
-        // Se crea la nueva entrada en el mapa de seguimiento de eventos
-        var id = 'mouse', e,
-            px = event.pageX,
-            py = event.pageY;
-        trackMap[id] = e = {
-            target: event.target,
-            startTime: performance.now(),
-            endTime: 0,
-            dt: 0,
-            x0: px,
-            y0: py,
-            x: px,
-            y: py,
-            dx: 0,
-            dy: 0,
-            orientation: null,
-            direction: null,
-            // Si hay una entrada anterior se guarda la referencia al elemento implicado en la interacción y el
-            // tiempo de finalización de la misma
-            prev: trackMap[id] ? {
-                target: trackMap[id].target,
-                time: trackMap[id].endTime
-            } : null
-        };
-
-        // Temporizador para lanzar el evento de pulsación larga
-        trackMap[id].pressTimer = setTimeout(function() {
-            fire(e, 'press');
-        }, pressTime);
+        // Se crea la nueva entrada para seguimiento de la interacción
+        track.start('mouse', event.target, event.pageX, event.pageY);
 
         // Se añade el tratamiento de los eventos posteriores
-        document.documentElement.addEventListener('mousemove', mouseMove, true);
-        document.documentElement.addEventListener('mouseup', mouseEnd, true);
-        document.documentElement.addEventListener('mouseleave', mouseEnd, true);
-    };
+        on('mousemove', mouseMove, true);
+        on('mouseup', mouseEnd, true);
+    }
 
     /**
      * Tratamiento del evento de desplazamiento con el ratón.
-     * @param event
+     * @param {Event} event Evento recibido.
      */
-    var mouseMove = function(event) {
-        var entry = trackMap['mouse'];
-        entry.x = event.pageX;
-        entry.y = event.pageY;
-        entry.dx = entry.x - entry.x0;
-        entry.dy = entry.y - entry.y0;
-
-        // Se comprueba el desplazamiento mínimo en los ejes
-        var adx = Math.abs(entry.dx);
-        var ady = Math.abs(entry.dy);
-        if (adx > motionThreshold || ady > motionThreshold) {
-
-            // Si hay movimiento se cancela el evento de pulsación larga (press)
-            clearTimeout(entry.pressTimer);
-
-            // Se calcula la orientación y dirección del movimiento
-            if (!entry.orientation) {
-                if (adx > ady) {
-                    entry.orientation = 'horizontal';
-                    entry.direction = (entry.dx > 0) ? 'right' : 'left';
-                }
-                else {
-                    entry.orientation = 'vertical';
-                    entry.direction = (entry.dy > 0) ? 'down' : 'up';
-                }
-            }
-
-            /* TODO: Evaluar que pasa con los eventos delegados y la posibilidad de cambio de target (ver jquery.finger)
-            var target = event.target;
-            while (target && target !== start.target) {
-                target = target.parentNode;
-            }
-            if (target !== start.target) {
-                target = start.target;
-                stopHandler.call(this, $.Event(stopEvent + '.' + namespace, event));
-                return;
-            } */
-            // TODO: Usamos el target de la entrada pero una vez aclaremos el punto anterior evaluar que target especificar
-            fire(entry, 'drag');
-        }
-    };
+    function mouseMove(event) {
+        track.move('mouse', event.pageX, event.pageY);
+    }
 
     /**
      * Tratamiento del final de un evento de ratón.
-     * @param event
      */
-    var mouseEnd = function(event) {
-        var id = 'mouse';
-        var entry = trackMap[id];
+    function mouseEnd() {
+        track.end('mouse');
 
-        // Se cancela el evento de pulsación larga (press)
-        clearTimeout(entry.pressTimer);
+        // Evitamos el tratamiento por defecto
+        event.preventDefault();
 
-        // Se comprueba el tipo de evento
-        if (event.type === 'mouseup') {
-            entry.endTime = performance.now();
-            entry.dt = entry.endTime - entry.startTime;
-            if (entry.orientation) {
-                if (entry.dt < swipeTime) {
-                    fire(entry, 'swipe');
-                }
-            } else if (entry.prev && entry.prev.target === event.target &&
-                (entry.endTime - entry.prev.time) < doubleTapTime) {
-                fire(entry, 'doubletap');
-
-            } else {
-                fire(entry, 'tap');
-            }
-            event.preventDefault();
-        } else {
-            // Si se cancela la interacción se elimina la entrada
-            delete trackMap[id];
-        }
-
-        // Se elimina el tratamiento de eventos
-        document.documentElement.removeEventListener('mousemove', mouseMove, true);
-        document.documentElement.removeEventListener('mouseup', mouseEnd, true);
-        document.documentElement.removeEventListener('mouseleave', mouseEnd, true);
-    };
-
-
+        // Se elimina el tratamiento de eventos añadidos
+        off('mousemove', mouseMove, true);
+        off('mouseup', mouseEnd, true);
+    }
 
     // Funciones de utilidad -------------------------------------------------------------------------------------------
+    /**
+     * Añade el tratamiento del evento o eventos especificados.
+     * @param {string|string[]} type Tipo o tipos de evento especificados.
+     * @param {function} handler Función para tratamiento del evento.
+     * @param {boolean} capture Indica si añadir el tratamiento en la fase de captura del evento.
+     */
+    function on(type, handler, capture) {
+        if (Array.isArray(type)) {
+            for (var i = 0; i < type.length; i++) {
+                document.documentElement.addEventListener(type[i], handler, capture);
+            }
+        } else {
+            document.documentElement.addEventListener(type, handler, capture);
+        }
+    }
+
+    /**
+     * Elimina el tratamiento del evento o eventos especificados.
+     * @param {string|string[]} type Tipo o tipos de evento especificados.
+     * @param {function} handler Función para tratamiento del evento añadida anteriormente.
+     * @param {boolean} capture Indica si el tratamiento a eliminar fue añadido para la fase de captura o no.
+     */
+    function off(type, handler, capture) {
+        if (Array.isArray(type)) {
+            for (var i = 0; i < type.length; i++) {
+                document.documentElement.removeEventListener(type[i], handler, capture);
+            }
+        } else {
+            document.documentElement.removeEventListener(type, handler, capture);
+        }
+    }
+
     /**
      * Lanza el tipo de evento especificado.
      * @param {TrackEntry} entry Información de seguimiento de la interacción.
      * @param details
      */
-    var fire = function(entry, type) {
+    function fire(entry, type) {
         entry.target.dispatchEvent(new CustomEvent(type, {
             detail: entry,
             bubbles: true
         }));
-    };
+    }
 
     // Inicialización --------------------------------------------------------------------------------------------------
     // Se añade los manejadores de eventos iniciales
-    document.documentElement.addEventListener('touchstart', touchStart, true);
-    document.documentElement.addEventListener('mousedown', mouseStart, true);
+    on('touchstart', touchStart, true);
+    on('mousedown', mouseStart, true);
 })();
-
-/**
- * Representa una entrada del mapa de seguimiento de eventos de interacción táctil o de ratón.
- * @typedef {Object} TrackEntry
- * @property {EventTarget} target Referencia al elemento donde se origina el evento.
- * @property {number} startTime Tiempo de inicio de la secuencia de eventos.
- * @property {number} endTime Tiempo de finalización de la secuencia de eventos.
- * @property {number} dt Tiempo transcurrido entre el inicio y el final de la secuencia.
- * @property {number} x0 Coordenada X inicial.
- * @property {number} y0 Coordenada Y inicial.
- * @property {number} x Coordenada X actual.
- * @property {number} y Coordenada Y actual.
- * @property {number} dx Desplazamiento de la coordenada X.
- * @property {number} dy Desplazamiento de la coordenada Y.
- * @property {?('horizontal'|'vertical')} orientation Orientación del desplazamiento.
- * @property {?('up'|'right'|'down'|'left')} direction Dirección del desplazamiento.
- * @property {number} [pressTimer] Temporizador para lanzar el evento de pulsación larga (press).
- * @property {?{target: EventTarget, time: number}} prev Referencia al elemento implicado en la interacción anterior y
- * el tiempo de finalización de la misma.
- */
