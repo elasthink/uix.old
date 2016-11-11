@@ -3,64 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Tap Test</title>
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
     <script type="application/javascript" src="taps.js"></script>
     <script type="application/javascript">
+        var board;
         var events = [
+            // touch
             'touchstart', 'touchmove', 'touchend', 'touchcancel',
-            'mousedown'/*, 'mousemove'*/, 'mouseup', 'mouseleave',
+            // mouse
+            'click', 'mousedown', 'mouseup', // 'mousemove', 'mouseleave',
+            // uix
             'tap', 'doubletap', 'press', 'swipe', 'dragstart', 'drag', 'dragend'
         ];
+
         function log(msg) {
             console.log('[' + performance.now().toFixed(3) + '] ' + msg);
         }
+
         function logEvent(event) {
             log(event.target.id + '.' + event.type);
-            /*
-            if (event.type.startsWith('touch') && event.touches.length > 0) {
-                for (var i = 0; i < event.touches.length; i++) {
-                    log(event.touches[i].identifier + ': ' + event.touches[i].pageX.toFixed(3) + ',' + event.touches[i].pageY.toFixed(3));
-                }
+        }
+
+        function hint(event) {
+            var e = document.createElement('div');
+            e.className = 'hint';
+            e.innerText = event.type.toUpperCase();
+            if (event.type === 'swipe') {
+                e.innerText += ' ' + event.detail.direction.toUpperCase();
             }
-            */
+            e.style.top = (event.detail.y - board.offsetTop - board.clientTop) + 'px';
+            e.style.left = (event.detail.x - board.offsetLeft - board.clientLeft) + 'px';
+            board.append(e);
+            e.offsetWidth + e.offsetHeight;
+            e.addEventListener('transitionend', function(event) {
+                if (event.target === e && event.propertyName === 'opacity') {
+                    e.parentNode.removeChild(e);
+                }
+            });
+            window.requestAnimationFrame(function() {
+                e.classList.add('drop');
+            });
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            var board = document.getElementById('board');
+            board = document.getElementById('board');
             for (var i = 0; i < events.length; i++) {
-                board.addEventListener(events[i], logEvent, false);
+                board.addEventListener(events[i], logEvent, true);
             }
 
             var balls = board.querySelectorAll('.ball');
             for (var i = 0; i < balls.length; i++) {
-                for (var j = 0; j < events.length; j++) {
-                    balls[i].addEventListener(events[j], logEvent, true);
-                }
+                ['tap', 'doubletap', 'press', 'swipe'].forEach(function(type) {
+                    balls[i].addEventListener(type, hint, true);
+                });
             }
 
-            var text = board.querySelector('b');
-            for (var i = 0; i < events.length; i++) {
-                text.addEventListener(events[i], logEvent, false);
-            }
-
-            // Acciones concretas
-             for (var i = 0; i < balls.length; i++) {
-                balls[i].addEventListener('tap', function (event) {
-
-
-                }, true);
-                balls[i].addEventListener('doubletap', function (event) {
-
-
-                }, true);
-                balls[i].addEventListener('press', function (event) {
-
-
-                }, true);
-                balls[i].addEventListener('swipe', function (event) {
-
-
-                }, true);
+            // Arrastre de bolas
+            for (var i = 0; i < balls.length; i++) {
                 balls[i].addEventListener('dragstart', function (event) {
                     var el = event.target;
                     el.dataset.dragX = el.offsetLeft;
@@ -77,24 +76,6 @@
             document.documentElement.addEventListener('touchmove', function(event) {
                 event.preventDefault();
             }, true);
-
-            // Por delegación de eventos
-            /*
-            board.addEventListener('dragstart', function(event) {
-                var el = event.target;
-                if (el.className === 'ball') {
-                    el.dataset.dragX = el.offsetLeft;
-                    el.dataset.dragY = el.offsetTop;
-                }
-            }, true);
-            board.addEventListener('drag', function (event) {
-                var el = event.target;
-                if (el.className === 'ball') {
-                    el.style.top = parseFloat(el.dataset.dragY) + event.detail.dy + 'px';
-                    el.style.left = parseFloat(el.dataset.dragX) + event.detail.dx + 'px';
-                }
-            }, true);
-            */
         });
     </script>
     <style>
@@ -116,19 +97,37 @@
             color: #aaa;
             background: #eee;
             font-size: 32px;
-            cursor: pointer;
             user-select: none;
             text-align: center;
             overflow: hidden;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
         }
-        #board > b {
+        #title {
             position: absolute;
             display: block;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-weight: 300;
-            /* pointer-events: none; */
+        }
+
+        #input-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 48px;
+            line-height: 48px;
+            padding: 0 12px;
+            border: 0;
+            border-bottom: 2px solid #aaa;
+            border-radius: 0;
+            outline: 0;
+            color: #888;
+            background: #fff;
+            font-size: 24px;
+            font-family: arial;
+            appearance: none;
         }
 
         .ball {
@@ -142,24 +141,22 @@
             border-radius: 62px;
             box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
             color: #fff;
-            /* background: #4f4; */
             background: radial-gradient(closest-side at 40% 40%, #2ae, #0e83be);
             font-size: 24px;
             text-align: center;
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
         }
-
         #ball2 {
             left: auto;
             right: 16px;
             background: radial-gradient(closest-side at 40% 40%, #0f0, #00cc00);
         }
-
         #ball3 {
             top: auto;
             bottom: 16px;
             background: radial-gradient(closest-side at 40% 40%, #f00, #cc0000);
         }
-
         #ball4 {
             top: auto;
             bottom: 16px;
@@ -167,11 +164,27 @@
             right: 16px;
             background: radial-gradient(closest-side at 40% 40%, #ff0, #cccc00);
         }
+
+        .hint {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            color: #fff;
+            font-size: 22px;
+            text-shadow: 0 0 4px #000;
+            pointer-events: none;
+            transition: all 1s ease-out;
+        }
+        .hint.drop {
+            transform: translate(-50%, -100%);
+            opacity: 0;
+        }
     </style>
 </head>
 <body>
     <div id="board">
-        <b id="text">Touch My Balls</b>
+        <b id="title">Touch My Balls</b>
+        <input id="input-text" type="text" placeholder="Write text here..." />
         <div id="ball1" class="ball"></div>
         <div id="ball2" class="ball"></div>
         <div id="ball3" class="ball"></div>
