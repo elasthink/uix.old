@@ -17,7 +17,7 @@
         ];
 
         function log(msg) {
-            console.log('[' + performance.now().toFixed(3) + '] ' + msg);
+            // console.log('[' + performance.now().toFixed(3) + '] ' + msg);
         }
 
         function logEvent(event) {
@@ -30,6 +30,9 @@
             e.innerText = event.type.toUpperCase();
             if (event.type === 'swipe') {
                 e.innerText += ' ' + event.detail.direction.toUpperCase();
+            }
+            if (event.detail.id) {
+                e.innerText += ' ' + event.detail.id;
             }
             e.style.top = (event.detail.y - board.offsetTop - board.clientTop) + 'px';
             e.style.left = (event.detail.x - board.offsetLeft - board.clientLeft) + 'px';
@@ -100,6 +103,8 @@
             user-select: none;
             text-align: center;
             overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
             -webkit-tap-highlight-color: rgba(0,0,0,0);
         }
         #title {

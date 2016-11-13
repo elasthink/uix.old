@@ -2,31 +2,31 @@
 
     // Constantes ------------------------------------------------------------------------------------------------------
     /**
-     *
+     * Mínima longitud de desplazamiento en los ejes (pixels).
      * @type {number}
      */
     var motionThreshold = 8;
 
     /**
-     *
+     * Tiempo máximo en milisegundos para lanzar el evento de deslizamiento rápido (swipe).
      * @type {number}
      */
     var swipeTime = 500;
 
     /**
-     *
+     * Tiempo en milisegundos para la lanzar el evento de pulsación larga (press).
      * @type {number}
      */
     var pressTime = 300;
 
     /**
-     *
+     * Tiempo máximo en milisegundos para lanzar el evento de pulsación doble (doubletap).
      * @type {number}
      */
     var doubleTapTime = 300;
 
     /**
-     *
+     * Margen de tiempo en milisegundos desde el último evento táctil en el que ignorar eventos de ratón posteriores.
      * @type {number}
      */
     var touchGap = 300;
@@ -36,7 +36,7 @@
     /**
      * Representa una entrada en el mapa de seguimiento de eventos de interacción táctil o de ratón.
      * @typedef {Object} TrackEntry
-     * @property {EventTarget} target Referencia al elemento donde se origina el evento.
+     * @property {EventTarget|Element} target Referencia al elemento donde se origina el evento.
      * @property {number} startTime Tiempo de inicio de la secuencia de eventos.
      * @property {number} endTime Tiempo de finalización de la secuencia de eventos.
      * @property {number} dt Tiempo transcurrido entre el inicio y el final de la secuencia.
@@ -48,9 +48,6 @@
      * @property {number} dy Desplazamiento de la coordenada Y.
      * @property {?('horizontal'|'vertical')} orientation Orientación del desplazamiento.
      * @property {?('up'|'right'|'down'|'left')} direction Dirección del desplazamiento.
-     * @property {number} [pressTimer] Temporizador para lanzar el evento de pulsación larga (press).
-     * @property {?{target: EventTarget, time: number}} prev Referencia al elemento implicado en la interacción anterior y
-     * el tiempo de finalización de la misma.
      */
 
     /**
@@ -60,7 +57,7 @@
      * @see https://developer.mozilla.org/en-US/docs/Web/API/Touch/identifier
      * @type {Object.<string, TrackEntry>}
      */
-    var trackMap = {};
+    var track = {};
 
     /**
      * Indica el número de puntos de contacto activos en cada instante.
@@ -77,13 +74,14 @@
     /**
      * Crea la entrada para seguimiento de una nueva interacción táctil o de ratón.
      * @param {string} id Identificador de entrada.
-     * @param {EventTarget} target Elemento implicado en la interacción.
+     * @param {EventTarget|Element} target Elemento implicado en la interacción.
      * @param {number} x Coordenada X.
      * @param {number} y Coordenada Y.
      */
     function trackStart(id, target, x, y) {
+        // console.log('trackStart: ' + id);
         // Se crea la nueva entrada
-        trackMap[id] = {
+        var entry = track[id] = {
             target: target,
             startTime: performance.now(),
             endTime: 0,
@@ -95,20 +93,13 @@
             dx: 0,
             dy: 0,
             orientation: null,
-            direction: null,
-            // Si hay una entrada anterior se guarda la referencia al elemento implicado en la interacción y el
-            // tiempo de finalización de la misma
-            prev: trackMap[id] ? {
-                target: trackMap[id].target,
-                time: trackMap[id].endTime
-            } : null
+            direction: null
         };
 
         // Se crea el temporizador para lanzar el evento de pulsación larga transcurrido el tiempo establecido
-        var e = trackMap[id];
-        trackMap[id].pressTimer = setTimeout(function() {
-            fire(e, 'press');
-        }, pressTime);
+        target.setAttribute('data-press-timer', setTimeout(function() {
+            fire(entry, 'press');
+        }, pressTime));
     }
 
     /**
@@ -118,7 +109,8 @@
      * @param {number} y Coordenada Y.
      */
     function trackMove(id, x, y) {
-        var entry = trackMap[id];
+        // console.log('trackMove: ' + id);
+        var entry = track[id];
         entry.x = x;
         entry.y = y;
         entry.dx = entry.x - entry.x0;
@@ -130,7 +122,11 @@
         if (adx > motionThreshold || ady > motionThreshold) {
 
             // Si hay movimiento se cancela el evento de pulsación larga (press)
-            clearTimeout(entry.pressTimer);
+            var pressTimer = entry.target.getAttribute('data-press-timer');
+            if (pressTimer) {
+                clearTimeout(pressTimer);
+                entry.target.removeAttribute('data-press-timer');
+            }
 
             // Se calcula la orientación y dirección del movimiento
             if (!entry.orientation) {
@@ -154,35 +150,46 @@
      * @param {boolean} [cancel] Indica si cancelar la interacción.
      */
     function trackEnd(id, cancel) {
-        var entry = trackMap[id];
+        console.log('trackEnd: ' + id);
+        var entry = track[id];
 
         // Se cancela el evento de pulsación larga (press)
-        clearTimeout(entry.pressTimer);
-
-        // Se comprueba el tipo de evento
-        if (cancel) {
-            delete trackMap[id];
-            return;
+        var pressTimer = entry.target.getAttribute('data-press-timer');
+        if (pressTimer) {
+            clearTimeout(pressTimer);
+            entry.target.removeAttribute('data-press-timer');
         }
 
-        // Se actualiza el tiempo de finalización y se calcula el tiempo transcurrido
-        entry.endTime = performance.now();
-        entry.dt = entry.endTime - entry.startTime;
+        if (!cancel) {
+            // Se actualiza el tiempo de finalización y se calcula el tiempo transcurrido
+            entry.endTime = performance.now();
+            entry.dt = entry.endTime - entry.startTime;
 
-        // Se lanzan los eventos correspondientes
-        if (entry.orientation) {
-            if (entry.dt < swipeTime) {
-                fire(entry, 'swipe');
+            // Se lanza el evento o eventos correspondientes
+            if (entry.orientation) {
+                if (entry.dt < swipeTime) {
+                    fire(entry, 'swipe');
+                }
+                fire(entry, 'dragend');
+
+            } else {
+                var doubleTapTimer = entry.target.getAttribute('data-doubletap-timer');
+                if (doubleTapTimer) {
+                    fire(entry, 'doubletap');
+                    clearTimeout(doubleTapTimer);
+                    entry.target.removeAttribute('data-doubletap-timer');
+                } else {
+                    fire(entry, 'tap');
+                    var target = entry.target;
+                    entry.target.setAttribute('data-doubletap-timer', setTimeout(function() {
+                        target.removeAttribute('data-doubletap-timer');
+                    }, doubleTapTime));
+                }
             }
-            fire(entry, 'dragend');
-
-        } else if (entry.prev && entry.prev.target === event.target &&
-            (entry.endTime - entry.prev.time) < doubleTapTime) {
-            fire(entry, 'doubletap');
-
-        } else {
-            fire(entry, 'tap');
         }
+
+        // Se elimina la entrada de seguimiento
+        delete track[id];
     }
 
     // Tratamiento de eventos táctiles ---------------------------------------------------------------------------------
