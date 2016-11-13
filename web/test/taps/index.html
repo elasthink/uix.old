@@ -17,7 +17,7 @@
         ];
 
         function log(msg) {
-            // console.log('[' + performance.now().toFixed(3) + '] ' + msg);
+            console.log('[' + performance.now().toFixed(3) + '] ' + msg);
         }
 
         function logEvent(event) {
@@ -31,12 +31,9 @@
             if (event.type === 'swipe') {
                 e.innerText += ' ' + event.detail.direction.toUpperCase();
             }
-            if (event.detail.id) {
-                e.innerText += ' ' + event.detail.id;
-            }
             e.style.top = (event.detail.y - board.offsetTop - board.clientTop) + 'px';
             e.style.left = (event.detail.x - board.offsetLeft - board.clientLeft) + 'px';
-            board.append(e);
+            board.appendChild(e);
             e.offsetWidth + e.offsetHeight;
             e.addEventListener('transitionend', function(event) {
                 if (event.target === e && event.propertyName === 'opacity') {
@@ -87,8 +84,10 @@
             margin: 0;
             width: 100%;
             height: 100%;
+            overflow: auto;
             font-family: arial;
             background: #ccc;
+            touch-action: none;
         }
         #board {
             position: absolute;
@@ -188,7 +187,7 @@
 </head>
 <body>
     <div id="board">
-        <b id="title">Touch My Balls</b>
+        <b id="title">Touch My Balls!</b>
         <input id="input-text" type="text" placeholder="Write text here..." />
         <div id="ball1" class="ball"></div>
         <div id="ball2" class="ball"></div>

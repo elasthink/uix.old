@@ -31,7 +31,6 @@
      */
     var touchGap = 300;
 
-
     // Variables -------------------------------------------------------------------------------------------------------
     /**
      * Representa una entrada en el mapa de seguimiento de eventos de interacción táctil o de ratón.
@@ -71,6 +70,7 @@
      */
     var touchEndTime = 0;
 
+    // -----------------------------------------------------------------------------------------------------------------
     /**
      * Crea la entrada para seguimiento de una nueva interacción táctil o de ratón.
      * @param {string} id Identificador de entrada.
@@ -116,20 +116,15 @@
         entry.dx = entry.x - entry.x0;
         entry.dy = entry.y - entry.y0;
 
-        // Se comprueba el desplazamiento mínimo en los ejes
-        var adx = Math.abs(entry.dx);
-        var ady = Math.abs(entry.dy);
-        if (adx > motionThreshold || ady > motionThreshold) {
-
-            // Si hay movimiento se cancela el evento de pulsación larga (press)
-            var pressTimer = entry.target.getAttribute('data-press-timer');
-            if (pressTimer) {
-                clearTimeout(pressTimer);
-                entry.target.removeAttribute('data-press-timer');
-            }
-
-            // Se calcula la orientación y dirección del movimiento
-            if (!entry.orientation) {
+        // Se comprueba si ya se ha iniciado el movimiento
+        if (entry.orientation) {
+            fire(entry, 'drag');
+        } else {
+            // Se comprueba que haya un desplazamiento mínimo en los ejes
+            var adx = Math.abs(entry.dx);
+            var ady = Math.abs(entry.dy);
+            if (adx > motionThreshold || ady > motionThreshold) {
+                // Se calcula la orientación y dirección del movimiento
                 if (adx > ady) {
                     entry.orientation = 'horizontal';
                     entry.direction = (entry.dx > 0) ? 'right' : 'left';
@@ -139,9 +134,16 @@
                     entry.direction = (entry.dy > 0) ? 'down' : 'up';
                 }
                 fire(entry, 'dragstart');
+                fire(entry, 'drag');
+
+                // Se cancela el evento de pulsación larga (press)
+                var pressTimer = entry.target.getAttribute('data-press-timer');
+                if (pressTimer) {
+                    clearTimeout(pressTimer);
+                    entry.target.removeAttribute('data-press-timer');
+                }
             }
-            fire(entry, 'drag');
-        }
+        } // if (entry.orientation) else
     }
 
     /**
@@ -150,7 +152,7 @@
      * @param {boolean} [cancel] Indica si cancelar la interacción.
      */
     function trackEnd(id, cancel) {
-        console.log('trackEnd: ' + id);
+        // console.log('trackEnd: ' + id);
         var entry = track[id];
 
         // Se cancela el evento de pulsación larga (press)
@@ -302,6 +304,11 @@
 
     // Funciones de utilidad -------------------------------------------------------------------------------------------
     /**
+     * Referencia al elemento raíz del documento donde añadir el manejo de eventos.
+     */
+    var root = document.documentElement;
+
+    /**
      * Añade el tratamiento del evento o eventos especificados.
      * @param {string|string[]} type Tipo o tipos de evento especificados.
      * @param {function} handler Función para tratamiento del evento.
@@ -310,10 +317,10 @@
     function on(type, handler, capture) {
         if (Array.isArray(type)) {
             for (var i = 0; i < type.length; i++) {
-                document.documentElement.addEventListener(type[i], handler, capture);
+                root.addEventListener(type[i], handler, capture);
             }
         } else {
-            document.documentElement.addEventListener(type, handler, capture);
+            root.addEventListener(type, handler, capture);
         }
     }
 
@@ -326,10 +333,10 @@
     function off(type, handler, capture) {
         if (Array.isArray(type)) {
             for (var i = 0; i < type.length; i++) {
-                document.documentElement.removeEventListener(type[i], handler, capture);
+                root.removeEventListener(type[i], handler, capture);
             }
         } else {
-            document.documentElement.removeEventListener(type, handler, capture);
+            root.removeEventListener(type, handler, capture);
         }
     }
 
