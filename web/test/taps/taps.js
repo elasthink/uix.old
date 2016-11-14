@@ -1,6 +1,9 @@
+/**
+ * taps.js
+ */
 (function() {
 
-    // Constantes ------------------------------------------------------------------------------------------------------
+    // Settings --------------------------------------------------------------------------------------------------------
     /**
      * Mínima longitud de desplazamiento en los ejes (pixels).
      * @type {number}
@@ -30,6 +33,7 @@
      * @type {number}
      */
     var touchGap = 300;
+
 
     // Variables -------------------------------------------------------------------------------------------------------
     /**
@@ -70,7 +74,8 @@
      */
     var touchEndTime = 0;
 
-    // -----------------------------------------------------------------------------------------------------------------
+
+    // Functions -------------------------------------------------------------------------------------------------------
     /**
      * Crea la entrada para seguimiento de una nueva interacción táctil o de ratón.
      * @param {string} id Identificador de entrada.
@@ -194,7 +199,7 @@
         delete track[id];
     }
 
-    // Tratamiento de eventos táctiles ---------------------------------------------------------------------------------
+    // Touch events ----------------------------------------------------------------------------------------------------
     /**
      * Tratamiento del inicio de un evento táctil.
      * @param {TouchEvent} event Evento táctil recibido.
@@ -259,7 +264,7 @@
     }
 
 
-    // Tratamiento de eventos de ratón ---------------------------------------------------------------------------------
+    // Mouse Events ----------------------------------------------------------------------------------------------------
     /**
      * Tratamiento del inicio de un evento de ratón.
      * @param {Event} event Evento recibido.
@@ -302,7 +307,8 @@
         off('mouseup', mouseEnd, true);
     }
 
-    // Funciones de utilidad -------------------------------------------------------------------------------------------
+
+    // Utility functions -----------------------------------------------------------------------------------------------
     /**
      * Referencia al elemento raíz del documento donde añadir el manejo de eventos.
      */
@@ -352,8 +358,8 @@
         }));
     }
 
-    // Inicialización --------------------------------------------------------------------------------------------------
-    // Se añade los manejadores de eventos iniciales
+
+    // Initialization --------------------------------------------------------------------------------------------------
     on('touchstart', touchStart, true);
     on('mousedown', mouseStart, true);
 })();

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Tap Test</title>
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
-    <script type="application/javascript" src="taps.js"></script>
+    <!-- <script type="text/javascript" src="taps.js"></script> -->
+    <script type="text/javascript" src="/js/lib.js"></script>
     <script type="application/javascript">
         var board;
         var events = [
@@ -13,7 +14,7 @@
             // mouse
             'click', 'mousedown', 'mouseup', // 'mousemove', 'mouseleave',
             // uix
-            'tap', 'doubletap', 'press', 'swipe', 'dragstart', 'drag', 'dragend'
+            'tapstart', 'tap', 'doubletap', 'press', 'swipe', 'dragstart', 'drag', 'dragend'
         ];
 
         function log(msg) {
