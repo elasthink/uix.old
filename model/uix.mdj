@@ -63,7 +63,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -88,7 +89,8 @@
 											"underline": false,
 											"text": "View",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -113,7 +115,8 @@
 											"underline": false,
 											"text": "(from views)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -137,7 +140,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -203,7 +207,8 @@
 											"underline": true,
 											"text": "+KEEP_NONE: string = \"none\"",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -231,7 +236,8 @@
 											"underline": true,
 											"text": "+KEEP_SINGLE: string = \"single\"",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -259,7 +265,8 @@
 											"underline": true,
 											"text": "+KEEP_MULTIPLE: string = \"multiple\"",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -287,7 +294,8 @@
 											"underline": true,
 											"text": "~handlers: Object.<string, function>",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -315,7 +323,8 @@
 											"underline": true,
 											"text": "~templates: Object.<string, function>",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -343,7 +352,8 @@
 											"underline": false,
 											"text": "-uid: string",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -371,7 +381,8 @@
 											"underline": false,
 											"text": "-root: Element",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -399,7 +410,8 @@
 											"underline": false,
 											"text": "-template: string",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -427,7 +439,8 @@
 											"underline": false,
 											"text": "-dataURL: string",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -455,7 +468,8 @@
 											"underline": false,
 											"text": "~keepInstances: string|number = KEEP_SINGLE",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -509,7 +523,8 @@
 											"underline": true,
 											"text": "+define(name: string, base: string, proto: Object): function(new:View, Object=)",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -537,7 +552,8 @@
 											"underline": true,
 											"text": "+exists(name: string): boolean",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -565,7 +581,8 @@
 											"underline": true,
 											"text": "+create(name: string, settings: Object): View",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -593,7 +610,8 @@
 											"underline": true,
 											"text": "+render(view: View|string, template: string, options: Object|function, complete: function(err: ?Object, root: ?Element=)): void",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -621,7 +639,8 @@
 											"underline": true,
 											"text": "+get(id: string|Element): View",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -649,7 +668,8 @@
 											"underline": true,
 											"text": "+putTemplate(name: string, template: function): void",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -677,7 +697,8 @@
 											"underline": true,
 											"text": "+escape(code: string): string",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -705,7 +726,8 @@
 											"underline": false,
 											"text": "~View(settings: Object)",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -733,7 +755,8 @@
 											"underline": false,
 											"text": "+init(settings: Object): void",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -761,7 +784,8 @@
 											"underline": false,
 											"text": "+include(target: Element, options: Object, complete: function(err: ?Object=)): View",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -789,7 +813,8 @@
 											"underline": false,
 											"text": "#render(options: Object, complete: function(err: ?Object, root: ?Element=)): void",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -817,7 +842,8 @@
 											"underline": false,
 											"text": "#load(options: Object, complete: function(err: ?Object=)): void",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -845,7 +871,8 @@
 											"underline": false,
 											"text": "#reload(options: Object, complete: function(err: ?Object=)): void",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -873,7 +900,8 @@
 											"underline": false,
 											"text": "#ready(root: Element, options: Object): void",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -901,7 +929,8 @@
 											"underline": false,
 											"text": "+remove(): void",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -929,7 +958,8 @@
 											"underline": false,
 											"text": "+destroy(): void",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -957,7 +987,8 @@
 											"underline": false,
 											"text": "+expired(): boolean",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -985,7 +1016,8 @@
 											"underline": false,
 											"text": "+toggle(show: boolean, complete: function): void",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -1135,7 +1167,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -1160,7 +1193,8 @@
 											"underline": false,
 											"text": "Viewport",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -1185,7 +1219,8 @@
 											"underline": false,
 											"text": "(from views)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -1209,7 +1244,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -1275,7 +1311,8 @@
 											"underline": false,
 											"text": "-container: Element",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -1303,7 +1340,8 @@
 											"underline": false,
 											"text": "-path: string = null",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -1331,7 +1369,8 @@
 											"underline": false,
 											"text": "-loading: boolean = false",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -1359,7 +1398,8 @@
 											"underline": false,
 											"text": "-topLevel: boolean = false",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -1387,7 +1427,8 @@
 											"underline": false,
 											"text": "-basePath: string = ''",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -1415,7 +1456,8 @@
 											"underline": false,
 											"text": "-backRequest: {path: string, options: Object} = null",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -1443,7 +1485,8 @@
 											"underline": false,
 											"text": "-backTransition: string = null",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -1471,7 +1514,8 @@
 											"underline": false,
 											"text": "-timestamp: number = 0",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -1525,7 +1569,8 @@
 											"underline": false,
 											"text": "+Viewport(container: Element, options: Object)",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -1553,7 +1598,8 @@
 											"underline": false,
 											"text": "+open(path: string, options: Object, complete: function(err: ?Object=)): void",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -1581,7 +1627,8 @@
 											"underline": false,
 											"text": "+back(path: string, options: Object, complete: function(err: ?Object=)): void",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -1609,7 +1656,8 @@
 											"underline": false,
 											"text": "+...()",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -1758,7 +1806,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -1791,7 +1840,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -1824,7 +1874,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -1857,7 +1908,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -1890,7 +1942,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -1923,7 +1976,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -1943,9 +1997,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 786,
+									"left": 785,
 									"top": 263,
-									"width": 69.3671875,
+									"width": 70,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.35299030246107654,
@@ -1957,7 +2011,8 @@
 									"underline": false,
 									"text": "-parentView",
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -1990,7 +2045,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2010,9 +2066,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 793,
+									"left": 791,
 									"top": 237,
-									"width": 21.68359375,
+									"width": 24,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -2024,7 +2080,8 @@
 									"underline": false,
 									"text": "0..1",
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -2172,7 +2229,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2205,7 +2263,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2238,7 +2297,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2271,7 +2331,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2304,7 +2365,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2337,7 +2399,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2357,9 +2420,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 789,
+									"left": 788,
 									"top": 392,
-									"width": 36.83544921875,
+									"width": 39,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -2371,7 +2434,8 @@
 									"underline": false,
 									"text": "-views",
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2404,7 +2468,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2424,9 +2489,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 794,
+									"left": 792,
 									"top": 365,
-									"width": 19.5126953125,
+									"width": 22,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -2438,7 +2503,8 @@
 									"underline": false,
 									"text": "0..*",
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -2586,7 +2652,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2619,7 +2686,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2652,7 +2720,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2685,7 +2754,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2718,7 +2788,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2751,7 +2822,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2771,9 +2843,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 790,
+									"left": 789,
 									"top": 439,
-									"width": 49.1181640625,
+									"width": 50,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.412410326843319,
@@ -2785,7 +2857,8 @@
 									"underline": false,
 									"text": "-currrent",
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2818,7 +2891,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -2838,9 +2912,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 793,
+									"left": 791,
 									"top": 413,
-									"width": 21.68359375,
+									"width": 24,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -2852,7 +2926,8 @@
 									"underline": false,
 									"text": "0..1",
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -3001,7 +3076,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -3026,7 +3102,8 @@
 											"underline": false,
 											"text": "Viewport~RouteNode",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -3051,7 +3128,8 @@
 											"underline": false,
 											"text": "(from views)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -3075,7 +3153,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -3141,7 +3220,8 @@
 											"underline": false,
 											"text": "+path: string",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -3169,7 +3249,8 @@
 											"underline": false,
 											"text": "+view: string|function(new:View, Object=)",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -3197,7 +3278,8 @@
 											"underline": false,
 											"text": "+handler: function(params: {}, done: function)",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -3371,7 +3453,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -3390,13 +3473,14 @@
 											"containerExtending": false,
 											"left": 1245,
 											"top": 727,
-											"width": 238.2021484375,
+											"width": 242,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
 											"text": "Viewport~PathNode",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -3421,7 +3505,8 @@
 											"underline": false,
 											"text": "(from views)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -3445,7 +3530,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -3459,7 +3545,7 @@
 									"containerExtending": false,
 									"left": 1240,
 									"top": 720,
-									"width": 248.2021484375,
+									"width": 252,
 									"height": 25,
 									"autoResize": false,
 									"stereotypeLabel": {
@@ -3505,13 +3591,14 @@
 											"containerExtending": false,
 											"left": 1245,
 											"top": 750,
-											"width": 238.2021484375,
+											"width": 242,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
 											"text": "+path: string",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -3533,13 +3620,14 @@
 											"containerExtending": false,
 											"left": 1245,
 											"top": 765,
-											"width": 238.2021484375,
+											"width": 242,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
 											"text": "+params: Object.<string,string>",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -3561,13 +3649,14 @@
 											"containerExtending": false,
 											"left": 1245,
 											"top": 780,
-											"width": 238.2021484375,
+											"width": 242,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
 											"text": "+rest: string",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -3589,13 +3678,14 @@
 											"containerExtending": false,
 											"left": 1245,
 											"top": 795,
-											"width": 238.2021484375,
+											"width": 242,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
 											"text": "+view: string|function(new:View, Object=)",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -3617,13 +3707,14 @@
 											"containerExtending": false,
 											"left": 1245,
 											"top": 810,
-											"width": 238.2021484375,
+											"width": 242,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
 											"text": "+handler: function",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -3637,7 +3728,7 @@
 									"containerExtending": false,
 									"left": 1240,
 									"top": 745,
-									"width": 248.2021484375,
+									"width": 252,
 									"height": 83,
 									"autoResize": false
 								},
@@ -3661,7 +3752,7 @@
 									"containerExtending": false,
 									"left": 1240,
 									"top": 828,
-									"width": 248.2021484375,
+									"width": 252,
 									"height": 10,
 									"autoResize": false
 								},
@@ -3725,7 +3816,7 @@
 							"containerExtending": false,
 							"left": 1240,
 							"top": 720,
-							"width": 248.2021484375,
+							"width": 252,
 							"height": 118,
 							"autoResize": false,
 							"stereotypeDisplay": "label",
@@ -3796,7 +3887,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3829,7 +3921,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3862,7 +3955,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								}
 							],
 							"visible": true,
@@ -3936,7 +4030,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3969,7 +4064,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4002,7 +4098,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4035,7 +4132,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4068,7 +4166,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4101,7 +4200,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4123,7 +4223,7 @@
 									"containerExtending": false,
 									"left": 1017,
 									"top": 704,
-									"width": 40.4599609375,
+									"width": 41,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -1.0153026823414848,
@@ -4135,7 +4235,8 @@
 									"underline": false,
 									"text": "-routes",
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4168,7 +4269,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4188,9 +4290,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 976,
+									"left": 974,
 									"top": 702,
-									"width": 19.5126953125,
+									"width": 22,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -5.402835587228315,
@@ -4202,7 +4304,8 @@
 									"underline": false,
 									"text": "0..*",
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -4350,7 +4453,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4383,7 +4487,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4416,7 +4521,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4449,7 +4555,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4482,7 +4589,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4515,7 +4623,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4535,9 +4644,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 790,
+									"left": 789,
 									"top": 327,
-									"width": 69.3671875,
+									"width": 70,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.32175048296808606,
@@ -4549,7 +4658,8 @@
 									"underline": false,
 									"text": "-parentView",
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4582,7 +4692,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4602,9 +4713,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 793,
+									"left": 791,
 									"top": 301,
-									"width": 21.68359375,
+									"width": 24,
 									"height": 13,
 									"autoResize": false,
 									"alpha": 0.5235987755982988,
@@ -4616,7 +4727,8 @@
 									"underline": false,
 									"text": "0..1",
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -4765,7 +4877,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -4784,13 +4897,14 @@
 											"containerExtending": false,
 											"left": 229,
 											"top": 743,
-											"width": 183.1552734375,
+											"width": 189,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
 											"text": "View.Cache",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -4815,7 +4929,8 @@
 											"underline": false,
 											"text": "(from views)",
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "LabelView",
@@ -4839,7 +4954,8 @@
 											"autoResize": false,
 											"underline": false,
 											"horizontalAlignment": 1,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -4853,7 +4969,7 @@
 									"containerExtending": false,
 									"left": 224,
 									"top": 736,
-									"width": 193.1552734375,
+									"width": 199,
 									"height": 25,
 									"autoResize": false,
 									"stereotypeLabel": {
@@ -4899,13 +5015,14 @@
 											"containerExtending": false,
 											"left": 229,
 											"top": 766,
-											"width": 183.1552734375,
+											"width": 189,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
 											"text": "-map: {}",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLAttributeView",
@@ -4927,13 +5044,14 @@
 											"containerExtending": false,
 											"left": 229,
 											"top": 781,
-											"width": 183.1552734375,
+											"width": 189,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
 											"text": "-uid: 0",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -4947,7 +5065,7 @@
 									"containerExtending": false,
 									"left": 224,
 									"top": 761,
-									"width": 193.1552734375,
+									"width": 199,
 									"height": 38,
 									"autoResize": false
 								},
@@ -4981,13 +5099,14 @@
 											"containerExtending": false,
 											"left": 229,
 											"top": 804,
-											"width": 183.1552734375,
+											"width": 189,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
 											"text": "+Cache(): void",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -5009,13 +5128,14 @@
 											"containerExtending": false,
 											"left": 229,
 											"top": 819,
-											"width": 183.1552734375,
+											"width": 189,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
 											"text": "+get(id: string): View",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -5037,13 +5157,14 @@
 											"containerExtending": false,
 											"left": 229,
 											"top": 834,
-											"width": 183.1552734375,
+											"width": 189,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
 											"text": "+put(id: string, view: View): void",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "UMLOperationView",
@@ -5065,13 +5186,14 @@
 											"containerExtending": false,
 											"left": 229,
 											"top": 849,
-											"width": 183.1552734375,
+											"width": 189,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
 											"text": "+remove(view: View): void",
 											"horizontalAlignment": 0,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -5085,7 +5207,7 @@
 									"containerExtending": false,
 									"left": 224,
 									"top": 799,
-									"width": 193.1552734375,
+									"width": 199,
 									"height": 68,
 									"autoResize": false
 								},
@@ -5149,7 +5271,7 @@
 							"containerExtending": false,
 							"left": 224,
 							"top": 736,
-							"width": 193.1552734375,
+							"width": 199,
 							"height": 131,
 							"autoResize": false,
 							"stereotypeDisplay": "label",
@@ -5220,7 +5342,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5253,7 +5376,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5286,7 +5410,8 @@
 									"edgePosition": 1,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5320,7 +5445,8 @@
 									"underline": false,
 									"text": "+cache",
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5353,7 +5479,8 @@
 									"edgePosition": 2,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5373,9 +5500,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 303,
+									"left": 302,
 									"top": 643,
-									"width": 7.22998046875,
+									"width": 8,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -0.5235987755982988,
@@ -5387,7 +5514,8 @@
 									"underline": false,
 									"text": "1",
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5421,7 +5549,8 @@
 									"underline": false,
 									"text": "-cache",
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5454,7 +5583,8 @@
 									"edgePosition": 0,
 									"underline": false,
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -5474,9 +5604,9 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 303,
+									"left": 302,
 									"top": 711,
-									"width": 7.22998046875,
+									"width": 8,
 									"height": 13,
 									"autoResize": false,
 									"alpha": -5.657700514404956,
@@ -5488,7 +5618,8 @@
 									"underline": false,
 									"text": "1",
 									"horizontalAlignment": 2,
-									"verticalAlignment": 5
+									"verticalAlignment": 5,
+									"wordWrap": false
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -6999,7 +7130,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -7024,7 +7156,8 @@
 															"underline": false,
 															"text": "Se muestra el indicador de carga",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -7049,7 +7182,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -7073,7 +7207,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -7170,7 +7305,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -7195,7 +7331,8 @@
 															"underline": false,
 															"text": "Se busca la ruta especificada",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -7220,7 +7357,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -7244,7 +7382,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -7341,7 +7480,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -7366,7 +7506,8 @@
 															"underline": false,
 															"text": "Se muestra el error de ruta no encontrada",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -7391,7 +7532,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -7415,7 +7557,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -7511,7 +7654,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -7544,7 +7688,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -7577,7 +7722,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -7651,7 +7797,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -7684,7 +7831,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -7717,7 +7865,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -7792,7 +7941,8 @@
 													"underline": false,
 													"text": " [No se encuentra la ruta]",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -7825,7 +7975,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -7858,7 +8009,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -7933,7 +8085,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -7958,7 +8111,8 @@
 															"underline": false,
 															"text": "Se procesa el nodo siguiente",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -7983,7 +8137,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -8007,7 +8162,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -8103,7 +8259,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -8136,7 +8293,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -8169,7 +8327,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -8267,7 +8426,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -8300,7 +8460,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -8333,7 +8494,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -8408,7 +8570,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -8433,7 +8596,8 @@
 															"underline": false,
 															"text": "Se acumulan los parámetros definidos por el nodo",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -8458,7 +8622,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -8482,7 +8647,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -8579,7 +8745,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -8604,7 +8771,8 @@
 															"underline": false,
 															"text": "Se añade la parte de ruta procesada por el nodo",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -8629,7 +8797,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -8653,7 +8822,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -8749,7 +8919,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -8782,7 +8953,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -8815,7 +8987,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -8889,7 +9062,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -8922,7 +9096,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -8955,7 +9130,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -9030,7 +9206,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -9055,7 +9232,8 @@
 															"underline": false,
 															"text": "Si define función adicional se procesa",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -9080,7 +9258,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -9104,7 +9283,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -9200,7 +9380,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -9233,7 +9414,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -9266,7 +9448,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -9341,7 +9524,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -9366,7 +9550,8 @@
 															"underline": false,
 															"text": "Se comprueba si define vista",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -9391,7 +9576,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -9415,7 +9601,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -9511,7 +9698,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -9544,7 +9732,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -9577,7 +9766,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -9652,7 +9842,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -9677,7 +9868,8 @@
 															"underline": false,
 															"text": "Se comprueba si hay una vista ya cargada asociada a la misma ruta",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -9702,7 +9894,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -9726,7 +9919,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -9823,7 +10017,8 @@
 													"underline": false,
 													"text": " [Sí define vista]",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -9856,7 +10051,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -9889,7 +10085,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -9964,7 +10161,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -9989,7 +10187,8 @@
 															"underline": false,
 															"text": "Se comprueba si la vista es la actual",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -10014,7 +10213,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -10038,7 +10238,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -10135,7 +10336,8 @@
 													"underline": false,
 													"text": " [Vista cargada]",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -10168,7 +10370,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -10201,7 +10404,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -10276,7 +10480,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -10301,7 +10506,8 @@
 															"underline": false,
 															"text": "Se carga e incluye la vista",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -10326,7 +10532,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -10350,7 +10557,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -10447,7 +10655,8 @@
 													"underline": false,
 													"text": " [Vista NO cargada]",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -10480,7 +10689,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -10513,7 +10723,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -10588,7 +10799,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -10613,7 +10825,8 @@
 															"underline": false,
 															"text": "Se comprueba si es necesario recargar la vista",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -10638,7 +10851,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -10662,7 +10876,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -10759,7 +10974,8 @@
 													"underline": false,
 													"text": " [No es necesario recargar la vista]",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -10792,7 +11008,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -10825,7 +11042,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -10900,7 +11118,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -10925,7 +11144,8 @@
 															"underline": false,
 															"text": "Se realiza la transición a la vista",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -10950,7 +11170,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -10974,7 +11195,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -11071,7 +11293,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -11096,7 +11319,8 @@
 															"underline": false,
 															"text": "Se recarga la vista",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -11121,7 +11345,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -11145,7 +11370,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -11242,7 +11468,8 @@
 													"underline": false,
 													"text": " [Es necesario recargar la vista]",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -11275,7 +11502,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -11308,7 +11536,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -11383,7 +11612,8 @@
 													"underline": false,
 													"text": " [Es la vista actual]",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -11416,7 +11646,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -11449,7 +11680,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -11524,7 +11756,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -11549,7 +11782,8 @@
 															"underline": false,
 															"text": "Se comprueba si queda ruta por procesar y la vista implementa la función \"open\"",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -11574,7 +11808,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -11598,7 +11833,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -11718,7 +11954,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -11751,7 +11988,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -11784,7 +12022,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -11858,7 +12097,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -11891,7 +12131,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -11924,7 +12165,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -11999,7 +12241,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -12024,7 +12267,8 @@
 															"underline": false,
 															"text": "Se añade a la pila de vistas cargadas",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -12049,7 +12293,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -12073,7 +12318,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -12169,7 +12415,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -12202,7 +12449,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -12235,7 +12483,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -12333,7 +12582,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -12366,7 +12616,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -12399,7 +12650,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -12474,7 +12726,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -12499,7 +12752,8 @@
 															"underline": false,
 															"text": "Se le pasa el resto de la ruta sin procesar a la vista",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -12524,7 +12778,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -12548,7 +12803,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -12645,7 +12901,8 @@
 													"underline": false,
 													"text": " [Queda ruta por procesar y la vista implementa la función \"open\"]",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -12678,7 +12935,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -12711,7 +12969,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -12786,7 +13045,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -12811,7 +13071,8 @@
 															"underline": false,
 															"text": "Se incluye de nuevo la vista",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -12836,7 +13097,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -12860,7 +13122,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -12957,7 +13220,8 @@
 													"underline": false,
 													"text": " [No es la vista actual]",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -12990,7 +13254,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -13023,7 +13288,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -13098,7 +13364,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -13123,7 +13390,8 @@
 															"underline": false,
 															"text": "Se sube a la cima de la pila de vistas cargadas",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -13148,7 +13416,8 @@
 															"underline": false,
 															"text": "(from Open views)",
 															"horizontalAlignment": 2,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														},
 														{
 															"_type": "LabelView",
@@ -13172,7 +13441,8 @@
 															"autoResize": false,
 															"underline": false,
 															"horizontalAlignment": 1,
-															"verticalAlignment": 5
+															"verticalAlignment": 5,
+															"wordWrap": false
 														}
 													],
 													"visible": true,
@@ -13268,7 +13538,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -13301,7 +13572,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -13334,7 +13606,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -13408,7 +13681,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -13441,7 +13715,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -13474,7 +13749,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -13548,7 +13824,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -13581,7 +13858,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -13614,7 +13892,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -13688,7 +13967,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -13721,7 +14001,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -13754,7 +14035,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -13852,7 +14134,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -13885,7 +14168,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -13918,7 +14202,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -13992,7 +14277,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -14025,7 +14311,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -14058,7 +14345,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -14133,7 +14421,8 @@
 													"underline": false,
 													"text": " [No queda ruta por procesar o no implementa la función \"open\"]",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -14166,7 +14455,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "EdgeLabelView",
@@ -14199,7 +14489,8 @@
 													"edgePosition": 1,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -16086,7 +16377,8 @@
 													"autoResize": false,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "LabelView",
@@ -16111,7 +16403,8 @@
 													"underline": false,
 													"text": "Transition",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "LabelView",
@@ -16136,7 +16429,8 @@
 													"underline": false,
 													"text": "(from transition)",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "LabelView",
@@ -16160,7 +16454,8 @@
 													"autoResize": false,
 													"underline": false,
 													"horizontalAlignment": 1,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -16226,7 +16521,8 @@
 													"underline": false,
 													"text": "+incoming: Element",
 													"horizontalAlignment": 0,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "UMLAttributeView",
@@ -16254,7 +16550,8 @@
 													"underline": false,
 													"text": "+outgoing: Element",
 													"horizontalAlignment": 0,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -16308,7 +16605,8 @@
 													"underline": true,
 													"text": "+add(name: string, proto: Object): void",
 													"horizontalAlignment": 0,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "UMLOperationView",
@@ -16336,7 +16634,8 @@
 													"underline": true,
 													"text": "+parse(str: string, incoming: Element, outgoing: Element): Transition",
 													"horizontalAlignment": 0,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "UMLOperationView",
@@ -16364,7 +16663,8 @@
 													"underline": false,
 													"text": "+start(): void",
 													"horizontalAlignment": 0,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "UMLOperationView",
@@ -16392,7 +16692,8 @@
 													"underline": false,
 													"text": "+reset(): void",
 													"horizontalAlignment": 0,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "UMLOperationView",
@@ -16420,7 +16721,8 @@
 													"underline": false,
 													"text": "+apply(): void",
 													"horizontalAlignment": 0,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -16570,7 +16872,8 @@
 													"autoResize": false,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "LabelView",
@@ -16595,7 +16898,8 @@
 													"underline": false,
 													"text": "FadeTransition",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "LabelView",
@@ -16620,7 +16924,8 @@
 													"underline": false,
 													"text": "(from transition)",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "LabelView",
@@ -16644,7 +16949,8 @@
 													"autoResize": false,
 													"underline": false,
 													"horizontalAlignment": 1,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -16853,7 +17159,8 @@
 											"edgePosition": 1,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -16886,7 +17193,8 @@
 											"edgePosition": 1,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -16919,7 +17227,8 @@
 											"edgePosition": 1,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
@@ -16994,7 +17303,8 @@
 													"autoResize": false,
 													"underline": false,
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "LabelView",
@@ -17019,7 +17329,8 @@
 													"underline": false,
 													"text": "SlideTransition",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "LabelView",
@@ -17044,7 +17355,8 @@
 													"underline": false,
 													"text": "(from transition)",
 													"horizontalAlignment": 2,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												},
 												{
 													"_type": "LabelView",
@@ -17068,7 +17380,8 @@
 													"autoResize": false,
 													"underline": false,
 													"horizontalAlignment": 1,
-													"verticalAlignment": 5
+													"verticalAlignment": 5,
+													"wordWrap": false
 												}
 											],
 											"visible": true,
@@ -17277,7 +17590,8 @@
 											"edgePosition": 1,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -17310,7 +17624,8 @@
 											"edgePosition": 1,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -17343,7 +17658,8 @@
 											"edgePosition": 1,
 											"underline": false,
 											"horizontalAlignment": 2,
-											"verticalAlignment": 5
+											"verticalAlignment": 5,
+											"wordWrap": false
 										}
 									],
 									"visible": true,
