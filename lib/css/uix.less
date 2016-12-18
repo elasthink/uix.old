@@ -90,6 +90,11 @@ h1,h2,h3,h4,h5 {
   &:active,&.active {
     background: @c1b1;
   }
+  &:disabled,&.disabled {
+    background: @c2;
+    opacity: 0.25;
+    cursor: initial;
+  }
 
   &.btn-gray {
     background: @c2;
