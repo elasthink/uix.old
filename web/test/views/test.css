@@ -20,8 +20,9 @@ body {
 
 .test-title {
     color: #fff;
-    font-size: 28px;
-    padding: 12px 16px;
+    font-size: 24px;
+    line-height: 44px;
+    padding: 12px 12px 12px 16px;
 }
 
 .test-list {
@@ -63,19 +64,22 @@ body {
     padding: 4px;
     box-sizing: border-box;
 }
-
 .test-actions .ui-button {
     flex-grow: 1;
     margin: 4px;
+}
+
+#test-panel .ui-button {
     background: #09d;
 }
-
-.test-actions .ui-button:hover {
+#test-panel .ui-button:hover {
     background: #0084bd;
 }
-
-.test-actions .ui-button:active {
+#test-panel .ui-button:active {
     background: #0072a3;
+}
+#test-panel .btn-restart {
+    float: right;
 }
 
 #test-content {

@@ -65,10 +65,13 @@ var testSuite = {
 
 
         var self = this;
-        testPanel.querySelector('.btn-restart').addEventListener('click', function(event) {
+        testPanel.querySelector('.btn-restart').addEventListener('tap', function() {
             window.location = '/test/views/';
         });
-        testPanel.querySelector('.btn-next').addEventListener('click', function(event) {
+        testPanel.querySelector('.btn-start').addEventListener('tap', function() {
+            self.next(true);
+        });
+        testPanel.querySelector('.btn-next').addEventListener('tap', function() {
             self.next();
         });
 
@@ -83,7 +86,7 @@ var testSuite = {
     /**
      * ...
      */
-    next: function() {
+    next: function(cont) {
         var self = this;
         if (this.nextIndex < this.tests.length) {
             var test = this.tests[this.nextIndex++],
@@ -93,7 +96,9 @@ var testSuite = {
             test.handler.call(this, function(err) {
                 uix.removeClass(node, 'running');
                 uix.addClass(node, (err) ? 'failed' : 'passed');
-                self.next();
+                if (cont) {
+                    self.next(cont);
+                }
             });
         }
     },
