@@ -1,5 +1,5 @@
 /**
- * Referencia de 'ui-button'.
+ * Referencia de 'uix-button'.
  */
 View.define('widgets/button', {
 

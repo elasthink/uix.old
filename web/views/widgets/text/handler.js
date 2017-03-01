@@ -1,5 +1,5 @@
 /**
- * Referencia de 'ui-text'.
+ * Referencia de 'uix-text'.
  */
 View.define('widgets/text', {
 

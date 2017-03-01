@@ -64,18 +64,18 @@ body {
     padding: 4px;
     box-sizing: border-box;
 }
-.test-actions .ui-button {
+.test-actions .uix-button {
     flex-grow: 1;
     margin: 4px;
 }
 
-#test-panel .ui-button {
+#test-panel .uix-button {
     background: #09d;
 }
-#test-panel .ui-button:hover {
+#test-panel .uix-button:hover {
     background: #0084bd;
 }
-#test-panel .ui-button:active {
+#test-panel .uix-button:active {
     background: #0072a3;
 }
 #test-panel .btn-restart {
@@ -98,11 +98,11 @@ body {
     box-shadow: 0 0 12px 0 rgba(0,0,0,0.25);
 }
 
-.ui-view {
+.uix-view {
     height: 100%;
 
 }
 
-.ui-loader {
+.uix-loader {
     position: absolute;
 }

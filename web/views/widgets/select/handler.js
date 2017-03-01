@@ -1,5 +1,5 @@
 /**
- * Referencia de 'ui-select'.
+ * Referencia de 'uix-select'.
  */
 View.define('widgets/select', {
 

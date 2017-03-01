@@ -36,7 +36,7 @@ h1,h2,h3,h4,h5 {
  * ------------------------------------------------------------------------------------------------------------------ */
 @side-padding: 16px;
 
-.ui-button {
+.uix-button {
   position: relative;
   display: inline-block;
   height: 44px;
@@ -128,7 +128,7 @@ h1,h2,h3,h4,h5 {
 
 /* Text
  * ------------------------------------------------------------------------------------------------------------------ */
-.ui-text-box {
+.uix-text-box {
   display: block;
   color: #444;
   background: #fff;
@@ -154,7 +154,7 @@ h1,h2,h3,h4,h5 {
   }
 }
 
-.ui-text-line:extend(.ui-text-box all) {
+.uix-text-line:extend(.uix-text-box all) {
   background: transparent;
   border-width: 0 0 2px;
   border-radius: 0;
@@ -162,7 +162,7 @@ h1,h2,h3,h4,h5 {
 
 /* Check
  * ------------------------------------------------------------------------------------------------------------------ */
-.ui-check {
+.uix-check {
   display: inline-block;
   position: relative;
   height: 44px;
@@ -210,7 +210,7 @@ h1,h2,h3,h4,h5 {
 
 /* Select
  * ------------------------------------------------------------------------------------------------------------------ */
-.ui-select {
+.uix-select {
   display: block;
   color: #444;
   @svgData: %("data:image/svg+xml;utf8,%s", escape("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 31 40'><path d='M20.38,17L22,18.65,15.5,25,9,18.65,10.63,17l4.88,4.8Z' fill='#888'/></svg>"));
@@ -242,10 +242,10 @@ h1,h2,h3,h4,h5 {
  * ------------------------------------------------------------------------------------------------------------------ */
 @errorColor: #f44;
 
-.ui-form {
+.uix-form {
 }
 
-.ui-line {
+.uix-line {
   margin-bottom: 12px;
 
   > label {
@@ -254,33 +254,33 @@ h1,h2,h3,h4,h5 {
     color: #888;
   }
 
-  &.ui-error {
+  &.uix-error {
 
-    .ui-text-box,.ui-select {
+    .uix-text-box,.uix-select {
       border-color: #f44;
     }
   }
 
-  .ui-error-msg {
+  .uix-error-msg {
     display: block;
     line-height: 24px;
     color: @errorColor;
     font-size: 15px;
-    animation: ui-fade-in 0.5s;
+    animation: uix-fade-in 0.5s;
   }
 }
 
-.ui-text-box.ui-error,
-.ui-text-line.ui-error,
-.ui-select.ui-error {
+.uix-text-box.uix-error,
+.uix-text-line.uix-error,
+.uix-select.uix-error {
   border-color: @errorColor;
 }
 
-.ui-actions {
+.uix-actions {
   min-height: 44px;
   margin: 24px 0 12px;
 
-  .ui-button {
+  .uix-button {
     min-width: 132px;
     margin-right: 16px;
   }
@@ -289,7 +289,7 @@ h1,h2,h3,h4,h5 {
 /* Custom Scroll Bars
  * ------------------------------------------------------------------------------------------------------------------ */
 /* Funcionalidad Experimental...
-.ui-vscroll {
+.uix-vscroll {
   position: absolute;
   top: 0;
   right: 0;
@@ -299,7 +299,7 @@ h1,h2,h3,h4,h5 {
   background: #888;
 }
 
-.ui-vscroll-fill {
+.uix-vscroll-fill {
   position: absolute;
   top: 0;
   left: 0;
@@ -310,7 +310,7 @@ h1,h2,h3,h4,h5 {
 
 /* Dialogs
  * ------------------------------------------------------------------------------------------------------------------ */
-.ui-overlay {
+.uix-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -320,14 +320,14 @@ h1,h2,h3,h4,h5 {
   transition: opacity 0.25s linear 0s;
 }
 
-.ui-dialog-wrapper {
+.uix-dialog-wrapper {
   position: fixed;
   top: 50%;
   left: 50%;
   width: 100%;
 }
 
-.ui-dialog {
+.uix-dialog {
   position: absolute;
   top: 0;
   left: 0;
@@ -351,11 +351,11 @@ h1,h2,h3,h4,h5 {
     font-weight: 300;
   }
 
-  .ui-actions {
+  .uix-actions {
     margin: 16px 0 0;
     text-align: right;
 
-    .ui-button {
+    .uix-button {
       margin: 0 0 0 16px;
     }
   }
@@ -378,15 +378,15 @@ h1,h2,h3,h4,h5 {
       text-align: center;
     }
 
-    .ui-actions {
+    .uix-actions {
       text-align: center;
 
-      .ui-button {
+      .uix-button {
         min-width: 96px;
         padding: 0 12px;
         margin-right: 8px;
 
-        &.ui-right {
+        &.uix-right {
           margin: 0 0 0 8px;
         }
       }
@@ -394,7 +394,7 @@ h1,h2,h3,h4,h5 {
   }
 }
 
-.ui-dialog-icon {
+.uix-dialog-icon {
   display: block;
   float: left;
   width: 72px;
@@ -412,7 +412,7 @@ h1,h2,h3,h4,h5 {
   }
 }
 
-.ui-dialog-body {
+.uix-dialog-body {
   margin-left: 88px;
 
   @media screen and (max-width: 640px) {
@@ -422,7 +422,7 @@ h1,h2,h3,h4,h5 {
 
 /* Dropdowns
  * ------------------------------------------------------------------------------------------------------------------ */
-.ui-dropdown {
+.uix-dropdown {
   position: absolute;
   top: 0;
   right: 0;
@@ -439,7 +439,7 @@ h1,h2,h3,h4,h5 {
   transition: opacity 0.25s;
 }
 
-.ui-dropdown-item {
+.uix-dropdown-item {
   height: 40px;
   line-height: 40px;
   padding: 0 8px 0 16px;
@@ -462,7 +462,7 @@ h1,h2,h3,h4,h5 {
  * ------------------------------------------------------------------------------------------------------------------ */
 @loader-size: 64px;
 
-.ui-loader {
+.uix-loader {
   position: fixed;
   top: 0;
   left: 0;
@@ -515,14 +515,14 @@ h1,h2,h3,h4,h5 {
 
 /* Add-Ons > Views
  * ------------------------------------------------------------------------------------------------------------------ */
-.ui-viewport {
+.uix-viewport {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 
-.ui-view {
+.uix-view {
   position: absolute;
   top: 0;
   left: 0;
@@ -534,7 +534,7 @@ h1,h2,h3,h4,h5 {
  * ------------------------------------------------------------------------------------------------------------------ */
 
 /* Fade In */
-@keyframes ui-fade-in {
+@keyframes uix-fade-in {
   0% {
     opacity: 0;
   }
@@ -546,7 +546,7 @@ h1,h2,h3,h4,h5 {
 /* Commons
  * ------------------------------------------------------------------------------------------------------------------ */
 /*
-.ui-button, .ui-select {
+.uix-button, .uix-select {
   box-sizing: border-box;
   appearance: none;
   transition: all 0.1s;
@@ -557,7 +557,7 @@ h1,h2,h3,h4,h5 {
 
 /* Transitions
  * ------------------------------------------------------------------------------------------------------------------ */
-.ui-hide {
+.uix-hide {
   visibility: hidden;
 }
 .--display-none {
@@ -566,52 +566,52 @@ h1,h2,h3,h4,h5 {
 }
 
 // Fade
-.ui-transition-fade {
+.uix-transition-fade {
   visibility: visible;
   transition: opacity 0.25s linear;
 }
-.ui-transition-fade.ui-hide {
+.uix-transition-fade.uix-hide {
   opacity: 0;
 }
 
 // Slide
-.ui-transition-slide {
+.uix-transition-slide {
   visibility: visible;
   transition: transform 0.25s ease-in;
 }
-.ui-transition-slide-up,
-.ui-transition-slide-right,
-.ui-transition-slide-down,
-.ui-transition-slide-left {
-  .ui-transition-slide;
+.uix-transition-slide-up,
+.uix-transition-slide-right,
+.uix-transition-slide-down,
+.uix-transition-slide-left {
+  .uix-transition-slide;
 }
-.ui-transition-slide-up.ui-hide,
-.ui-transition-slide-down.ui-reverse.ui-hide {
+.uix-transition-slide-up.uix-hide,
+.uix-transition-slide-down.uix-reverse.uix-hide {
   // transform: translateY(100%);
   transform: translate3d(0,100%,0);
 }
-.ui-transition-slide-right.ui-hide,
-.ui-transition-slide-left.ui-reverse.ui-hide {
+.uix-transition-slide-right.uix-hide,
+.uix-transition-slide-left.uix-reverse.uix-hide {
   // transform: translateX(-100%);
   transform: translate3d(-100%,0,0);
 }
-.ui-transition-slide-down.ui-hide,
-.ui-transition-slide-up.ui-reverse.ui-hide {
+.uix-transition-slide-down.uix-hide,
+.uix-transition-slide-up.uix-reverse.uix-hide {
   // transform: translateY(-100%);
   transform: translate3d(0,-100%,0);
 }
-.ui-transition-slide-left.ui-hide,
-.ui-transition-slide-right.ui-reverse.ui-hide {
+.uix-transition-slide-left.uix-hide,
+.uix-transition-slide-right.uix-reverse.uix-hide {
   // transform: translateX(100%);
   transform: translate3d(100%,0,0);
 }
 
 // Zoom
-.ui-transition-zoom {
+.uix-transition-zoom {
   visibility: visible;
   transition: opacity 0.25s linear, transform 0.25s ease-in;
 }
-.ui-transition-zoom.ui-hide {
+.uix-transition-zoom.uix-hide {
   transform: scale3d(1.5,1.5,1.5);
   opacity: 0;
 }
