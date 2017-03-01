@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>UIX // Toggle Test</title>
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700|Open+Sans+Condensed:300">
+    <link type="text/css" rel="stylesheet" href="/css/uix.css">
+    <script type="text/javascript" src="/js/lib.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            var foo = document.getElementById('foo');
+            foo.addEventListener('tap', function() {
+                uix.toggle2(foo, {
+                    transition: 'fade'
+                });
+            });
+        });
+    </script>
+    <style>
+        #foo {
+            width: 200px;
+            height: 200px;
+            background: #f00;
+        }
+        #foo.hide {
+            opacity: 0.0;
+        }
+        #foo.fade {
+            visibility: visible;
+            opacity: 0.0;
+        }
+    </style>
+</head>
+<body>
+    <div id="foo"></div>
+</body>
+</html>
