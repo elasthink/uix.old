@@ -24,7 +24,15 @@ var gulp            = require('gulp'),
     exec            = require('child_process').exec,
     package         = require('./package.json');
 
-
+// ---------------------------------------------------------------------------------------------------------------------
+/**
+ * Plumber error handler.
+ * @param {*} err
+ */
+var errorHandler = function (err) {
+    console.log(err);
+    this.emit('end');
+};
 
 // =====================================================================================================================
 // Library
@@ -40,7 +48,9 @@ gulp.task('lib:build', function () {
             'lib/polyfills/**/*.js',
             'lib/add-ons/**/*.js'
         ])
-        .pipe(plumber())
+        .pipe(plumber({
+            errorHandler: errorHandler
+        }))
         .pipe(concat(name + '.js'))
         .pipe(gulp.dest('lib/'))
         .pipe(rename(name + '.min.js'))
@@ -91,7 +101,9 @@ gulp.task('web:update-lib', function() {
     return gulp.src([
         'lib/**'
     ])
-    .pipe(plumber())
+    .pipe(plumber({
+        errorHandler: errorHandler
+    }))
     .pipe(changed(dest))
     .pipe(gulp.dest(dest));
 });
@@ -107,6 +119,9 @@ gulp.task('web:build-index', gulp.series(
         },
         function _css() {
             return gulp.src('web/index.less')
+                .pipe(plumber({
+                    errorHandler: errorHandler
+                }))
                 .pipe(less())
                 .pipe(autoprefixer({
                     browsers: ['last 2 versions']
@@ -116,6 +131,9 @@ gulp.task('web:build-index', gulp.series(
     ),
     function _ejs() {
         return gulp.src('web/index.ejs')
+            .pipe(plumber({
+                errorHandler: errorHandler
+            }))
             .pipe(gulp.dest('build/web'))
             .pipe(ejs({}, {
                 ext: '.html'
@@ -163,6 +181,9 @@ gulp.task('web:build-css', function() {
             'web/views/**/*.less',
             'web/lib/highlight/styles.css'
         ])
+        .pipe(plumber({
+            errorHandler: errorHandler
+        }))
         .pipe(less())
         .pipe(autoprefixer({
             browsers: ['last 2 versions']
@@ -178,6 +199,9 @@ gulp.task('web:build-uix-css', function() {
     return gulp.src([
         'web/lib/uix/css/uix.less'
     ])
+    .pipe(plumber({
+        errorHandler: errorHandler
+    }))
     .pipe(less())
     .pipe(autoprefixer({
         browsers: ['last 2 versions']
@@ -201,7 +225,9 @@ gulp.task('web:build-ejs', function () {
     return gulp.src([
             'web/views/**/*.ejs'
         ])
-        .pipe(plumber())
+        .pipe(plumber({
+            errorHandler: errorHandler
+        }))
         //.pipe(debug({title: 'EJS:'}))
         .pipe(ejsCompiler({
             compileDebug: false,
@@ -221,7 +247,8 @@ gulp.task('web:build-ejs', function () {
  */
 gulp.task('web:build-js', function () {
     return gulp.src([
-            'web/js/main.js',
+            'web/js/app.js',
+            'web/js/app_*.js',
             'web/views/**/handler.js',
             'web/views/templates.js'
         ])
@@ -264,7 +291,7 @@ gulp.task('web:build', gulp.series('lib:build', 'web:build-index', 'web:update-l
  */
 gulp.task('web:run', function(done) {
     var p = exec('nodemon index.js 3300', function callback(err) { // stdout, stderr
-                       // --debug
+        // --debug
         if (err !== null) {
             console.error(err.toString());
         }
@@ -325,7 +352,8 @@ gulp.task('web:watch', /*gulp.parallel('lib:watch', */function() {
 
     // Cambios en los scripts de la aplicación
     gulp.watch([
-        'web/js/main.js',
+        'web/js/app.js',
+        'web/js/app_*.js',
         'web/views/**/handler.js',
         'web/views/templates.js'
     ], gulp.series('web:build-js'));

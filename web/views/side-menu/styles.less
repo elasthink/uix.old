@@ -1,31 +1,37 @@
 @import (reference) "../../lib/uix/css/uix-theme.less";
 
-#nav-menu {
-  position: relative;
-  float: left;
-  display: flex;
-  flex-flow: column nowrap;
+#side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 268px;
   height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
   color: #fff;
   background: linear-gradient(to bottom, @c1, @c1b3);
   box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
-  overflow: hidden;
-  z-index: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  // z-index: 1;
   /* TODO: Scroll suave para iOS */
 }
 
-.nav-head {
+.menu-head {
   flex: 0 1 auto;
   padding: 16px;
 }
 
-.nav-logo {
+.menu-logo {
   display: block;
+  // background: url(../img/logo24.svg) no-repeat;
+  // background-size: 82.5px 36px;
+  width: 83px;
+  height: 36px;
   margin-bottom: 4px;
 }
 
-.nav-legend {
+.menu-legend {
   color: rgba(255,255,255,0.8);
   font-size: 14px;
 
@@ -34,13 +40,14 @@
   }
 }
 
-.nav-body {
+.menu-body {
   flex: 1 1 auto;
   overflow-x: hidden;
   overflow-y: auto;
+  padding-bottom: 16px;
 }
 
-.nav-section, .nav-item {
+.menu-section, .menu-item {
   display: block;
   padding-left: 12px;
   color: #fff;
@@ -48,21 +55,21 @@
   text-decoration: none;
 
   &:hover,
-  &.nav-selected {
+  &.menu-selected {
     background: rgba(255,255,255,0.2);
   }
-  &.nav-selected {
+  &.menu-selected {
     font-weight: 500;
   }
 }
 
-.nav-section {
+.menu-section {
   margin-bottom: 4px;
   font-size: 18px;
   font-weight: 500;
 }
 
-.nav-item {
+.menu-item {
   padding-left: 20px;
   font-size: 16px;
 }

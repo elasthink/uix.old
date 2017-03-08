@@ -17,12 +17,16 @@
     </style>
 </head>
 <body>
-    <div id="page">
-        <div id="nav-menu"></div>
-        <div id="page-contents" class="uix-viewport"></div>
+    <div id="header" style="display: none;"></div>
+    <div id="main-content" class="uix-viewport"></div>
+    <div id="main-loader" class="uix-loader uix-hide --display-none" style="display: none;">
+        <div class="loader-box">
+            <b class="loader-dot"></b>
+            <b class="loader-dot"></b>
+            <b class="loader-dot"></b>
+        </div>
     </div>
-    <div id="loader" class="uix-loader --display-none">
-        <svg class="spin" viewBox="0 0 46 46"><circle class="path" cx="23" cy="23" r="20" fill="none" stroke-width="3"></circle></svg>
-    </div>
+    <div id="overlay" class="uix-transition-fade uix-hide --display-none" style="display: none;"></div>
+    <div id="side-menu" class="uix-hide" style="display: none;"></div>
 </body>
 </html>

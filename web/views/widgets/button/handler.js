@@ -1,5 +1,8 @@
 /**
- * Referencia de 'uix-button'.
+ * Página de referencia del componente "uix-button".
+ * @alias ButtonWidgetView
+ * @class
+ * @extends View
  */
 View.define('widgets/button', {
 

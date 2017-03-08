@@ -1,8 +1,8 @@
 /**
- * Menú de navegación principal.
- * @alias NavigationMenu
+ * Menú lateral.
+ * @alias SideMenu
  */
-View.define('nav-menu', {
+View.define('side-menu', {
 
     /**
      * @see View.prototype.ready
@@ -13,6 +13,7 @@ View.define('nav-menu', {
                 if (event.ctrlKey || event.shiftKey || event.metaKey) {
                     return;
                 }
+                app.toggleMenu(false);
                 app.open(event.target.getAttribute('href'));
                 event.preventDefault();
             }

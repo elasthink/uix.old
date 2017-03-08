@@ -1,7 +1,10 @@
 /**
- * Referencia de 'uix-text'.
+ * Página de referencia del componente "uix-text".
+ * @alias TextWidgetView
+ * @class
+ * @extends View
  */
-View.define('widgets/text', {
+View.define('widgets/button', {
 
     /**
      * @see View.prototype.ready
@@ -9,4 +12,5 @@ View.define('widgets/text', {
     ready: function() {
         // ...
     }
+
 });

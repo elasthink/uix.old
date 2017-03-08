@@ -13,6 +13,7 @@ html, body {
 body {
   padding: 0;
   margin: 0;
+  color: @c2b5;
   background: @bg1;
   font-family: @font;
   font-size: 16px;
@@ -128,7 +129,7 @@ h1,h2,h3,h4,h5 {
 
 /* Text
  * ------------------------------------------------------------------------------------------------------------------ */
-.uix-text-box {
+.uix-text {
   display: block;
   color: #444;
   background: #fff;
@@ -136,8 +137,9 @@ h1,h2,h3,h4,h5 {
   min-height: 44px;
   line-height: 24px;
   padding: 8px;
-  border: 2px solid #aaa;
-  border-radius: 2px;
+  border: 0;
+  border-bottom: 2px solid #aaa;
+  border-radius: 0;
   outline: 0;
   margin: 0;
   box-sizing: border-box;
@@ -153,12 +155,13 @@ h1,h2,h3,h4,h5 {
     border-color: #2ae;
   }
 }
-
-.uix-text-line:extend(.uix-text-box all) {
+/*
+.uix-text:extend(.uix-text-box all) {
   background: transparent;
   border-width: 0 0 2px;
   border-radius: 0;
 }
+*/
 
 /* Check
  * ------------------------------------------------------------------------------------------------------------------ */
@@ -256,7 +259,7 @@ h1,h2,h3,h4,h5 {
 
   &.uix-error {
 
-    .uix-text-box,.uix-select {
+    .uix-text,.uix-select {
       border-color: #f44;
     }
   }
@@ -270,8 +273,7 @@ h1,h2,h3,h4,h5 {
   }
 }
 
-.uix-text-box.uix-error,
-.uix-text-line.uix-error,
+.uix-text.uix-error
 .uix-select.uix-error {
   border-color: @errorColor;
 }
@@ -577,7 +579,7 @@ h1,h2,h3,h4,h5 {
 // Slide
 .uix-transition-slide {
   visibility: visible;
-  transition: transform 0.25s ease-in;
+  transition: transform 0.2s ease-out;
 }
 .uix-transition-slide-up,
 .uix-transition-slide-right,

@@ -1,51 +1,55 @@
-@size: 64px;
+@import (reference) "lib/uix/css/uix-theme.less";
 
-.uix-loader {
+#main-loader {
   position: fixed;
   top: 0;
+  bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255,255,255,0.95);
+  right: 0;
+  height: auto;
+  background: rgba(255, 255, 255, 0.95);
+}
 
-  > .spin {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: @size;
-    height: @size;
-    margin: -(@size / 2) 0 0 -(@size / 2);
-    animation: rotate 2s linear infinite;
-    // transform: translateZ(0);
+.loader-box {
+  display: flex;
+  flex-flow: row nowrap;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+}
 
-    > .path {
-      // stroke-dasharray: 1,150;
-      stroke-dasharray: 90,150;
-      stroke-dashoffset: 0;
-      stroke-linecap: round;
-      stroke: #4bf;
-      // animation: dash 1.5s ease-in-out infinite;
-    }
+.loader-dot {
+  display: block;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  margin: 0.5em;
+  background: @c1;
+  opacity: 0.2;
+  transform: scale(0.5,0.5);
+  animation: loader-blink 1s linear infinite;
+  animation-fill-mode: both;
+
+  &:nth-child(1) {
+    animation-delay: -0.50s;
+  }
+  &:nth-child(2) {
+    animation-delay: -0.25s;
+  }
+  &:nth-child(3) {
+    animation-delay: 0.0s;
   }
 }
 
-@keyframes rotate {
-  100% {
-    transform: rotateZ(360deg);
+@keyframes loader-blink {
+  0%,100% {
+    opacity: 0.2;
+    transform: scale(0.5,0.5);
   }
-}
-
-@keyframes dash {
-  0% {
-    stroke-dasharray: 1,150;
-    stroke-dashoffset: 0;
-  }
-  50% {
-    stroke-dasharray: 90,150;
-    stroke-dashoffset: -35;
-  }
-  100% {
-    stroke-dasharray: 90,150;
-    stroke-dashoffset: -124;
+  25% {
+    opacity: 1.0;
+    transform: scale(1,1);
   }
 }
