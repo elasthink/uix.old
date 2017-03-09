@@ -32,7 +32,6 @@ h1,h2,h3,h4,h5 {
   font-weight: 300;
 }
 
-
 /* Button
  * ------------------------------------------------------------------------------------------------------------------ */
 @side-padding: 16px;
@@ -127,12 +126,33 @@ h1,h2,h3,h4,h5 {
   }
 }
 
+/* Text Link
+ * ------------------------------------------------------------------------------------------------------------------ */
+.uix-link {
+  color: #666;
+  font-family: @font;
+  font-size: 16px;
+  transition: all 0.1s;
+  user-select: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+  @media (hover:hover) {
+    &:hover {
+      color: #888;
+    }
+  }
+  &:active,&.active {
+    color: @c1;
+  }
+}
+
 /* Text
  * ------------------------------------------------------------------------------------------------------------------ */
 .uix-text {
   display: block;
   color: #444;
-  background: #fff;
+  background: transparent;
   width: 100%;
   min-height: 44px;
   line-height: 24px;
@@ -162,6 +182,17 @@ h1,h2,h3,h4,h5 {
   border-radius: 0;
 }
 */
+
+input:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+}
+
+@-webkit-keyframes autofill {
+  to {
+    background: transparent;
+  }
+}
 
 /* Check
  * ------------------------------------------------------------------------------------------------------------------ */
@@ -257,23 +288,16 @@ h1,h2,h3,h4,h5 {
     color: #888;
   }
 
-  &.uix-error {
-
-    .uix-text,.uix-select {
-      border-color: #f44;
-    }
-  }
-
   .uix-error-msg {
     display: block;
-    line-height: 24px;
+    line-height: 28px;
     color: @errorColor;
     font-size: 15px;
     animation: uix-fade-in 0.5s;
   }
 }
 
-.uix-text.uix-error
+.uix-text.uix-error,
 .uix-select.uix-error {
   border-color: @errorColor;
 }
@@ -534,7 +558,6 @@ h1,h2,h3,h4,h5 {
 
 /* Animations
  * ------------------------------------------------------------------------------------------------------------------ */
-
 /* Fade In */
 @keyframes uix-fade-in {
   0% {
@@ -617,3 +640,6 @@ h1,h2,h3,h4,h5 {
   transform: scale3d(1.5,1.5,1.5);
   opacity: 0;
 }
+
+/* Utility Classes
+ * ------------------------------------------------------------------------------------------------------------------ */
