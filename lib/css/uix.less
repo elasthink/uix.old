@@ -32,7 +32,7 @@ h1,h2,h3,h4,h5 {
   font-weight: 300;
 }
 
-/* Button
+/* Botones:
  * ------------------------------------------------------------------------------------------------------------------ */
 @side-padding: 16px;
 
@@ -126,7 +126,9 @@ h1,h2,h3,h4,h5 {
   }
 }
 
-/* Text Link
+/* Enlaces de texto:
+ * Añade reglas por defecto para el cambio de color, evitar la selección y el efecto de iluminación para algunos
+ * dispositivos.
  * ------------------------------------------------------------------------------------------------------------------ */
 .uix-link {
   color: #666;
@@ -139,7 +141,7 @@ h1,h2,h3,h4,h5 {
 
   @media (hover:hover) {
     &:hover {
-      color: #888;
+      color: @c1;
     }
   }
   &:active,&.active {
@@ -147,12 +149,10 @@ h1,h2,h3,h4,h5 {
   }
 }
 
-/* Text
+/* Caja de texto:
  * ------------------------------------------------------------------------------------------------------------------ */
 .uix-text {
   display: block;
-  color: #444;
-  background: transparent;
   width: 100%;
   min-height: 44px;
   line-height: 24px;
@@ -164,6 +164,8 @@ h1,h2,h3,h4,h5 {
   margin: 0;
   box-sizing: border-box;
   transition: border 0.25s;
+  color: #666;
+  background: transparent;
 
   @media (hover:hover) {
     &:hover {
@@ -172,7 +174,7 @@ h1,h2,h3,h4,h5 {
   }
 
   &:focus {
-    border-color: #2ae;
+    border-color: @c1;
   }
 }
 /*
@@ -183,6 +185,7 @@ h1,h2,h3,h4,h5 {
 }
 */
 
+// Workaround para evitar el fondo amarillo en webkit en cajas de texto con autocompletado:
 input:-webkit-autofill {
   -webkit-animation-name: autofill;
   -webkit-animation-fill-mode: both;
