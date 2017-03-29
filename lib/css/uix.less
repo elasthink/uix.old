@@ -13,7 +13,7 @@ html, body {
 body {
   padding: 0;
   margin: 0;
-  color: @c2b5;
+  color: @c0;
   background: @bg1;
   font-family: @font;
   font-size: 16px;
@@ -32,7 +32,7 @@ h1,h2,h3,h4,h5 {
   font-weight: 300;
 }
 
-/* Botones:
+/* Button
  * ------------------------------------------------------------------------------------------------------------------ */
 @side-padding: 16px;
 
@@ -86,68 +86,93 @@ h1,h2,h3,h4,h5 {
 
   @media (hover:hover) {
     &:hover {
-      background: @c1w1;
+      background: @c1w2;
     }
   }
   &:active,&.active {
-    background: @c1b1;
+    background: @c1b2;
   }
   &:disabled,&.disabled {
-    background: @c2;
+    background: @c0;
     opacity: 0.25;
     cursor: initial;
   }
 
-  &.btn-gray {
+  // Alternate Color Set
+  &.uix-alternate {
     background: @c2;
 
     @media (hover:hover) {
       &:hover {
-        background: @c2w1;
+        background: @c2w2;
       }
     }
     &:active,&.active {
-      background: @c2b1;
+      background: @c2b2;
     }
   }
 
-  &.btn-link {
-    color: @c2;
+  // Gray Color Set
+  &.uix-gray {
+    background: @c0w1;
+
+    @media (hover:hover) {
+      &:hover {
+        background: @c0w2;
+      }
+    }
+    &:active,&.active {
+      background: @c0b1;
+    }
+  }
+
+  // Transparent Color Set
+  &.uix-transparent {
+    color: @c1;
     background: transparent;
 
     @media (hover:hover) {
       &:hover {
-        color: @c2b1;
+        color: @c1w2;
+      }
+    }
+    &:active,&.active {
+      color: @c1b2;
+      //background: rgba(128, 128, 128, 0.1);
+    }
+  }
+
+  // Link Color Set
+  &.uix-link {
+    color: @c0;
+    background: transparent;
+    text-decoration: none !important;
+
+    @media (hover:hover) {
+      &:hover {
+        color: @c1;
       }
     }
     &:active,&.active {
       color: @c1;
-      //background: rgba(128, 128, 128, 0.1);
     }
   }
-}
 
-/* Enlaces de texto:
- * Añade reglas por defecto para el cambio de color, evitar la selección y el efecto de iluminación para algunos
- * dispositivos.
- * ------------------------------------------------------------------------------------------------------------------ */
-.uix-link {
-  color: #666;
-  font-family: @font;
-  font-size: 16px;
-  transition: all 0.1s;
-  user-select: none;
+} // .uix-button
+
+// Links
+// ---------------------------------------------------------------------------------------------------------------------
+a, .uix-link {
+  color: @c1;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   -webkit-touch-callout: none;
+  text-decoration: none;
 
   @media (hover:hover) {
     &:hover {
-      color: @c1;
+      text-decoration: underline;
     }
-  }
-  &:active,&.active {
-    color: @c1;
   }
 }
 
