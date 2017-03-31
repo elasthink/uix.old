@@ -34,21 +34,26 @@ h1,h2,h3,h4,h5 {
 
 /* Button
  * ------------------------------------------------------------------------------------------------------------------ */
-@side-padding: 16px;
+@button-height: 44px;
+@button-text-padding: 16px;
+@button-border-width: 3px;
+@button-border-radius: 4px;
 
 .uix-button {
   position: relative;
   display: inline-block;
   height: 44px;
-  line-height: 44px;
-  padding: 0 @side-padding;
-  border: 0;
-  margin: 0;
-  border-radius: 2px;
-  outline: 0;
+  line-height: (@button-height - @button-border-width * 2);
+  padding: 0 @button-text-padding;
+  border: @button-border-width solid transparent;
+  border-bottom-color: rgba(0,0,0,0.1);
+  border-radius: @button-border-radius;
   box-sizing: border-box;
+  margin: 0;
+  outline: 0;
   color: #fff;
   background: @c1;
+  background-clip: border-box;
   font-family: @font;
   font-size: 16px;
   vertical-align: top;
@@ -59,7 +64,11 @@ h1,h2,h3,h4,h5 {
   -webkit-touch-callout: none;
 
   &.icon {
-    padding: 10px;
+    padding: (10px - @button-border-width);
+  }
+
+  & > .icon {
+    padding: (10px - @button-border-width);
   }
 
   &.left-icon {
@@ -67,6 +76,7 @@ h1,h2,h3,h4,h5 {
 
     > .icon {
       float: left;
+      margin-right: 4px;
     }
   }
 
@@ -75,14 +85,9 @@ h1,h2,h3,h4,h5 {
 
     > .icon {
       float: right;
+      margin-left: 4px;
     }
   }
-
-  & > .icon {
-    padding: 10px;
-    //margin-left: -@side-padding;
-  }
-
 
   @media (hover:hover) {
     &:hover {
@@ -91,8 +96,10 @@ h1,h2,h3,h4,h5 {
   }
   &:active,&.active {
     background: @c1b2;
+    border-bottom-color: transparent;
   }
   &:disabled,&.disabled {
+    border-color: transparent;
     background: @c0;
     opacity: 0.25;
     cursor: initial;
@@ -122,14 +129,15 @@ h1,h2,h3,h4,h5 {
       }
     }
     &:active,&.active {
-      background: @c0b1;
+      background: @c0;
     }
   }
 
   // Transparent Color Set
   &.uix-transparent {
     color: @c1;
-    background: transparent;
+    background: transparent !important;
+    border-color: transparent !important;
 
     @media (hover:hover) {
       &:hover {
@@ -138,23 +146,16 @@ h1,h2,h3,h4,h5 {
     }
     &:active,&.active {
       color: @c1b2;
-      //background: rgba(128, 128, 128, 0.1);
     }
   }
 
   // Link Color Set
   &.uix-link {
-    color: @c0;
-    background: transparent;
-    text-decoration: none !important;
+    background: transparent !important;
+    border-color: transparent !important;
 
-    @media (hover:hover) {
-      &:hover {
-        color: @c1;
-      }
-    }
     &:active,&.active {
-      color: @c1;
+      color: @c1b2;
     }
   }
 
@@ -162,11 +163,25 @@ h1,h2,h3,h4,h5 {
 
 // Links
 // ---------------------------------------------------------------------------------------------------------------------
-a, .uix-link {
-  color: @c1;
+.uix-link {
+  color: @c0;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   -webkit-touch-callout: none;
+
+  @media (hover:hover) {
+    &:hover {
+      color: @c1;
+    }
+  }
+  &:active,&.active {
+    color: @c1;
+  }
+}
+
+a, .uix-text-link {
+  .uix-link();
+  color: @c1 !important;
   text-decoration: none;
 
   @media (hover:hover) {
