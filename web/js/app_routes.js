@@ -20,6 +20,10 @@ app.routes = [
             {
                 path: '/text',
                 view: 'widgets/text'
+            },
+            {
+                path: '/check',
+                view: 'widgets/check'
             }
         ]
     }, {

@@ -1,9 +1,9 @@
 /**
- * Página de referencia del componente "uix-button".
- * @class ButtonWidgetView
+ * Página de referencia del componente "uix-check".
+ * @class CheckWidgetView
  * @extends View
  */
-View.define('widgets/button', {
+View.define('widgets/check', {
 
     /**
      * @see View.prototype.ready
