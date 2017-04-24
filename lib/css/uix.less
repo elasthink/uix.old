@@ -28,26 +28,30 @@ select,input,button,textarea {
 }
 
 h1,h2,h3,h4,h5 {
-  color: #2ae;
+  color: @c1;
   font-weight: 300;
+}
+
+a {
+  color: @c1;
 }
 
 /* Button
  * ------------------------------------------------------------------------------------------------------------------ */
-@button-height: 44px;
+@button-size: 48px;
 @button-line-height: 24px;
 @button-text-padding: 16px;
-@button-border-width: 3px;
+@button-border-width: 0px;
 @button-border-radius: 3px;
 
 .uix-button {
   position: relative;
   display: inline-block;
-  height: 44px;
+  height: @button-size;
   line-height: @button-line-height;
-  padding: ((@button-height - @button-border-width - @button-line-height) / 2) @button-text-padding;
+  padding: ((@button-size - @button-border-width - @button-line-height) / 2) @button-text-padding;
   border: 0;
-  border-bottom: @button-border-width solid rgba(0,0,0,0.1);
+  // border-bottom: @button-border-width solid rgba(0,0,0,0.1);
   border-radius: @button-border-radius;
   box-sizing: border-box;
   margin: 0;
@@ -56,7 +60,8 @@ h1,h2,h3,h4,h5 {
   background: @c1;
   background-clip: border-box;
   font-family: @font;
-  font-size: 16px;
+  font-size: 18px;
+  text-align: center;
   vertical-align: top;
   transition: all 0.1s;
   user-select: none;
@@ -71,6 +76,7 @@ h1,h2,h3,h4,h5 {
   & > .icon {
     position: relative;
     padding: 0 8px;
+    transition: all 0.1s;
   }
 
   &.left-icon {
@@ -109,8 +115,8 @@ h1,h2,h3,h4,h5 {
 
   // Flat Button
   &.uix-flat {
-    padding-top: (@button-height - @button-line-height) / 2;
-    padding-bottom: (@button-height - @button-line-height) / 2;
+    padding-top: (@button-size - @button-line-height) / 2;
+    padding-bottom: (@button-size - @button-line-height) / 2;
     border-bottom-width: 0;
   }
 
@@ -188,7 +194,7 @@ h1,h2,h3,h4,h5 {
   }
 }
 
-a, .uix-text-link {
+.uix-text-link {
   .uix-link();
   color: @c1 !important;
   text-decoration: none;
@@ -384,6 +390,7 @@ input:-webkit-autofill {
 @errorColor: #f44;
 
 .uix-form {
+  position: relative;
 }
 
 .uix-line {
