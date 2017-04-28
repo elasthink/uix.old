@@ -24,6 +24,10 @@ app.routes = [
             {
                 path: '/check',
                 view: 'widgets/check'
+            },
+            {
+                path: '/form',
+                view: 'widgets/form'
             }
         ]
     }, {

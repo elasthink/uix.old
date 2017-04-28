@@ -53,7 +53,14 @@ var app = {
      * @param {string} path Ruta especificada.
      */
     open: function(path) {
-        this.viewport.open(path);
+        this.viewport.open(path, function(err, view) {
+            if (view) {
+                var blocks = view.root.querySelectorAll('pre code');
+                for (var i = 0; i < blocks.length; i++) {
+                    hljs.highlightBlock(blocks[i]);
+                }
+            }
+        });
     },
 
     /**

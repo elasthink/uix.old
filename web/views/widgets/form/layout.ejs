@@ -1,0 +1,89 @@
+<%
+var code;
+%>
+<div id="widgets-form-view" class="uix-view">
+    <div class="content-head">Widgets/uix-form</div>
+    <div class="content-body">
+        <form class="uix-form my-form">
+            <div class="uix-legend">Account</div>
+            <div class="uix-fieldset">
+                <div class="uix-line">
+                    <label class="uix-label">Email</label>
+                    <input name="email" type="text" value="" maxlength="254" class="uix-text"
+                           placeholder="..." />
+                </div>
+                <div class="uix-line">
+                    <label class="uix-label">Username</label>
+                    <input name="username" type="text" value="" maxlength="32" class="uix-text"
+                           placeholder="..." />
+                </div>
+                <div class="uix-line">
+                    <label class="uix-label">Password</label>
+                    <input name="password" type="password" value="" maxlength="32" class="uix-text"
+                           placeholder="..." />
+                </div>
+            </div>
+            <div class="uix-legend">Profile</div>
+            <div class="uix-fieldset">
+                <div class="uix-line">
+                    <label class="uix-label">Country</label>
+                    <select name="country" class="uix-select">
+                        <option value="">Select your country</option>
+                        <option value="es">Spain</option>
+                        <option value="gb">United Kingdom</option>
+                        <option value="us">United States</option>
+                    </select>
+                </div>
+                <div class="uix-line">
+                    <label class="uix-label">Birthday</label>
+                    <div class="birthday-selector">
+                        <select name="bmonth" class="uix-select">
+                            <option value="">Month</option>
+<%
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    for (var i = 0; i < months.length; i++) {%>
+                            <option value="<%-(i + 1)%>"><%-months[i]%></option>
+<%
+    } %>
+                        </select>
+                        <select name="bday" class="uix-select">
+                            <option value="">Day</option>
+<%
+    for (var i = 1; i <= 31; i++) { %>
+                            <option value="<%-i%>"><%-i%></option>
+<%
+    } %>
+                        </select>
+                        <select name="byear" class="uix-select">
+                            <option value="">Year</option>
+<%
+    for (var i = 2018; i >= 1900; i--) { %>
+                            <option value="<%-i%>"><%-i%></option>
+<%
+    } %>
+                        </select>
+                    </div>
+                </div>
+                <div class="uix-line gender-line">
+                    <label class="uix-label">Gender</label>
+                    <label class="uix-check">
+                        <input name="gender" type="radio" value="male" />
+                        <span class="uix-mark"></span>Male</label>
+                    <label class="uix-check">
+                        <input name="gender" type="radio" value="female" />
+                        <span class="uix-mark"></span>Female</label>
+                </div>
+            </div>
+            <div class="uix-actions">
+                <button type="submit" class="uix-button uix-submit">SAVE</button>
+            </div>
+            <!--
+            <div class="uix-error-box --display-none" style="displayXXX: none;">
+                <span class="icon icon-info"></span><span class="text">Esto es un error de prueba</span>
+                <a class="uix-button icon icon-close"></a>
+            </div>
+            -->
+        </form>
+    </div>
+
+</div>

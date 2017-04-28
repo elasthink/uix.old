@@ -1,6 +1,6 @@
 /*
 
-grayscale style (c) MY Sun <simonmysun@gmail.com>
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 */
 
@@ -9,13 +9,13 @@ grayscale style (c) MY Sun <simonmysun@gmail.com>
   overflow-x: auto;
   padding: 0.5em;
   color: #333;
-  background: #f2f2f2;
-  border: 1px solid #e8e8e8;
+  background: #fff;
+  border: 1px solid #eee;
 }
 
 .hljs-comment,
 .hljs-quote {
-  color: #777;
+  color: #998;
   font-style: italic;
 }
 
@@ -27,21 +27,22 @@ grayscale style (c) MY Sun <simonmysun@gmail.com>
 }
 
 .hljs-number,
-.hljs-literal {
-  color: #777;
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
 }
 
 .hljs-string,
-.hljs-doctag,
-.hljs-formula {
-  color: #333;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAJ0lEQVQIW2O8e/fufwYGBgZBQUEQxcCIIfDu3Tuwivfv30NUoAsAALHpFMMLqZlPAAAAAElFTkSuQmCC) repeat;
+.hljs-doctag {
+  color: #d14;
 }
 
 .hljs-title,
 .hljs-section,
 .hljs-selector-id {
-  color: #000;
+  color: #900;
   font-weight: bold;
 }
 
@@ -49,33 +50,32 @@ grayscale style (c) MY Sun <simonmysun@gmail.com>
   font-weight: normal;
 }
 
-.hljs-class .hljs-title,
 .hljs-type,
-.hljs-name {
-  color: #333;
+.hljs-class .hljs-title {
+  color: #458;
   font-weight: bold;
 }
 
-.hljs-tag {
-  color: #333;
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
 }
 
-.hljs-regexp {
-    color: #333;
-    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAPUlEQVQYV2NkQAN37979r6yszIgujiIAU4RNMVwhuiQ6H6wQl3XI4oy4FMHcCJPHcDS6J2A2EqUQpJhohQDexSef15DBCwAAAABJRU5ErkJggg==) repeat;
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
 }
 
 .hljs-symbol,
-.hljs-bullet,
-.hljs-link {
-  color: #000;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAKElEQVQIW2NkQAO7d+/+z4gsBhJwdXVlhAvCBECKwIIwAbhKZBUwBQA6hBpm5efZsgAAAABJRU5ErkJggg==) repeat;
+.hljs-bullet {
+  color: #990073;
 }
 
 .hljs-built_in,
 .hljs-builtin-name {
-  color: #000;
-  text-decoration: underline;
+  color: #0086b3;
 }
 
 .hljs-meta {
@@ -84,13 +84,11 @@ grayscale style (c) MY Sun <simonmysun@gmail.com>
 }
 
 .hljs-deletion {
-  color: #fff;
-  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAADCAYAAABS3WWCAAAAE0lEQVQIW2MMDQ39zzhz5kwIAQAyxweWgUHd1AAAAABJRU5ErkJggg==) repeat;
+  background: #fdd;
 }
 
 .hljs-addition {
-  color: #000;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAALUlEQVQYV2N89+7dfwYk8P79ewZBQUFkIQZGOiu6e/cuiptQHAPl0NtNxAQBAM97Oejj3Dg7AAAAAElFTkSuQmCC) repeat;
+  background: #dfd;
 }
 
 .hljs-emphasis {

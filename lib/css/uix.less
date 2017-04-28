@@ -387,10 +387,34 @@ input:-webkit-autofill {
 
 /* Forms
  * ------------------------------------------------------------------------------------------------------------------ */
+// @max-form-width: 360px;
 @errorColor: #f44;
 
 .uix-form {
   position: relative;
+}
+
+.uix-legend {
+  font-size: 14px;
+  line-height: 24px;
+  margin: 16px 0 8px;
+  color: @c0w2;
+}
+
+.uix-fieldset {
+  padding: 16px 16px 8px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  background-color: #fff;
+
+  /*
+  @media screen and (max-width: (@max-form-width + 16px * 2)) {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    margin: 0 -16px;
+  }
+  */
 }
 
 .uix-line {
@@ -426,6 +450,61 @@ input:-webkit-autofill {
   .uix-button {
     min-width: 132px;
     margin-right: 16px;
+  }
+
+  .uix-submit {
+    width: 100%;
+  }
+}
+
+.uix-error-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  min-height: 48px;
+  color: #fff;
+  background: rgba(255,64,64,0.95);
+  font-size: 16px;
+  line-height: 24px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+
+  &.uix-hide {
+    transform: translate3d(0,100%,0);
+  }
+
+  .text {
+    display: block;
+    padding: 12px 8px;
+    margin: 0 40px;
+  }
+
+  .icon-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 12px 8px;
+    box-sizing: border-box;
+    background: rgba(0,0,0,0.1);
+  }
+
+  .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 12px;
+    color: rgba(0,0,0,0.4);
+    background: transparent !important;
+
+    @media (hover:hover) {
+      &:hover {
+        color: rgba(0,0,0,0.6);
+      }
+    }
+    &:active,&.active {
+      color: rgba(0,0,0,0.8);
+    }
   }
 }
 

@@ -4,7 +4,7 @@
  * @class
  * @extends View
  */
-View.define('widgets/button', {
+View.define('widgets/text', {
 
     /**
      * @see View.prototype.ready
