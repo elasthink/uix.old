@@ -11,22 +11,6 @@ View.define('widgets/form', {
     ready: function(root) {
         var form = root.querySelector('.my-form');
         var submit = root.querySelector('.uix-submit');
-        /*
-        var error = function(msg) {
-            if (msg) {
-                error.text.innerHTML = msg;
-                uix.toggle(error.line, true);
-            } else {
-                uix.toggle(error.line, false);
-            }
-        };
-        error.line = root.querySelector('.error-box');
-        error.text = error.line.querySelector('.text');
-        error.line.querySelector('.close').addEventListener('tap', function() {
-            uix.toggle(error.line, false);
-        }, false);
-        */
-
         // Email
         uix.forms.rule(form, '[name="email"]', function(input, data) {
             input.value = input.value.trim();
@@ -69,7 +53,7 @@ View.define('widgets/form', {
                 setTimeout(function() {
                     submit.disabled = false;
                     uix.forms.error(form, 'We\'re sorry, an error occurred.<br/>Please try again later.');
-                }, 1000);
+                }, 500);
             }
             event.preventDefault();
         });
