@@ -9,35 +9,16 @@ View.define('widgets/dialog', {
      * @see View.prototype.ready
      */
     ready: function(root) {
-        root.querySelector('.uix-button.open').addEventListener('tap', function() {
-            uix.openDialog('widgets/dialog/demo', {
-                title: 'DEMO DIALOG'
+        root.querySelector('.demo1').addEventListener('tap', function() {
+            uix.openDialog('widgets/dialog/demo1', {
+                title: 'DEMO DIALOG 1'
             });
-            setTimeout(function() {
-                uix.openDialog('widgets/dialog/demo', {
-                    title: 'DEMO DIALOG 1'
-                });
-            }, 100);
-            setTimeout(function() {
-                uix.openDialog('widgets/dialog/demo', {
-                    title: 'DEMO DIALOG 2'
-                });
-            }, 200);
-            setTimeout(function() {
-                uix.openDialog('widgets/dialog/demo', {
-                    title: 'DEMO DIALOG 3'
-                });
-            }, 300);
-            setTimeout(function() {
-                uix.openDialog('widgets/dialog/demo', {
-                    title: 'DEMO DIALOG 4'
-                });
-            }, 400);
-            setTimeout(function() {
-                uix.openDialog('widgets/dialog/demo', {
-                    title: 'DEMO DIALOG 5'
-                });
-            }, 500);
+        });
+        root.querySelector('.demo2').addEventListener('tap', function() {
+            uix.openDialog('widgets/dialog/demo2', {
+                title: 'DEMO DIALOG 2',
+                message: 'This is a demo dialog with header and close button.'
+            });
         });
     }
 

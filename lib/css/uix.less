@@ -68,7 +68,10 @@ a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-touch-callout: none;
 
-  &.icon, & > .icon {
+  &.icon {
+    padding: ((@button-size - @default-icon-size) / 2);
+  }
+  & > .icon {
     padding: 0 ((@button-size - @default-icon-size) / 2);
   }
 
@@ -572,8 +575,8 @@ input:-webkit-autofill {
 .uix-dialog {
   position: relative;
   width: ~"calc(100% - @{sp4})";
+  min-width: @form-max-width - @sp4;
   max-width: @form-max-width + @sp4;
-  padding: @sp2;
   border-radius: 3px;
   margin: auto;
   box-sizing: border-box;
@@ -582,34 +585,45 @@ input:-webkit-autofill {
   background: #fff;
   transition: all 0.2s ease-out !important;
 
-  /*
-  &.uix-transition-slide-up.uix-hide,
-  &.uix-transition-slide-down.uix-reverse.uix-hide {
-    transform: translate3d(-50%, 100%, 0);
+  &.uix-hide {
     opacity: 0;
   }
 
-  &.uix-transition-slide-right.uix-hide,
-  &.uix-transition-slide-left.uix-reverse.uix-hide {
-    transform: translate3d(-100%, -50%, 0);
-    opacity: 0;
+  .uix-dialog-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: rgba(0,0,0,0.33);
+    background: transparent !important;
+
+    @media (hover: hover) {
+      &:hover {
+        color: rgba(0,0,0,0.44);
+      }
+    }
+    &:active, &.active {
+      color: rgba(0,0,0,0.66);
+    }
   }
 
-  &.uix-transition-slide-down.uix-hide,
-  &.uix-transition-slide-up.uix-reverse.uix-hide {
-    transform: translate3d(-50%, -100%, 0);
-    opacity: 0;
+  .uix-dialog-head {
+    position: relative;
+    min-height: 48px;
+    line-height: 48px;
+    overflow: hidden;
+    color: #fff;
+    background: @c1;
   }
 
-  &.uix-transition-slide-left.uix-hide,
-  &.uix-transition-slide-right.uix-reverse.uix-hide {
-    transform: translate3d(100%, -50%, 0);
-    opacity: 0;
+  .uix-dialog-title {
+    text-align: center;
   }
-  */
+
+  .uix-dialog-body {
+    position: relative;
+    padding: @sp2;
+  }
 }
-
-
 
 
 /*

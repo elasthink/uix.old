@@ -1,9 +1,9 @@
 /**
- * Página de referencia del componente "uix-dialog".
- * @class DialogWidgetView
+ * Diálogo de demostración 1.
+ * @class DemoDialog1
  * @extends View
  */
-View.define('widgets/dialog/demo', {
+View.define('widgets/dialog/demo1', {
 
     /**
      * @see View.prototype.ready
