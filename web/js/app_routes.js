@@ -32,6 +32,10 @@ app.routes = [
             {
                 path: '/dialog',
                 view: 'widgets/dialog'
+            },
+            {
+                path: '/toast',
+                view: 'widgets/toast'
             }
         ]
     }, {
