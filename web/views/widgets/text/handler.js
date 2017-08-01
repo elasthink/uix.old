@@ -9,8 +9,9 @@ View.define('widgets/text', {
     /**
      * @see View.prototype.ready
      */
-    ready: function() {
-        // ...
+    ready: function(root) {
+        uix.forms.init(root);
+
     }
 
 });
