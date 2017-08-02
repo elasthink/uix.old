@@ -39,6 +39,7 @@ h1, h2, h3, h4, h5 {
 
 a {
   color: @c1;
+  cursor: pointer;
 }
 
 /* Button
@@ -273,9 +274,15 @@ input.uix-text, .uix-text > input {
 */
 
 // Estilo y color del texto "placeholder"
-input::placeholder,
-input::-webkit-input-placeholder,
-input::-moz-placeholder,
+input::placeholder {
+  color: @c0w3;
+}
+input::-webkit-input-placeholder {
+  color: @c0w3;
+}
+input::-moz-placeholder {
+  color: @c0w3;
+}
 input:-ms-input-placeholder {
   color: @c0w3;
 }
@@ -481,7 +488,8 @@ input:-webkit-autofill {
     animation: uix-fade-in 0.5s;
   }
 
-  .uix-text.uix-error,
+  input.uix-text.uix-error,
+  .uix-text > input.uix-error,
   .uix-select.uix-error {
     border-color: @form-error-color;
   }
