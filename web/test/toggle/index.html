@@ -3,36 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>UIX // Toggle Test</title>
-    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700|Open+Sans+Condensed:300">
-    <link type="text/css" rel="stylesheet" href="/css/uix.css">
-    <script type="text/javascript" src="/js/lib.js"></script>
+    <title>UIX - Toggle Test</title>
     <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function() {
-            var foo = document.getElementById('foo');
-            foo.addEventListener('tap', function() {
-                uix.toggle2(foo, {
-                    transition: 'fade'
+
+        var views = {
+            'view1': '<div id="view1" class="view uix-trans-slide"><label>VIEW 1</label></div>',
+            'view2': '<div id="view2" class="view uix-trans-slide"><label>VIEW 2</label></div>',
+            'view3': '<div id="view3" class="view uix-trans-slide"><label>VIEW 3</label></div>'
+        };
+
+        var frameEl, loaderEl;
+
+        function trace(el, times) {
+            var cs = window.getComputedStyle(el, null);
+            console.log(
+                'visibility: ' + cs.getPropertyValue('visibility') + ', ' +
+                'opacity: ' + cs.getPropertyValue('opacity') + ', ' +
+                'transform: ' + cs.getPropertyValue('transform'));
+            if (trace.timer) {
+                window.cancelAnimationFrame(trace.timer);
+                traceTimer = 0;
+            }
+            if (times > 0) {
+                trace.timer = window.requestAnimationFrame(function() {
+                   trace(el, times - 1);
                 });
-            });
+            }
+        }
+
+        function toggle(el, show, done) {
+            var clear = function() {
+                el.removeEventListener('transitionend', el.toggleEndHandler, false);
+                delete el.toggleEndHandler;
+            };
+            if (el.toggleEndHandler) {
+                clear();
+            }
+            if (show === undefined) {
+                show = el.classList.contains('uix-hide');
+            }
+            if (show && el.style.display === 'none') {
+                el.style.display = '';
+                el.offsetHeight + el.offsetWidth; // REFLOW
+            }
+            // Evaluamos si habrá transición
+            var trans = getClassEnding(el, 'uix-trans-');
+            if (trans) {
+                var cs = window.getComputedStyle(el, null);
+                if (cs.getPropertyValue('visibility') === (show ? 'visible' : 'hidden')) {
+                    trans = null;
+                }
+            }
+            if (trans) {
+                el.addEventListener('transitionend', el.toggleEndHandler = function(event) {
+                    if (event.propertyName === 'visibility') {
+                        if (!show) {
+                            el.style.display = 'none';
+                        }
+                        if (done) {
+                            done.call();
+                        }
+                        clear();
+                    }
+                }, false);
+            }
+            el.classList.toggle('uix-hide', !show);
+            if (!trans && done) {
+                done.call();
+            }
+        }
+
+        function loadView(view, delay) {
+            var currEl = frameEl.querySelector(':last-child');
+            toggle(loaderEl, true);
+            setTimeout(function() {
+                var nextEl = document.createElement('div');
+                nextEl.insertAdjacentHTML('beforeend', views[view]);
+                nextEl = nextEl.firstChild;
+                nextEl.classList.add('uix-hide');
+                frameEl.appendChild(nextEl);
+                nextEl.offsetWidth + nextEl.offsetHeight;
+                if (currEl) {
+                    currEl.classList.add('uix-reverse');
+                    toggle(currEl, false, function() {
+                        currEl.parentNode.removeChild(currEl);
+                    });
+                }
+                toggle(nextEl, true);
+                toggle(loaderEl, false);
+            }, delay || 0);
+        }
+
+        function getClassEnding(el, prefix) {
+            for (var i = 0, name; i < el.classList.length; i++) {
+                if ((name = el.classList.item(i)).startsWith(prefix)) {
+                    return name.substr(prefix.length);
+                }
+            }
+            return null;
+        }
+
+        function start() {
+            console.log('Starting...');
+            var el = document.getElementById('foo');
+            setTimeout(function() {
+                console.log('Test 1. Hide...');
+                trace(el, 5);
+                toggle(el, false, function() {
+                    console.log('Test 1. Hide... DONE!');
+                    trace(el);
+                });
+            }, 0);
+            setTimeout(function() {
+                console.log('Test 2. Show...');
+                trace(el, 5);
+                toggle(el, true, function() {
+                    console.log('Test 2. Show... DONE!');
+                    trace(el);
+                });
+            }, 5000);
+            setTimeout(function() {
+                console.log('Test 3. Hide...');
+                trace(el, 5);
+                toggle(el, false, function() {
+                    console.log('Test 3. Hide... DONE!');
+                    trace(el);
+                });
+            }, 7000);
+            setTimeout(function() {
+                console.log('Test 4. Show...');
+                trace(el, 5);
+                toggle(el, true, function() {
+                    console.log('Test 4. Show... DONE!');
+                    trace(el);
+                });
+            }, 9000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            frameEl = document.getElementById('frame');
+            loaderEl = document.getElementById('loader');
+        }, false);
+
+        document.addEventListener('click', function() {
+            start();
         });
     </script>
-    <style>
-        #foo {
-            width: 200px;
-            height: 200px;
+    <style type="text/css">
+        body {
+            margin: 0;
+            font-family: arial;
+            font-size: 16px;
+        }
+
+        #page {
+            position: relative;
+            width: 320px;
+            height: 480px;
+            background: #ccc;
+            border: 4px solid #eee;
+            margin: 24px;
+        }
+        #frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f4f4f4;
+            overflow: hidden;
+        }
+        #loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: #888;
+            background: #fff;
+        }
+        label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+        }
+
+        .view {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: #fff;
+        }
+
+        #view1 {
             background: #f00;
         }
-        #foo.hide {
-            opacity: 0.0;
+
+        #view2 {
+            background: #0f0;
         }
-        #foo.fade {
-            visibility: visible;
-            opacity: 0.0;
+
+        #view3 {
+            background: #00f;
+        }
+
+        #loader {
+            transition-duration: 0.25s;
+        }
+    </style>
+    <style type="text/css">
+        .uix-hide {
+            visibility: hidden !important;
+        }
+        .uix-trans-fade {
+            transition: all 1s linear;
+        }
+        .uix-trans-fade.uix-hide {
+            opacity: 0;
+        }
+        .uix-trans-slide {
+            transition: all 1s linear;
+        }
+        .uix-trans-slide.uix-hide {
+            transform: translateX(100%);
+        }
+        .uix-trans-slide.uix-hide.uix-reverse {
+            transform: translateX(-100%);
         }
     </style>
 </head>
 <body>
-    <div id="foo"></div>
+    <div id="page">
+        <div id="frame"></div>
+        <div id="loader" class="uix-trans-fade uix-hide" style="display: none;"><label>LOADING...</label></div>
+    </div>
 </body>
 </html>
