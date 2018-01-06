@@ -6,11 +6,9 @@
     <title>UIX - Toggle Test</title>
     <script type="text/javascript">
 
-        var views = {
-            'view1': '<div id="view1" class="view uix-trans-slide"><label>VIEW 1</label></div>',
-            'view2': '<div id="view2" class="view uix-trans-slide"><label>VIEW 2</label></div>',
-            'view3': '<div id="view3" class="view uix-trans-slide"><label>VIEW 3</label></div>'
-        };
+        var colors = ['#f66', '#6f6', '#66f', '#ff6', '#6ff'];
+
+        var currIndex = -1;
 
         var frameEl, loaderEl;
 
@@ -73,25 +71,55 @@
             }
         }
 
-        function loadView(view, delay) {
+        function loadView(index, trans, back, delay) {
             var currEl = frameEl.querySelector(':last-child');
             toggle(loaderEl, true);
             setTimeout(function() {
-                var nextEl = document.createElement('div');
-                nextEl.insertAdjacentHTML('beforeend', views[view]);
-                nextEl = nextEl.firstChild;
+                var nextEl = buildView(index);
                 nextEl.classList.add('uix-hide');
+                if (trans) {
+                    nextEl.classList.add('uix-trans-' + trans);
+                    if (back) {
+                        nextEl.classList.add('uix-reverse');
+                    }
+                }
                 frameEl.appendChild(nextEl);
                 nextEl.offsetWidth + nextEl.offsetHeight;
                 if (currEl) {
-                    currEl.classList.add('uix-reverse');
+                    clearTrans(currEl);
+                    if (trans) {
+                        currEl.classList.add('uix-trans-' + trans);
+                        if (!back) {
+                            currEl.classList.add('uix-reverse');
+                        }
+                    }
                     toggle(currEl, false, function() {
                         currEl.parentNode.removeChild(currEl);
                     });
                 }
                 toggle(nextEl, true);
                 toggle(loaderEl, false);
+                currIndex = index;
             }, delay || 0);
+        }
+
+        function buildView(index) {
+            var out =
+                '<div id="view' + index + '" class="view" style="background: ' + colors[index] + ';">';
+            if (index > 0) {
+                out +=
+                    '<button class="prev">PREV</button>';
+            }
+            if (index + 1 < colors.length) {
+                out +=
+                    '<button class="next">NEXT</button>';
+            }
+            out +=
+                    '<label>VIEW ' + index + '</label>' +
+                '</div>';
+            var div = document.createElement('div');
+            div.innerHTML = out;
+            return div.firstChild;
         }
 
         function getClassEnding(el, prefix) {
@@ -101,6 +129,14 @@
                 }
             }
             return null;
+        }
+
+        function clearTrans(el) {
+            el.classList.forEach(function(value, index, list) {
+                if (value.indexOf('uix-trans-') === 0 || value === 'uix-reverse') {
+                    list.remove(value);
+                }
+            });
         }
 
         function start() {
@@ -143,14 +179,30 @@
         document.addEventListener('DOMContentLoaded', function() {
             frameEl = document.getElementById('frame');
             loaderEl = document.getElementById('loader');
+
+            frameEl.addEventListener('click', function(event) {
+                if (event.target.tagName === 'BUTTON') {
+                    if (event.target.classList.contains('prev')) {
+                        loadView(currIndex - 1, 'slide', true, 1000);
+                    } else if (event.target.classList.contains('next')) {
+                        loadView(currIndex + 1, 'slide', false, 1000);
+                    }
+                }
+            }, false);
+
         }, false);
 
         document.addEventListener('click', function() {
-            start();
+            // start();
         });
     </script>
     <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
         body {
+            display: flex;
             margin: 0;
             font-family: arial;
             font-size: 16px;
@@ -158,11 +210,12 @@
 
         #page {
             position: relative;
+            flex: 0 0 auto;
             width: 320px;
             height: 480px;
             background: #ccc;
             border: 4px solid #eee;
-            margin: 24px;
+            margin: auto;
         }
         #frame {
             position: absolute;
@@ -196,19 +249,33 @@
             left: 0;
             width: 100%;
             height: 100%;
-            color: #fff;
         }
 
-        #view1 {
-            background: #f00;
+        .view > label {
+            font-size: 32px;
+            font-weight: 500;
+            color: rgba(0,0,0,0.5);
         }
 
-        #view2 {
-            background: #0f0;
+        button {
+            position: absolute;
+            top: 0;
+            font-size: 18px;
+            padding: 8px 24px;
+            color: rgba(0,0,0,0.5);
+            background: transparent;
+            border: 2px solid rgba(0,0,0,0.5);
+            border-radius: 4px;
+            outline: none;
+            margin: 12px;
         }
 
-        #view3 {
-            background: #00f;
+        button.prev {
+            left: 0;
+        }
+
+        button.next {
+            right: 0;
         }
 
         #loader {
@@ -226,7 +293,7 @@
             opacity: 0;
         }
         .uix-trans-slide {
-            transition: all 1s linear;
+            transition: all 0.5s ease-in;
         }
         .uix-trans-slide.uix-hide {
             transform: translateX(100%);
