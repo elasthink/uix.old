@@ -133,10 +133,11 @@
 
         function clearTrans(el) {
             el.classList.forEach(function(value, index, list) {
-                if (value.indexOf('uix-trans-') === 0 || value === 'uix-reverse') {
+                if (value.indexOf('uix-trans-') === 0) {
                     list.remove(value);
                 }
             });
+            el.classList.remove('uix-reverse');
         }
 
         function start() {
