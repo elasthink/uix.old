@@ -978,8 +978,9 @@ input:-webkit-autofill {
 
 // Fade
 .uix-transition-fade {
-  visibility: visible;
-  transition: opacity 0.25s linear;
+  transition-property: opacity, visibility;
+  transition-duration: 0.25s;
+  transition-timing-function: linear;
 }
 
 .uix-transition-fade.uix-hide {
@@ -988,8 +989,9 @@ input:-webkit-autofill {
 
 // Slide
 .uix-transition-slide {
-  visibility: visible;
-  transition: transform 0.2s ease-out;
+  transition-property: visibility, transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-out;
 }
 
 .uix-transition-slide-up,
@@ -1025,8 +1027,9 @@ input:-webkit-autofill {
 
 // Zoom
 .uix-transition-zoom {
-  visibility: visible;
-  transition: opacity 0.25s linear, transform 0.25s ease-in;
+  transition-property: visibility, opacity, transform;
+  transition-duration: 0.25s, 0.25s, 0.25s;
+  transition-timing-function: linear, linear, ease-in;
 }
 
 .uix-transition-zoom.uix-hide {
