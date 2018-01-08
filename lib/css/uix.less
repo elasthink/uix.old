@@ -978,9 +978,9 @@ input:-webkit-autofill {
 
 // Fade
 .uix-transition-fade {
-  transition-property: opacity, visibility;
-  transition-duration: 0.25s;
-  transition-timing-function: linear;
+  transition-property: visibility, opacity;
+  transition-duration: 0.25s, 0.25s;
+  transition-timing-function: linear, linear;
 }
 
 .uix-transition-fade.uix-hide {
@@ -990,8 +990,8 @@ input:-webkit-autofill {
 // Slide
 .uix-transition-slide {
   transition-property: visibility, transform;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-out;
+  transition-duration: 0.2s, 0.2s;
+  transition-timing-function: linear, ease-out;
 }
 
 .uix-transition-slide-up,

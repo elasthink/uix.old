@@ -15,6 +15,7 @@
         function trace(el, times) {
             var cs = window.getComputedStyle(el, null);
             console.log(
+                '--custom: ' + cs.getPropertyValue('--custom') + ', ' +
                 'visibility: ' + cs.getPropertyValue('visibility') + ', ' +
                 'opacity: ' + cs.getPropertyValue('opacity') + ', ' +
                 'transform: ' + cs.getPropertyValue('transform'));
@@ -69,6 +70,7 @@
             if (!trans && done) {
                 done.call();
             }
+            trace(el, 10);
         }
 
         function loadView(index, trans, back, delay) {
@@ -290,18 +292,23 @@
             visibility: hidden !important;
         }
         .uix-trans-fade {
+            --custom: 0;
             transition: all 1s linear;
         }
         .uix-trans-fade.uix-hide {
+            --custom: 100;
             opacity: 0;
         }
         .uix-trans-slide {
+            --custom: 0;
             transition: all 0.5s ease-in;
         }
         .uix-trans-slide.uix-hide {
+            --custom: 100;
             transform: translateX(100%);
         }
         .uix-trans-slide.uix-hide.uix-reverse {
+            --custom: 100;
             transform: translateX(-100%);
         }
     </style>
