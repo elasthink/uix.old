@@ -72,8 +72,12 @@ gulp.task('lib:dist', gulp.series('lib:build', function _pack() {
  */
 gulp.task('lib:watch', function () {
 	// Cambios en scripts
+    gulp.watch([
+        'lib/uix-core.js'
+    ], gulp.series('lib:build'));
+    // NOTE: Separamos la actualización del fichero "uix-core.js" porque al añadirlo con el resto por un extraño motivo,
+    // solo se llama a la construcción dos veces.
 	gulp.watch([
-        'lib/uix-core.js',
         'lib/util/**/*.js',
         'lib/polyfills/**/*.js',
         'lib/add-ons/**/*.js'
