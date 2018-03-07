@@ -594,31 +594,10 @@ input:-webkit-autofill {
   position: relative;
 }
 
-/*
-.uix-dropdown-item {
-  height: 40px;
-  line-height: 40px;
-  padding: 0 8px 0 16px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-
-  @media (hover: hover) {
-    &:hover {
-      background: #f8f8f8;
-    }
-  }
-
-  &:active {
-    color: #2ae;
-  }
-}
-*/
-
 /* Menus
  * ------------------------------------------------------------------------------------------------------------------ */
 .uix-menu {
-  padding: @sp1 0;
+  // padding: @sp1 0;
   color: @c0;
   font-size: 15px;
   font-weight: 400;
@@ -637,21 +616,26 @@ input:-webkit-autofill {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-touch-callout: none;
 
-  @media (hover: hover) {
-    &:hover {
-      background: #f8f8f8;
-    }
+  &.disabled {
+    opacity: 0.2;
   }
-  &:active, &.active {
-    color: @c1;
-    background: #f0f0f0;
+  &:not(.disabled) {
+    @media (hover: hover) {
+      &:hover {
+        background: #f8f8f8;
+      }
+    }
+    &:active, &.active {
+      color: @c1;
+      background: #f0f0f0;
+    }
   }
 }
 
 .uix-menu-sep {
   height: 0;
   border-top: 1px solid #eee;
-  margin: 4px 0;
+  // margin: 4px 0;
 }
 
 
