@@ -583,6 +583,9 @@ input:-webkit-autofill {
   box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1), 4px 4px 4px 0px rgba(0, 0, 0, 0.1);
   z-index: 1;
   overflow: hidden;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
 
   &.to-right {
     right: 0;
@@ -597,7 +600,8 @@ input:-webkit-autofill {
 /* Menus
  * ------------------------------------------------------------------------------------------------------------------ */
 .uix-menu {
-  // padding: @sp1 0;
+  max-width: 240px;
+  max-height: 264px;
   color: @c0;
   font-size: 15px;
   font-weight: 400;
@@ -607,7 +611,11 @@ input:-webkit-autofill {
 .uix-menu-item {
   height: 48px;
   line-height: 48px;
-  padding-left: @sp2;
+  padding: 0 @sp2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
 
   color: @c0;
   cursor: pointer;
