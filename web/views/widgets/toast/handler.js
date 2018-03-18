@@ -11,7 +11,7 @@ View.define('widgets/toast', {
      */
     ready: function(root) {
         root.querySelector('.toast1').addEventListener('tap', function() {
-            uix.toast('No por mucho madrugar amanece más temprano');
+            uix.showToast('No por mucho madrugar amanece más temprano');
         });
     }
 
