@@ -99,11 +99,10 @@ a {
     }
   }
 
-  @media (hover: hover) {
-    &:hover {
-      background: @c1w2;
-    }
+  html:not(.touch) &:hover {
+    background: @c1w2;
   }
+
 
   &:active, &.active {
     background: @c1b2;
@@ -119,11 +118,10 @@ a {
   &.uix-alt {
     background: @c2;
 
-    @media (hover: hover) {
-      &:hover {
-        background: @c2w2;
-      }
+    html:not(.touch) &:hover {
+      background: @c2w2;
     }
+
     &:active, &.active {
       background: @c2b2;
     }
@@ -133,11 +131,10 @@ a {
   &.uix-gray {
     background: @c0w3;
 
-    @media (hover: hover) {
-      &:hover {
-        background: @c0w4;
-      }
+    html:not(.touch) &:hover {
+      background: @c0w4;
     }
+
     &:active, &.active {
       background: @c0w2;
     }
@@ -148,11 +145,10 @@ a {
     color: @c1;
     background: transparent !important;
 
-    @media (hover: hover) {
-      &:hover {
-        color: @c1w2;
-      }
+    html:not(.touch) &:hover {
+      color: @c1w2;
     }
+
     &:active, &.active {
       color: @c1b2;
     }
@@ -179,11 +175,10 @@ a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-touch-callout: none;
 
-  @media (hover: hover) {
-    &:hover {
-      color: @c1;
-    }
+  html:not(.touch) &:hover {
+    color: @c1;
   }
+
   &:active, &.active {
     color: @c1;
   }
@@ -194,10 +189,8 @@ a {
   color: @c1 !important;
   text-decoration: none;
 
-  @media (hover: hover) {
-    &:hover {
-      text-decoration: underline;
-    }
+  html:not(.touch) &:hover {
+    text-decoration: underline;
   }
 }
 
@@ -227,10 +220,8 @@ input.uix-text, .uix-text > input {
   line-height: @default-line-height;
   transition: border 0.25s;
 
-  @media (hover: hover) {
-    &:hover {
-      border-color: @c0w1;
-    }
+  html:not(.touch) &:hover {
+    border-color: @c0w1;
   }
 
   &:focus {
@@ -322,10 +313,8 @@ input:-webkit-autofill {
   line-height: 24px;
   transition: border 0.25s;
 
-  @media (hover: hover) {
-    &:hover {
-      border-color: @c0w1;
-    }
+  html:not(.touch) &:hover {
+    border-color: @c0w1;
   }
 
   &:focus {
@@ -369,13 +358,11 @@ input:-webkit-autofill {
     transition: background 0.1s;
   }
 
-  @media (hover: hover) {
-    &:hover {
-      color: @c1;
+  html:not(.touch) &:hover {
+    color: @c1;
 
-      > .uix-mark {
-        background-color: @c1;
-      }
+    > .uix-mark {
+      background-color: @c1;
     }
   }
 
@@ -557,11 +544,10 @@ input:-webkit-autofill {
       color: rgba(0, 0, 0, 0.4);
       background: transparent !important;
 
-      @media (hover: hover) {
-        &:hover {
-          color: rgba(0, 0, 0, 0.6);
-        }
+      html:not(.touch) &:hover {
+        color: rgba(0, 0, 0, 0.6);
       }
+
       &:active, &.active {
         color: rgba(0, 0, 0, 0.8);
       }
@@ -628,11 +614,11 @@ input:-webkit-autofill {
     opacity: 0.2;
   }
   &:not(.disabled) {
-    @media (hover: hover) {
-      &:hover {
-        background: #f8f8f8;
-      }
+
+    html:not(.touch) &:hover {
+      background: #f8f8f8;
     }
+
     &:active, &.active {
       color: @c1;
       background: #f0f0f0;
@@ -694,11 +680,10 @@ input:-webkit-autofill {
     color: rgba(0, 0, 0, 0.4);
     background: transparent !important;
 
-    @media (hover: hover) {
-      &:hover {
-        color: rgba(0, 0, 0, 0.6);
-      }
+    html:not(.touch) &:hover {
+      color: rgba(0, 0, 0, 0.6);
     }
+
     &:active, &.active {
       color: rgba(0, 0, 0, 0.8);
     }
@@ -784,11 +769,10 @@ body > .uix-dialog-wrapper {
     color: rgba(0,0,0,0.33);
     background: transparent !important;
 
-    @media (hover: hover) {
-      &:hover {
-        color: rgba(0,0,0,0.44);
-      }
+    html:not(.touch) &:hover {
+      color: rgba(0,0,0,0.44);
     }
+
     &:active, &.active {
       color: rgba(0,0,0,0.66);
     }
