@@ -69,11 +69,8 @@ a {
   text-overflow: ellipsis;
   white-space: nowrap;
   vertical-align: top;
-  cursor: pointer;
   transition: all 0.1s;
-  user-select: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-touch-callout: none;
+  .uix-pressable();
 
   &.icon {
     padding: ((@button-size - @icon-size) / 2);
@@ -169,11 +166,8 @@ a {
 .uix-link {
   // display: inline-block;
   color: @c0;
-  cursor: pointer;
-  // user-select: none;
   transition: all 0.1s;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-touch-callout: none;
+  .uix-pressable();
 
   html:not(.touch) &:hover {
     color: @c1;
@@ -192,6 +186,13 @@ a {
   html:not(.touch) &:hover {
     text-decoration: underline;
   }
+}
+
+.uix-pressable {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
 }
 
 /* Text box
@@ -244,8 +245,8 @@ input.uix-text, .uix-text > input {
     @svgData: %("data:image/svg+xml,%s", escape("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='@{c0w1}' d='M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z'/></svg>"));
     background: transparent url(@svgData) no-repeat center center;
     background-size: 24px 24px;
-    cursor: pointer;
     transition: all 0.1s;
+    cursor: pointer;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-touch-callout: none;
   }
@@ -602,13 +603,9 @@ input:-webkit-autofill {
   text-overflow: ellipsis;
   white-space: nowrap;
   box-sizing: border-box;
-
   color: @c0;
-  cursor: pointer;
-  user-select: none;
   transition: all 0.1s;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-touch-callout: none;
+  .uix-pressable();
 
   &.disabled {
     opacity: 0.2;
