@@ -96,70 +96,107 @@ a {
     }
   }
 
-  html:not(.touch) &:hover {
-    background: @c1w2;
-  }
-
-
-  &:active, &.active {
+  // Primary Color Set
+  .uix-hover({
+  background: @c1w2;
+});
+  .uix-active({
     background: @c1b2;
-  }
-
-  &:disabled, &.disabled {
+  });
+  .uix-disabled({
     background: @c0w1;
     opacity: 0.25;
     cursor: initial;
-  }
+  });
 
   // Alternate Color Set
   &.uix-alt {
     background: @c2;
-
-    html:not(.touch) &:hover {
+    .uix-hover({
       background: @c2w2;
-    }
-
-    &:active, &.active {
+    });
+    .uix-active({
       background: @c2b2;
-    }
+    });
   }
 
   // Gray Color Set
   &.uix-gray {
     background: @c0w3;
-
-    html:not(.touch) &:hover {
+    .uix-hover({
       background: @c0w4;
-    }
-
-    &:active, &.active {
+    });
+    .uix-active({
       background: @c0w2;
-    }
+    });
   }
 
   // Transparent Color Set
   &.uix-transparent {
     color: @c1;
     background: transparent !important;
-
-    html:not(.touch) &:hover {
+    .uix-hover({
       color: @c1w2;
-    }
-
-    &:active, &.active {
+    });
+    .uix-active({
       color: @c1b2;
-    }
+    });
   }
 
   // Link Color Set
   &.uix-link {
     background: transparent !important;
-
-    &:active, &.active {
+    .uix-active({
       color: @c1b2;
-    }
+    });
   }
 }
+
+.uix-button-styles(@hover: {}, @active: {}, @focus: {}, @disabled: {}) {
+  html:not(.touch) &:hover {
+    @hover();
+  }
+  &:active, html:not(.touch) &:active,
+  &.active, html:not(.touch) &.active {
+    @active();
+  }
+  &:focus, html:not(.touch) &:focus,
+  &.focus, html:not(.touch) &.focus {
+    @focus();
+  }
+  &:disabled, html:not(.touch) &:disabled,
+  &.disabled, html:not(.touch) &.disabled {
+    @disabled();
+  }
+}
+
+.uix-hover(@rules) {
+  html:not(.touch) &:hover {
+    @rules();
+  }
+};
+
+.uix-active(@rules) {
+  &:active, html:not(.touch) &:active,
+  &.active, html:not(.touch) &.active {
+    @rules();
+  }
+};
+
+.uix-focus(@rules) {
+  &:focus, html:not(.touch) &:focus,
+  &.focus, html:not(.touch) &.focus {
+    @rules();
+  }
+};
+
+.uix-disabled(@rules) {
+  &:disabled, html:not(.touch) &:disabled,
+  &.disabled, html:not(.touch) &.disabled {
+    @rules();
+  }
+};
+
 
 // Links
 // ---------------------------------------------------------------------------------------------------------------------
@@ -168,32 +205,23 @@ a {
   color: @c0;
   transition: all 0.1s;
   .uix-pressable();
-
-  html:not(.touch) &:hover {
+  .uix-hover({
     color: @c1;
-  }
-
-  &:active, &.active {
-    color: @c1;
-  }
+  });
+  .uix-active({
+    color: @c1
+  });
 }
 
 .uix-text-link {
   .uix-link();
   color: @c1 !important;
   text-decoration: none;
-
-  html:not(.touch) &:hover {
+  .uix-hover({
     text-decoration: underline;
-  }
+  });
 }
 
-.uix-pressable {
-  cursor: pointer;
-  user-select: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-touch-callout: none;
-}
 
 /* Text box
  * ------------------------------------------------------------------------------------------------------------------ */
@@ -221,13 +249,12 @@ input.uix-text, .uix-text > input {
   line-height: @default-line-height;
   transition: border 0.25s;
 
-  html:not(.touch) &:hover {
+  .uix-hover({
     border-color: @c0w1;
-  }
-
-  &:focus {
+  });
+  .uix-focus({
     border-color: @c1;
-  }
+  });
 }
 
 .uix-text > input {
@@ -314,13 +341,12 @@ input:-webkit-autofill {
   line-height: 24px;
   transition: border 0.25s;
 
-  html:not(.touch) &:hover {
+  .uix-hover({
     border-color: @c0w1;
-  }
-
-  &:focus {
+  });
+  .uix-focus({
     border-color: @c1;
-  }
+  });
 }
 
 .uix-select::-ms-expand {
@@ -359,21 +385,18 @@ input:-webkit-autofill {
     transition: background 0.1s;
   }
 
-  html:not(.touch) &:hover {
+  .uix-hover({
     color: @c1;
-
     > .uix-mark {
       background-color: @c1;
     }
-  }
-
-  &:focus {
+  });
+  .uix-focus({
     color: @c1;
-
     > .uix-mark {
       background-color: @c1;
     }
-  }
+  });
 
   input[type="checkbox"] {
     ~ .uix-mark:before {
@@ -470,7 +493,8 @@ input:-webkit-autofill {
 
   .uix-error-msg {
     display: block;
-    line-height: 28px;
+    padding: 4px 0;
+    line-height: 20px;
     color: @form-error-color;
     font-size: 15px;
     animation: uix-fade-in 0.5s;
@@ -545,13 +569,12 @@ input:-webkit-autofill {
       color: rgba(0, 0, 0, 0.4);
       background: transparent !important;
 
-      html:not(.touch) &:hover {
+      .uix-hover({
         color: rgba(0, 0, 0, 0.6);
-      }
-
-      &:active, &.active {
+      });
+      .uix-active({
         color: rgba(0, 0, 0, 0.8);
-      }
+      });
     }
   }
 }
@@ -607,26 +630,24 @@ input:-webkit-autofill {
   transition: all 0.1s;
   .uix-pressable();
 
-  &.disabled {
+  .uix-hover({
+    background: #f8f8f8;
+  });
+  .uix-active({
+    color: @c1;
+    background: #f0f0f0;
+  });
+  .uix-disabled({
+    color: inherit;
+    background: inherit;
     opacity: 0.2;
-  }
-  &:not(.disabled) {
-
-    html:not(.touch) &:hover {
-      background: #f8f8f8;
-    }
-
-    &:active, &.active {
-      color: @c1;
-      background: #f0f0f0;
-    }
-  }
+    cursor: inherit;
+  });
 }
 
 .uix-menu-sep {
   height: 0;
   border-top: 1px solid #eee;
-  // margin: 4px 0;
 }
 
 
@@ -677,44 +698,15 @@ input:-webkit-autofill {
     color: rgba(0, 0, 0, 0.4);
     background: transparent !important;
 
-    html:not(.touch) &:hover {
+    .uix-hover({
       color: rgba(0, 0, 0, 0.6);
-    }
-
-    &:active, &.active {
-      color: rgba(0, 0, 0, 0.8);
-    }
+    });
+    .uix-active({
+      color: rgba(0, 0, 0, 0.8) !important;
+    });
   }
 }
 
-
-// ---------------------------------------------------------------------------------------------------------------------
-// ---------------------------------------------------------------------------------------------------------------------
-// ---------------------------------------------------------------------------------------------------------------------
-
-
-
-/* Custom Scroll Bars
- * ------------------------------------------------------------------------------------------------------------------ */
-/* Funcionalidad Experimental...
-.uix-vscroll {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  width: 12px;
-  height: 100%;
-  background: #888;
-}
-
-.uix-vscroll-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #f00;
-}
-*/
 
 /* Dialogs
  * ------------------------------------------------------------------------------------------------------------------ */
@@ -748,6 +740,7 @@ body > .uix-dialog-wrapper {
   min-width: @screen-min-width - @sp4;
   max-width: @form-max-width + @sp4;
   border-radius: 3px;
+  padding: @sp2;
   margin: auto;
   box-sizing: border-box;
   box-shadow: 0 0 @sp2 rgba(0,0,0,0.2);
@@ -757,22 +750,6 @@ body > .uix-dialog-wrapper {
 
   &.uix-hide {
     opacity: 0;
-  }
-
-  .uix-dialog-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    color: rgba(0,0,0,0.33);
-    background: transparent !important;
-
-    html:not(.touch) &:hover {
-      color: rgba(0,0,0,0.44);
-    }
-
-    &:active, &.active {
-      color: rgba(0,0,0,0.66);
-    }
   }
 
   .uix-dialog-head {
@@ -785,183 +762,151 @@ body > .uix-dialog-wrapper {
   }
 
   .uix-dialog-title {
-    text-align: center;
-  }
-
-  .uix-dialog-body {
-    position: relative;
-    padding: @sp2;
-  }
-}
-
-
-/*
-.uix-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  transition: opacity 0.25s linear 0s;
-}
-
-.uix-dialog-wrapper {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-}
-
-.uix-dialog {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 24px;
-  border-radius: 4px;
-  box-sizing: border-box;
-  transform: translate(-50%, -50%);
-  transition: all 0.25s;
-
-  h1 {
-    margin: 0 0 4px;
-    color: #2ae;
+    margin-bottom: @sp2;
+    color: @c1;
     font-size: 22px;
-    font-weight: 300;
+    font-weight: 400;
   }
 
-  h2 {
-    margin: 0 0 8px;
-    color: #666;
-    font-size: 16px;
-    font-weight: 300;
+  .uix-dialog-content {
+    position: relative;
+    margin-bottom: @sp2;
   }
 
-  .uix-actions {
-    margin: 16px 0 0;
-    text-align: right;
+  .uix-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
 
     .uix-button {
-      margin: 0 0 0 16px;
-    }
-  }
+      margin-left: @sp2;
 
-  &.hide {
-    // top: 60%;
-    transform: translate(-50%, -50%) scale(1.25, 1.25);
-  }
+      &.uix-gray {
+        color: @c0w1;
+        background: transparent;
 
-  @media screen and (max-width: 640px) {
-    padding: 16px;
-
-    h1 {
-      font-size: 18px;
-      text-align: center;
-    }
-
-    h2 {
-      font-size: 16px;
-      text-align: center;
-    }
-
-    .uix-actions {
-      text-align: center;
-
-      .uix-button {
-        min-width: 96px;
-        padding: 0 12px;
-        margin-right: 8px;
-
-        &.uix-right {
-          margin: 0 0 0 8px;
-        }
+        .uix-hover({
+          background: @c0w7;
+        });
+        .uix-active({
+          background: @c0w5;
+        });
       }
     }
   }
-}
 
-.uix-dialog-icon {
-  display: block;
-  float: left;
-  width: 72px;
-  height: 72px;
-  color: #2ae;
-  font-size: 72px !important;
-
-  @media screen and (max-width: 640px) {
-    float: none;
-    width: 100%;
-    height: 64px;
-    margin-bottom: 8px;
-    font-size: 64px !important;
-    text-align: center;
-  }
-}
-
-.uix-dialog-body {
-  margin-left: 88px;
-
-  @media screen and (max-width: 640px) {
-    margin-left: 0;
-  }
-}
-*/
-
-
-/* Loader
- * ------------------------------------------------------------------------------------------------------------------ */
-@loader-size: 64px;
-
-.uix-loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  background: rgba(255, 255, 255, 0.95);
-
-  > .spin {
+  .uix-dialog-close {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: @loader-size;
-    height: @loader-size;
-    margin: -(@loader-size / 2) 0 0 -(@loader-size / 2);
-    animation: rotate 2s linear infinite;
-    // transform: translateZ(0);
+    top: 0;
+    right: 0;
+    color: rgba(0,0,0,0.33);
+    background: transparent !important;
 
-    > .path {
-      // stroke-dasharray: 1,150;
-      stroke-dasharray: 90, 150;
-      stroke-dashoffset: 0;
-      stroke-linecap: round;
-      stroke: #4bf;
-      // animation: dash 1.5s ease-in-out infinite;
-    }
+    .uix-hover({
+      color: rgba(0,0,0,0.44);
+    });
+    .uix-active({
+      color: rgba(0,0,0,0.66);
+    });
   }
 }
 
-@keyframes rotate {
-  100% {
-    transform: rotateZ(360deg);
-  }
-}
 
-@keyframes dash {
+/* Animations
+ * ------------------------------------------------------------------------------------------------------------------ */
+/* Fade In */
+@keyframes uix-fade-in {
   0% {
-    stroke-dasharray: 1, 150;
-    stroke-dashoffset: 0;
-  }
-  50% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -35;
+    opacity: 0;
   }
   100% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -124;
+    opacity: 1;
   }
 }
+
+
+/* Transitions
+ * ------------------------------------------------------------------------------------------------------------------ */
+.uix-hide {
+  visibility: hidden;
+}
+
+.--display-none {
+  // NOTE: No añade ninguna propiedad, solo indica a la función uix.toggle() que debe poner la propiedad display a
+  // 'none' al acabar la transición.
+}
+
+// Fade //
+.uix-transition-fade {
+  transition: visibility 0.2s linear, opacity 0.2s linear;
+}
+
+.uix-transition-fade.uix-hide {
+  opacity: 0;
+}
+
+// Slide //
+.uix-transition-slide {
+  transition: visibility 0.2s linear, transform 0.2s ease-out;
+}
+
+.uix-transition-slide-up,
+.uix-transition-slide-right,
+.uix-transition-slide-down,
+.uix-transition-slide-left {
+  .uix-transition-slide;
+}
+
+.uix-transition-slide-up.uix-hide,
+.uix-transition-slide-down.uix-reverse.uix-hide {
+  transform: translate3d(0, 100%, 0);
+}
+
+.uix-transition-slide-right.uix-hide,
+.uix-transition-slide-left.uix-reverse.uix-hide {
+  transform: translate3d(-100%, 0, 0);
+}
+
+.uix-transition-slide-down.uix-hide,
+.uix-transition-slide-up.uix-reverse.uix-hide {
+  transform: translate3d(0, -100%, 0);
+}
+
+.uix-transition-slide-left.uix-hide,
+.uix-transition-slide-right.uix-reverse.uix-hide {
+  transform: translate3d(100%, 0, 0);
+}
+
+// Zoom //
+.uix-transition-zoom {
+  transition: visibility 0.25s linear, opacity 0.25s linear, transform 0.25s ease-in;
+}
+
+.uix-transition-zoom.uix-hide {
+  transform: scale3d(1.5, 1.5, 1.5);
+  opacity: 0;
+}
+
+// Dropdown //
+.uix-transition-dropdown {
+  transform-origin: 0 0;
+  transition: visibility 0.25s linear, opacity 0.25s linear, transform 0.25s ease-in;
+}
+
+.uix-transition-dropdown.uix-hide {
+  transform: scale(0, 0);
+  opacity: 0;
+}
+
+
+/* Commons
+ * ------------------------------------------------------------------------------------------------------------------ */
+.uix-pressable {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+}
+
 
 /* Add-Ons > Views
  * ------------------------------------------------------------------------------------------------------------------ */
@@ -980,102 +925,25 @@ body > .uix-dialog-wrapper {
   height: 100%;
 }
 
-/* Animations
+
+/* Custom Scroll Bars
  * ------------------------------------------------------------------------------------------------------------------ */
-/* Fade In */
-@keyframes uix-fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+/* Funcionalidad Experimental...
+.uix-vscroll {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  width: 12px;
+  height: 100%;
+  background: #888;
 }
 
-/* Transitions
- * ------------------------------------------------------------------------------------------------------------------ */
-.uix-hide {
-  visibility: hidden;
+.uix-vscroll-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #f00;
 }
-
-.--display-none {
-  // NOTE: No añade ninguna propiedad, solo indica a la función uix.toggle() que debe poner la propiedad display a
-  // 'none' al acabar la transición.
-}
-
-// Fade
-.uix-transition-fade {
-  transition: visibility 0.2s linear, opacity 0.2s linear;
-}
-
-.uix-transition-fade.uix-hide {
-  opacity: 0;
-}
-
-// Slide
-.uix-transition-slide {
-  transition: visibility 0.2s linear, transform 0.2s ease-out;
-}
-
-.uix-transition-slide-up,
-.uix-transition-slide-right,
-.uix-transition-slide-down,
-.uix-transition-slide-left {
-  .uix-transition-slide;
-}
-
-.uix-transition-slide-up.uix-hide,
-.uix-transition-slide-down.uix-reverse.uix-hide {
-  // transform: translateY(100%);
-  transform: translate3d(0, 100%, 0);
-}
-
-.uix-transition-slide-right.uix-hide,
-.uix-transition-slide-left.uix-reverse.uix-hide {
-  // transform: translateX(-100%);
-  transform: translate3d(-100%, 0, 0);
-}
-
-.uix-transition-slide-down.uix-hide,
-.uix-transition-slide-up.uix-reverse.uix-hide {
-  // transform: translateY(-100%);
-  transform: translate3d(0, -100%, 0);
-}
-
-.uix-transition-slide-left.uix-hide,
-.uix-transition-slide-right.uix-reverse.uix-hide {
-  // transform: translateX(100%);
-  transform: translate3d(100%, 0, 0);
-}
-
-// Zoom
-.uix-transition-zoom {
-  transition: visibility 0.25s linear, opacity 0.25s linear, transform 0.25s ease-in;
-}
-
-.uix-transition-zoom.uix-hide {
-  transform: scale3d(1.5, 1.5, 1.5);
-  opacity: 0;
-}
-
-// Dropdown
-.uix-transition-dropdown {
-  transform-origin: 0 0;
-  transition: visibility 0.25s linear, opacity 0.25s linear, transform 0.25s ease-in;
-}
-
-.uix-transition-dropdown.uix-hide {
-  transform: scale(0, 0);
-  opacity: 0;
-}
-
-/* Utility Classes
- * ------------------------------------------------------------------------------------------------------------------ */
-
-
-
-/* Commons
- * ------------------------------------------------------------------------------------------------------------------ */
-
-
-
+*/

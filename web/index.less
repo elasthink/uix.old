@@ -10,46 +10,43 @@
   background: rgba(255, 255, 255, 0.95);
 }
 
-.loader-box {
-  display: flex;
-  flex-flow: row nowrap;
+.loader {
   position: absolute;
   top: 50%;
   left: 50%;
+  font-size: 10px;
   transform: translate(-50%, -50%);
-  font-size: 12px;
-}
 
-.loader-dot {
-  display: block;
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  margin: 0.5em;
-  background: @c1;
-  opacity: 0.2;
-  transform: scale(0.5,0.5);
-  animation: loader-blink 1s linear infinite;
-  animation-fill-mode: both;
-
-  &:nth-child(1) {
-    animation-delay: -0.50s;
+  &, &:before, &:after {
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background: fade(@c1, 10%);
+    animation: loader-blink 1s linear infinite;
+    animation-fill-mode: both;
   }
-  &:nth-child(2) {
+
+  &:before, &:after {
+    position: absolute;
+    top: 0;
+    content: '';
+  }
+
+  &:before {
+    left: -2.25em;
     animation-delay: -0.25s;
   }
-  &:nth-child(3) {
-    animation-delay: 0.0s;
+  &:after {
+    right: -2.25em;
+    animation-delay: +0.25s;
   }
-}
 
-@keyframes loader-blink {
-  0%,100% {
-    opacity: 0.2;
-    transform: scale(0.5,0.5);
-  }
-  25% {
-    opacity: 1.0;
-    transform: scale(1,1);
+  @keyframes loader-blink {
+    0%, 100% {
+      background: fade(@c1, 10%);
+    }
+    25% {
+      background: @c1;
+    }
   }
 }
