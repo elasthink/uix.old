@@ -143,9 +143,9 @@ a {
     });
   }
 
-  // Gray Color Set
+  // Gray Transparent Color Set
   &.uix-gray-transparent {
-    color: @c0;
+    color: @c0w1;
     background: transparent;
     .uix-hover({
       background: #f4f4f4;
@@ -751,12 +751,14 @@ body > .uix-dialog-wrapper {
   width: ~"calc(100% - @{sp4})";
   min-width: @screen-min-width - @sp4;
   max-width: @form-max-width + @sp4;
+  max-height: ~"calc(100% - @{sp4})";
   border-radius: 3px;
   padding: @sp2;
   margin: auto;
   box-sizing: border-box;
   box-shadow: 0 0 @sp2 rgba(0,0,0,0.2);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: #fff;
   transition: all 0.2s ease-out !important;
 
@@ -790,9 +792,10 @@ body > .uix-dialog-wrapper {
     position: absolute;
     top: 0;
     right: 0;
-    width: 24px;
-    height: 24px;
-    padding: 18px 16px;
+    width: 56px;
+    height: 56px;
+    padding: 16px;
+    box-sizing: border-box;
     color: rgba(0,0,0,0.33);
     background: transparent !important;
     .uix-pressable();
