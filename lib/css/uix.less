@@ -143,6 +143,18 @@ a {
     });
   }
 
+  // Gray Color Set
+  &.uix-gray-transparent {
+    color: @c0;
+    background: transparent;
+    .uix-hover({
+      background: #f4f4f4;
+    });
+    .uix-active({
+      background: #e2e2e2;
+    });
+  }
+
   // Link Color Set
   &.uix-link {
     background: transparent !important;
@@ -752,20 +764,13 @@ body > .uix-dialog-wrapper {
     opacity: 0;
   }
 
-  .uix-dialog-head {
-    position: relative;
-    min-height: 48px;
-    line-height: 48px;
-    overflow: hidden;
-    color: #fff;
-    background-color: @c1;
-  }
-
   .uix-dialog-title {
+    padding-right: 24px;
     margin-bottom: @sp2;
     color: @c1;
-    font-size: 22px;
+    font-size: 21px;
     font-weight: 400;
+    line-height: 28px;
   }
 
   .uix-dialog-content {
@@ -776,21 +781,8 @@ body > .uix-dialog-wrapper {
   .uix-dialog-actions {
     display: flex;
     justify-content: flex-end;
-
     .uix-button {
       margin-left: @sp2;
-
-      &.uix-gray {
-        color: @c0w1;
-        background: transparent;
-
-        .uix-hover({
-          background: @c0w7;
-        });
-        .uix-active({
-          background: @c0w5;
-        });
-      }
     }
   }
 
@@ -798,9 +790,12 @@ body > .uix-dialog-wrapper {
     position: absolute;
     top: 0;
     right: 0;
+    width: 24px;
+    height: 24px;
+    padding: 18px 16px;
     color: rgba(0,0,0,0.33);
     background: transparent !important;
-
+    .uix-pressable();
     .uix-hover({
       color: rgba(0,0,0,0.44);
     });

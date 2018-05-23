@@ -10,7 +10,7 @@ View.define('widgets/dialog/demo1', {
      */
     ready: function(root) {
         var self = this;
-        root.querySelectorAll('.uix-button.not-now').addEventListener('tap', function() {
+        root.querySelector('.uix-button.not-now').addEventListener('tap', function() {
             uix.closeDialog(self);
         });
         root.querySelector('.uix-button.accept').addEventListener('tap', function() {
