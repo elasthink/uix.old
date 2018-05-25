@@ -731,6 +731,9 @@ input:-webkit-autofill {
   left: 0;
   width: 100%;
   height: 100%;
+  // NOTE: Evita el scroll de las capas que están por debajo.
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 body > .uix-dialog-wrapper {
