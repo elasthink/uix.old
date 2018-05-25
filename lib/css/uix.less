@@ -722,36 +722,6 @@ input:-webkit-autofill {
 
 /* Dialogs
  * ------------------------------------------------------------------------------------------------------------------ */
-.uix-dialog-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  // NOTE: Evita el scroll de las capas que están por debajo.
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.uix-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-}
-
-body > .uix-dialog-wrapper {
-  position: fixed;
-  > .uix-overlay {
-    position: fixed;
-  }
-}
-
 .uix-dialog {
   position: relative;
   width: ~"calc(100% - @{sp4})";
@@ -815,6 +785,41 @@ body > .uix-dialog-wrapper {
   }
 }
 
+.uix-dialog-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  body > & {
+    position: fixed;
+  }
+}
+
+.uix-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  // NOTE: Evita que se pueda hacer scroll en capas por debajo en webkit (iOS).
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  &:before {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 1px solid transparent;
+    content: '';
+  }
+  body > & {
+    position: fixed;
+  }
+}
 
 /* Animations
  * ------------------------------------------------------------------------------------------------------------------ */
