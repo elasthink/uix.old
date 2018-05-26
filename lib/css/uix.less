@@ -732,11 +732,12 @@ input:-webkit-autofill {
   padding: @sp2;
   margin: auto;
   box-sizing: border-box;
+  background: #fff;
   box-shadow: 0 0 @sp2 rgba(0,0,0,0.2);
+  transition: all 0.2s ease-out !important;
   overflow-x: hidden;
   overflow-y: auto;
-  background: #fff;
-  transition: all 0.2s ease-out !important;
+  -webkit-overflow-scrolling: touch;
 
   &.uix-hide {
     opacity: 0;
