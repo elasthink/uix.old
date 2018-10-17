@@ -500,9 +500,19 @@ input:-webkit-autofill {
     display: block;
     height: 18px;
     line-height: 18px;
-    margin-bottom: -4px;
     color: @c0w2;
     font-size: 14px;
+
+    & + .uix-select,
+    & + .uix-text,
+    & + .--margin-fix {
+      margin-top: -4px;
+    }
+
+    > i {
+      font-style: normal;
+      letter-spacing: -0.25px;
+    }
   }
 
   .uix-error-msg {
@@ -535,60 +545,6 @@ input:-webkit-autofill {
 
     .uix-button:last-child {
       margin-right: 0;
-    }
-  }
-
-  .uix-error-box {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    min-height: 48px;
-    color: #fff;
-    background: rgba(255, 64, 64, 0.95);
-    font-size: 16px;
-    line-height: 24px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-
-    &.uix-hide {
-      transform: translate3d(0, 100%, 0);
-    }
-
-    .text {
-      display: block;
-      padding: 12px 8px;
-      margin: 0 40px;
-
-      a {
-        color: #fff;
-        text-decoration: underline;
-      }
-    }
-
-    .icon-info {
-      position: absolute;
-      top: 0;
-      left: 0;
-      box-sizing: border-box;
-      height: 100%;
-      padding: 12px 8px;
-      background: rgba(0, 0, 0, 0.1);
-    }
-
-    .icon-close {
-      position: absolute;
-      top: 0;
-      right: 0;
-      padding: 12px;
-      color: rgba(0, 0, 0, 0.4);
-      background: transparent !important;
-
-      .uix-hover({
-        color: rgba(0, 0, 0, 0.6);
-      });
-      .uix-active({
-        color: rgba(0, 0, 0, 0.8);
-      });
     }
   }
 }
@@ -685,12 +641,16 @@ input:-webkit-autofill {
 
   .text {
     display: block;
-    padding: 12px 8px;
-    margin: 0 40px;
+    padding: 13px 8px;
+    margin: 0 28px 0 40px;
 
     a {
       color: #fff;
       text-decoration: underline;
+    }
+
+    b {
+      font-weight: 400;
     }
   }
 
