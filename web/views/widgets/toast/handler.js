@@ -38,7 +38,9 @@ View.define('widgets/toast', {
             ]);
         });
         root.querySelector('.toast3').addEventListener('tap', function() {
-            uix.showToast('<b>No internet connection</b><br/>Please check your connection and try again.');
+            uix.showToast('<b>No internet connection</b><br/>Please check your connection and try again.', {
+                close: false
+            });
         });
         root.querySelector('.toast4').addEventListener('tap', function() {
             uix.showToast('<b>Something went wrong</b><br/>Please try again later.');
