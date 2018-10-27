@@ -371,14 +371,13 @@ input:-webkit-autofill {
  * ------------------------------------------------------------------------------------------------------------------ */
 @check-min-height: 44px;
 @check-padding-top: (@check-min-height - @default-line-height) / 2;
-@check-text-padding: @sp2;
 
 .uix-check {
   position: relative;
   display: inline-block;
   box-sizing: border-box;
   min-height: @check-min-height;
-  padding: @check-padding-top @check-text-padding @check-padding-top (@icon-size + @sp1);
+  padding: @check-padding-top @sp1 @check-padding-top (@icon-size + @sp1);
   color: @c0;
   line-height: @default-line-height;
   cursor: pointer;
