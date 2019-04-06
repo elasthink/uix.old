@@ -14,6 +14,28 @@ View.define('widgets/dialog', {
                 fragment: 'demo1'
             });
         });
+        root.querySelector('.demo1').addEventListener('tap', function() {
+            uix.showMessageDialog({
+                title: '',
+                message: '',
+                actions: [
+                    {
+                        text: '',
+                        handler: function() {
+
+                        },
+                        styleClass: ''
+                    },
+                    {
+                        text: '',
+                        handler: function() {
+
+                        },
+                        styleClass: ''
+                    }
+                ]
+            });
+        });
     }
 
 });
