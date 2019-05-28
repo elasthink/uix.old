@@ -185,21 +185,21 @@ a {
 }
 
 .uix-hover(@rules) {
-  html:not(.touch) &:hover {
+  html:not(.touch) &:hover:not(:disabled):not(.disabled) {
     @rules();
   }
 };
 
 .uix-active(@rules) {
-  &:active, html:not(.touch) &:active,
-  &.active, html:not(.touch) &.active {
+  &:active:not(:disabled):not(.disabled), html:not(.touch) &:active:not(:disabled):not(.disabled),
+  &.active:not(:disabled):not(.disabled), html:not(.touch) &.active:not(:disabled):not(.disabled) {
     @rules();
   }
 };
 
 .uix-focus(@rules) {
-  &:focus, html:not(.touch) &:focus,
-  &.focus, html:not(.touch) &.focus {
+  &:focus:not(:disabled):not(.disabled), html:not(.touch) &:focus:not(:disabled):not(.disabled),
+  &.focus:not(:disabled):not(.disabled), html:not(.touch) &.focus:not(:disabled):not(.disabled) {
     @rules();
   }
 };
