@@ -633,18 +633,17 @@ input:-webkit-autofill {
   min-height: 48px;
   color: #fff;
   background: rgba(255, 64, 64, 0.95);
-  font-size: 16px;
-  line-height: 24px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 
   &.uix-hide {
     transform: translate3d(0, 100%, 0);
   }
 
-  .text {
+  &__text {
     display: block;
-    padding: 13px 8px;
-    margin: 0 28px 0 40px;
+    padding: 12px 8px;
+    margin: 0 36px 0 40px;
+    font-size: 16px;
 
     a {
       color: #fff;
@@ -654,11 +653,14 @@ input:-webkit-autofill {
     }
 
     b {
+      display: block;
+      font-size: 18px;
       font-weight: 400;
+      margin-bottom: 2px;
     }
   }
 
-  .icon-info {
+  &__icon {
     position: absolute;
     top: 0;
     left: 0;
@@ -668,7 +670,7 @@ input:-webkit-autofill {
     background: rgba(0, 0, 0, 0.1);
   }
 
-  .icon-close {
+  &__close {
     position: absolute;
     top: 0;
     right: 0;
@@ -679,10 +681,13 @@ input:-webkit-autofill {
     .uix-hover({
       color: rgba(0, 0, 0, 0.6);
     });
+
     .uix-active({
       color: rgba(0, 0, 0, 0.8) !important;
     });
+
   }
+
 }
 
 
