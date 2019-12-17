@@ -735,6 +735,7 @@ input:-webkit-autofill {
     .uix-button:not(:first-child) {
       margin-left: @sp2;
     }
+
   }
 
   .uix-dialog-close {
@@ -748,13 +749,17 @@ input:-webkit-autofill {
     color: rgba(0,0,0,0.33);
     background: transparent !important;
     .uix-pressable();
+
     .uix-hover({
       color: rgba(0,0,0,0.44);
     });
+
     .uix-active({
       color: rgba(0,0,0,0.66);
     });
+
   }
+
 }
 
 .uix-dialog-wrapper {
@@ -766,9 +771,28 @@ input:-webkit-autofill {
   left: 0;
   width: 100%;
   height: 100%;
+
   body > & {
     position: fixed;
   }
+
+  &.uix-dialog--bottom {
+    justify-content: flex-end;
+
+    .uix-dialog {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      border-radius: 0;
+
+      &.uix-hide {
+        opacity: 1;
+      }
+
+    }
+
+  }
+
 }
 
 .uix-overlay {
