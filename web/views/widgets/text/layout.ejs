@@ -1,3 +1,17 @@
-<div id="ui-button-page" class="ui-view">
-    <h1>ui-text</h1>
+<%
+var code;
+%>
+<div id="widgets-text-view" class="uix-view">
+    <div class="content-head">Widgets/uix-text</div>
+    <div class="content-body">
+        <h2>Input text</h2>
+        <%-code = '<input name="username" type="text" value="" class="uix-text" placeholder="Username or email" />'%>
+        <pre><code class="html hljs"><%=code%></code></pre>
+        <br/>
+
+        <h2>Password</h2>
+        <%-code = '<div class="uix-text"><input name="psword" type="password" value="" class="right-icon" placeholder="Enter your password" /><a class="unmask"></a></div>'%>
+        <pre><code class="html hljs"><%=code%></code></pre>
+        <br/>
+    </div>
 </div>

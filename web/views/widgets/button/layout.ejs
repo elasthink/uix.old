@@ -1,34 +1,51 @@
 <%
     var code;
 %>
-<div id="ui-button-page" class="ui-view">
-    <h1>ui-button</h1>
+<div id="widgets-button-view" class="uix-view">
+    <div class="content-head">Widgets/uix-button</div>
+    <div class="content-body">
+        <h2>Text button</h2>
+        <%-code = '<button class="uix-button">Press Me</button>'%>
+        <pre><code class="html hljs"><%=code%></code></pre>
+        <br/>
 
-    <h2>Text button</h2>
-    <%-code = '<button class="ui-button">Press Me</button>'%>
-    <pre><code class="html hljs"><%=code%></code></pre>
+        <h2>A disabled button</h2>
+        <%-code = '<button class="uix-button" disabled="disabled">Press Me</button>'%>
+        <pre><code class="html hljs"><%=code%></code></pre>
+        <br/>
 
-    <h2>A disabled button</h2>
-    <%-code = '<button class="ui-button" disabled="disabled">Press Me</button>'%>
-    <pre><code class="html hljs"><%=code%></code></pre>
+        <h2>Text and icon button</h2>
+        <%-code = '<button class="uix-button left-icon"><span class="icon icon-star"></span>Press Me</button>'%>
+        <pre><code class="html hljs"><%=code%></code></pre>
 
-    <h2>Text and icon button</h2>
-    <%-code = '<button class="ui-button left-icon"><span class="icon icon-star"></span>Press Me</button>'%>
-    <pre><code class="html hljs"><%=code%></code></pre>
+        <%-code = '<button class="uix-button right-icon"><span class="icon icon-star"></span>Press Me</button>'%>
+        <pre><code class="html hljs"><%=code%></code></pre>
+        <br/>
 
-    <%-code = '<button class="ui-button right-icon"><span class="icon icon-star"></span>Press Me</button>'%>
-    <pre><code class="html hljs"><%=code%></code></pre>
+        <h2>Icon button</h2>
+        <%-code = '<button class="uix-button icon icon-star"></button>'%>
+        <pre><code class="html hljs"><%=code%></code></pre>
+        <br/>
 
-    <h2>Icon button</h2>
-    <%-code = '<button class="ui-button icon icon-star"></button>'%>
-    <pre><code class="html hljs"><%=code%></code></pre>
+        <h2>Alternate button</h2>
+        <%-code = '<button class="uix-button uix-alt left-icon"><span class="icon icon-star"></span>Press Me</button>'%>
+        <pre><code class="html hljs"><%=code%></code></pre>
+        <br/>
 
-    <h2>Gray button</h2>
-    <%-code = '<button class="ui-button btn-gray left-icon"><span class="icon icon-star"></span>Press Me</button>'%>
-    <pre><code class="html hljs"><%=code%></code></pre>
+        <h2>Gray button</h2>
+        <%-code = '<button class="uix-button uix-gray left-icon"><span class="icon icon-star"></span>Press Me</button>'%>
+        <pre><code class="html hljs"><%=code%></code></pre>
+        <br/>
 
-    <h2>Link button</h2>
-    <%-code = '<button class="ui-button btn-link left-icon"><span class="icon icon-star"></span>Press Me</button>'%>
-    <pre><code class="html hljs"><%=code%></code></pre>
+        <h2>Transparent button</h2>
+        <%-code = '<button class="uix-button uix-transparent left-icon"><span class="icon icon-star"></span>Press Me</button>'%>
+        <pre><code class="html hljs"><%=code%></code></pre>
+        <br/>
 
+        <h2>Link button</h2>
+        <%-code = '<button class="uix-button uix-link left-icon"><span class="icon icon-star"></span>Press Me</button>'%>
+        <pre><code class="html hljs"><%=code%></code></pre>
+        <br/>
+
+    </div>
 </div>

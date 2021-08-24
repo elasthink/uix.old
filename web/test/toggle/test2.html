@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>UIX // Toggle Test 1</title>
+    <script type="text/javascript">
+        var bar, done;
+
+        function clear(end) {
+            if (done) {
+                bar.removeEventListener('transitionend', done);
+                done = null;
+            }
+            if (end) {
+                bar.classList.remove('fade');
+            }
+        }
+
+        function show() {
+            var fading = !!done;
+            if (bar) {
+                clear();
+            } else {
+                var foo = document.getElementById('foo');
+                bar = document.createElement('div');
+                bar.id = 'bar';
+                bar.innerHTML = 'Powered by UIX';
+                bar.classList.add('hide');
+                bar.style.display = 'none';
+                foo.appendChild(bar);
+            }
+            bar.addEventListener('transitionend', done = function(event) {
+                if (event.target !== bar) {
+                    return;
+                }
+                clear(true);
+                alert("SHOW END!");
+            });
+            if (!fading) {
+                bar.style.transition = 'none';
+                bar.style.display = '';
+                bar.offsetWidth + bar.offsetHeight;
+                bar.classList.add('fade');
+                bar.style.transition = '';
+            }
+            var cs = window.getComputedStyle(bar, null);
+            console.log('[show 1] right: ' + cs.right + ', opacity: ' + cs.opacity);
+            bar.classList.remove('hide');
+            cs = window.getComputedStyle(bar, null);
+            console.log('[show 1] right: ' + cs.right + ', opacity: ' + cs.opacity);
+        };
+
+        function hide() {
+            var fading = !!done;
+            clear();
+            bar.addEventListener('transitionend', done = function(event) {
+                if (event.target !== bar) {
+                    return;
+                }
+                clear(true);
+                alert("HIDE END!");
+            });
+            if (!fading) {
+                bar.style.transition = 'none';
+                bar.classList.add('fade');
+                bar.style.transition = '';
+            }
+            var cs = window.getComputedStyle(bar, null);
+            console.log('[hide 1] right: ' + cs.right + ', opacity: ' + cs.opacity);
+            bar.classList.add('hide');
+            cs = window.getComputedStyle(bar, null);
+            console.log('[hide 2] right: ' + cs.right + ', opacity: ' + cs.opacity);
+        };
+
+        var last = null;
+        function trace() {
+            setInterval(function() {
+                if (!bar) {
+                    return;
+                }
+                var cs = window.getComputedStyle(bar, null); // document.defaultView
+                var str = 'right: ' + cs.right + ', opacity: ' + cs.opacity;
+                if (str !== last) {
+                    console.log(last = str);
+                }
+            }, 100);
+        }
+    </script>
+    <style>
+        #foo {
+            position: relative;
+            height: 200px;
+            background: #eee;
+        }
+        #bar {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            color: #fff;
+            background: #2ae;
+        }
+        .fade {
+            animation-duration: 2.5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: both;
+        }
+        .fade:not(.hide) {
+            animation-name: fade-in-keyframes;
+        }
+        .fade.hide {
+            animation-name: fade-out-keyframes;
+        }
+        @keyframes fade-out-keyframes {
+            /*
+            from {
+                opacity: 1;
+                right: 0%;
+            } */
+            to {
+                opacity: 0;
+                right: 100%;
+            }
+        }
+        @keyframes fade-in-keyframes {
+            /*
+            from {
+                opacity: 0;
+                right: 100%;
+            } */
+            to {
+                opacity: 1;
+                right: 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="foo">
+    <!-- div id="bar" class="hide" style="display: none">Powered by UIX</div -->
+</div>
+<hr />
+<button onclick="show()">SHOW</button>
+<button onclick="hide()">HIDE</button>
+</body>
+</html>

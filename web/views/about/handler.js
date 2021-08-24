@@ -1,8 +1,8 @@
 /**
- * Página de inicio.
- * @alias OverviewPage
+ * Vista inicial.
+ * @alias AboutView
  */
-View.define('overview', {
+View.define('about', {
 
     /**
      * @see View.prototype.ready

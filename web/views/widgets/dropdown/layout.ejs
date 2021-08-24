@@ -1,0 +1,39 @@
+<div id="widgets-dropdown-view" class="uix-view">
+    <div class="content-head">Widgets/uix-dropdown</div>
+    <div class="content-body">
+        <h2>A dropdown menu</h2>
+        <div class="dropdown-demo-bar">
+        <%-code =
+            '<div id="dropdown1" class="uix-dropdown-container">\n' +
+            '\t<button class="uix-button uix-dropdown-toggle right-icon"><span class="icon icon-menu2"></span>Menu</button>\n' +
+            '\t<div class="uix-dropdown uix-menu uix-hide --display-none" data-transition="fade" style="display: none;">\n' +
+            '\t\t<div class="uix-menu-item">Option 1</div>\n' +
+            '\t\t<div class="uix-menu-item disabled">Option 2</div>\n' +
+            '\t\t<div class="uix-menu-item">Option 3</div>\n' +
+            '\t\t<div class="uix-menu-sep"></div>\n' +
+            '\t\t<div class="uix-menu-item">Option 4</div>\n' +
+            '\t</div>\n' +
+            '</div>'%>
+        </div>
+        <pre><code class="html hljs"><%=code%></code></pre>
+        <br/>
+
+        <h2>A dropdown menu (.to-right)</h2>
+        <div class="dropdown-demo-bar">
+        <%-code =
+            '<div id="dropdown2" class="uix-dropdown-container" style="float: right;">\n' +
+            '\t<button class="uix-button uix-dropdown-toggle right-icon"><span class="icon icon-menu2"></span>Menu</button>\n' +
+            '\t<div class="uix-dropdown to-right uix-menu uix-hide --display-none" data-transition="fade" style="display: none;">\n' +
+            '\t\t<div class="uix-menu-item">Option 1</div>\n' +
+            '\t\t<div class="uix-menu-item disabled">Option 2</div>\n' +
+            '\t\t<div class="uix-menu-item">Option 3</div>\n' +
+            '\t\t<div class="uix-menu-sep"></div>\n' +
+            '\t\t<div class="uix-menu-item">Option 4</div>\n' +
+            '\t</div>\n' +
+            '</div>'%>
+        </div>
+        <pre><code class="html hljs"><%=code%></code></pre>
+        <br/>
+
+    </div>
+</div>

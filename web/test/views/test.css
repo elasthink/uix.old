@@ -1,0 +1,108 @@
+body {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+#test-panel {
+    display: flex;
+    flex-flow: column nowrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 100%;
+    background: #2ae;
+    border-bottom: 1px solid #ddd;
+    z-index: 2;
+    box-sizing: border-box;
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+}
+
+.test-title {
+    color: #fff;
+    font-size: 24px;
+    line-height: 44px;
+    padding: 12px 12px 12px 16px;
+}
+
+.test-list {
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.test {
+    padding: 8px;
+    border-left: 6px solid rgba(0,0,0,0.2);
+    color: #fff;
+    /* background: #119de4; */
+    background: linear-gradient(to bottom, transparent, transparent, #119de4);
+    font-size: 16px;
+    /* box-shadow: 0 0 8px 0 rgba(0,0,0,0.2); */
+}
+.test.running {
+    border-color: #ff4;
+    font-weight: 500;
+    font-style: italic;
+}
+.test.passed {
+    border-color: #0f4;
+}
+.test.failed {
+    border-color: #e22;
+    text-decoration: line-through;
+}
+
+.test b {
+    font-weight: normal;
+}
+
+.test-actions {
+    display: flex;
+    flex-flow: row nowrap;
+    min-height: 60px;
+    width: 100%;
+    padding: 4px;
+    box-sizing: border-box;
+}
+.test-actions .uix-button {
+    flex-grow: 1;
+    margin: 4px;
+}
+
+#test-panel .uix-button {
+    background: #09d;
+}
+#test-panel .uix-button:hover {
+    background: #0084bd;
+}
+#test-panel .uix-button:active {
+    background: #0072a3;
+}
+#test-panel .btn-restart {
+    float: right;
+}
+
+#test-content {
+    position: relative;
+    margin-left: 400px;
+    height: 100%;
+}
+
+#test-viewport {
+    position: absolute;
+    width: 320px;
+    height: 480px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 12px 0 rgba(0,0,0,0.25);
+}
+
+.uix-view {
+    height: 100%;
+
+}
+
+.uix-loader {
+    position: absolute;
+}

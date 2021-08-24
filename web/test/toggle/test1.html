@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>UIX // Toggle Test 1</title>
+    <script type="text/javascript">
+        var uix = {
+            /**
+             * Devuelve la duración mayor en milisegundos de la transición definida incluyendo el delay inicial.
+             * @param {Element} el Elemento especificado.
+             * @return {number} Duración en milisegundos o 0 si no está definida.
+             */
+            getTransitionTimeout: function (el) {
+                var timeout = 0;
+                var cs = window.getComputedStyle(el, null);
+                var delays = cs.transitionDelay.split(',');
+                for (var i = 0; i < delays.length; i++) {
+                    delays[i] = uix.parseTime(delays[i]);
+                }
+                var durations = cs.transitionDuration.split(',');
+                for (var i = 0, d; i < durations.length; i++) {
+                    var d = uix.parseTime(durations[i]) + delays[i % delays.length];
+                    if (d > timeout) {
+                        timeout = d;
+                    }
+                }
+                return timeout;
+            },
+
+            /**
+             * Parsea una cadena de tiempo o duración especificada en segundos o milisegundos, incluyendo siempre la unidad
+             * (s/ms) y devuelve el número de milisegundos resultante.
+             * @param {string} str Cadena especificada.
+             * @return {number} Número de milisegundos.
+             */
+            parseTime: function (str) {
+                var time = 0;
+                var match = /([\d.]+)(s|ms)/i.exec(str);
+                if (match) {
+                    time = parseFloat(match[1]);
+                    if (match[2] === 's') {
+                        time *= 1000;
+                    }
+                }
+                return time;
+            }
+        };
+
+        var bar, done;
+
+        var lastTrace = null;
+        function trace() {
+            if (!bar) {
+                return;
+            }
+            var cs = window.getComputedStyle(bar, null); // document.defaultView
+            var str = 'left: ' + cs.left + ', opacity: ' + cs.opacity + ', background: ' + cs.backgroundColor + ', visibility: ' + cs.visibility;
+            if (str !== lastTrace) {
+                console.log('[' + performance.now().toFixed(3) + '] ' + (lastTrace = str));
+            }
+            window.requestAnimationFrame(trace);
+        }
+
+        function clearDone() {
+            if (done) {
+                bar.removeEventListener('transitionend', done);
+                done = null;
+            }
+        }
+
+        function show() {
+            log('show()...');
+            var fading = !!done;
+            if (bar) {
+                clearDone();
+            } else {
+                var foo = document.getElementById('foo');
+                bar = document.createElement('div');
+                bar.id = 'bar';
+                bar.innerHTML = 'Powered by UIX';
+                bar.classList.add('hide');
+                bar.style.display = 'none';
+                foo.appendChild(bar);
+                trace();
+            }
+            bar.addEventListener('transitionend', done = function(event) {
+                log('transitionend (' + event.propertyName + ')');
+                if (event.target !== bar) {
+                    return;
+                }
+                clearDone();
+                log('show()...DONE');
+            });
+            if (!fading) {
+                // bar.style.transition = 'none';
+                bar.classList.add('fade');
+                // bar.style.transition = '';
+                bar.style.display = '';
+                bar.offsetWidth + bar.offsetHeight;
+            }
+            // window.requestAnimationFrame(function() {
+                bar.classList.remove('hide');
+            // });
+            // log('timeout: ' + uix.getTransitionTimeout(bar));
+        };
+
+        function hide() {
+            log('hide()...');
+            var fading = !!done;
+            clearDone();
+            bar.addEventListener('transitionend', done = function(event) {
+                log('transitionend (' + event.propertyName + ')');
+                if (event.target !== bar) {
+                    return;
+                }
+                clearDone();
+                log('hide()...DONE');
+            });
+            if (!fading) {
+                // bar.style.transition = 'none';
+                bar.classList.add('fade');
+                // bar.style.transition = '';
+            }
+            // window.requestAnimationFrame(function() {
+                bar.classList.add('hide');
+            // });
+            // log('timeout: ' + uix.getTransitionTimeout(bar));
+        };
+
+        function show2() {
+            show();
+            setTimeout(hide, 10);
+            // hide();
+        }
+
+        function hide2() {
+            hide();
+            setTimeout(show, 10);
+            // show();
+        }
+
+        function log(msg) {
+            console.log('[' + performance.now().toFixed(2) + '] ' + msg);
+        }
+
+
+    </script>
+    <style>
+        #foo {
+            position: relative;
+            height: 200px;
+            background: #eee;
+        }
+        #bar {
+            position: absolute;
+            left: calc(100% - 200px);
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            color: #fff;
+            background: #2ae;
+        }
+        .hide {
+            left: 0px !important;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .fade {
+            /* transition: opacity 2500ms linear 0.75s, left 2.5s ease-in 500ms; */
+            transition-property: visibility, opacity, left;
+            transition-duration: 1s;
+            transition-timing-function: linear;
+            transition-delay: 0s;
+        }
+    </style>
+</head>
+<body>
+    <div id="foo">
+        <!-- div id="bar" class="hide" style="display: none">Powered by UIX</div -->
+    </div>
+    <hr />
+    <button onclick="show()">SHOW</button>
+    <button onclick="show2()">SHOW 2</button>
+    <button onclick="hide()">HIDE</button>
+    <button onclick="hide2()">HIDE 2</button>
+</body>
+</html>

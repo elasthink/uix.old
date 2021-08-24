@@ -1,0 +1,27 @@
+#widgets-form-view {
+
+  .birthday-selector {
+    display: flex;
+    flex-flow: row nowrap;
+
+    select {
+      width: auto;
+      min-width: 64px;
+      margin-left: 12px;
+    }
+    select:first-child {
+      margin-left: 0;
+    }
+    select[name=bmonth] {
+      flex: 1 0 auto;
+      min-width: 128px;
+    }
+    select[name=bday] {
+      flex: 0 0 auto;
+    }
+    select[name=byear] {
+      flex: 0 0 auto;
+      min-width: 72px;
+    }
+  }
+}

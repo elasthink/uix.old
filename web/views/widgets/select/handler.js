@@ -1,5 +1,7 @@
 /**
- * Referencia de 'ui-select'.
+ * Página de referencia del componente "uix-select".
+ * @class SelectWidgetView
+ * @extends View
  */
 View.define('widgets/select', {
 

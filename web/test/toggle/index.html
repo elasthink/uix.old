@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>UIX - Toggle Test</title>
+    <script type="text/javascript">
+
+        var colors = ['#f66', '#6f6', '#66f', '#ff6', '#6ff'];
+
+        var currIndex = -1;
+
+        var frameEl, loaderEl;
+
+        function trace(el, times) {
+            var cs = window.getComputedStyle(el, null);
+            console.log(
+                '--custom: ' + cs.getPropertyValue('--custom') + ', ' +
+                'visibility: ' + cs.getPropertyValue('visibility') + ', ' +
+                'opacity: ' + cs.getPropertyValue('opacity') + ', ' +
+                'transform: ' + cs.getPropertyValue('transform'));
+            if (trace.timer) {
+                window.cancelAnimationFrame(trace.timer);
+                traceTimer = 0;
+            }
+            if (times > 0) {
+                trace.timer = window.requestAnimationFrame(function() {
+                   trace(el, times - 1);
+                });
+            }
+        }
+
+        function toggle(el, show, done) {
+            var clear = function() {
+                el.removeEventListener('transitionend', el.toggleEndHandler, false);
+                delete el.toggleEndHandler;
+            };
+            if (el.toggleEndHandler) {
+                clear();
+            }
+            if (show === undefined) {
+                show = el.classList.contains('uix-hide');
+            }
+            if (show && el.style.display === 'none') {
+                el.style.display = '';
+                el.offsetHeight + el.offsetWidth; // REFLOW
+            }
+            // Evaluamos si habrá transición
+            var trans = getClassEnding(el, 'uix-trans-');
+            if (trans) {
+                var cs = window.getComputedStyle(el, null);
+                if (cs.getPropertyValue('visibility') === (show ? 'visible' : 'hidden')) {
+                    trans = null;
+                }
+            }
+            if (trans) {
+                el.addEventListener('transitionend', el.toggleEndHandler = function(event) {
+                    if (event.propertyName === 'visibility') {
+                        if (!show) {
+                            el.style.display = 'none';
+                        }
+                        if (done) {
+                            done.call();
+                        }
+                        clear();
+                    }
+                }, false);
+            }
+            el.classList.toggle('uix-hide', !show);
+            if (!trans && done) {
+                done.call();
+            }
+            trace(el, 10);
+        }
+
+        function loadView(index, trans, back, delay) {
+            var currEl = frameEl.querySelector(':last-child');
+            toggle(loaderEl, true);
+            setTimeout(function() {
+                var nextEl = buildView(index);
+                nextEl.classList.add('uix-hide');
+                if (trans) {
+                    nextEl.classList.add('uix-trans-' + trans);
+                    if (back) {
+                        nextEl.classList.add('uix-reverse');
+                    }
+                }
+                frameEl.appendChild(nextEl);
+                nextEl.offsetWidth + nextEl.offsetHeight;
+                if (currEl) {
+                    clearTrans(currEl);
+                    if (trans) {
+                        currEl.classList.add('uix-trans-' + trans);
+                        if (!back) {
+                            currEl.classList.add('uix-reverse');
+                        }
+                    }
+                    toggle(currEl, false, function() {
+                        currEl.parentNode.removeChild(currEl);
+                    });
+                }
+                toggle(nextEl, true);
+                toggle(loaderEl, false);
+                currIndex = index;
+            }, delay || 0);
+        }
+
+        function buildView(index) {
+            var out =
+                '<div id="view' + index + '" class="view" style="background: ' + colors[index] + ';">';
+            if (index > 0) {
+                out +=
+                    '<button class="prev">PREV</button>';
+            }
+            if (index + 1 < colors.length) {
+                out +=
+                    '<button class="next">NEXT</button>';
+            }
+            out +=
+                    '<label>VIEW ' + index + '</label>' +
+                '</div>';
+            var div = document.createElement('div');
+            div.innerHTML = out;
+            return div.firstChild;
+        }
+
+        function getClassEnding(el, prefix) {
+            for (var i = 0, name; i < el.classList.length; i++) {
+                if ((name = el.classList.item(i)).startsWith(prefix)) {
+                    return name.substr(prefix.length);
+                }
+            }
+            return null;
+        }
+
+        function clearTrans(el) {
+            el.classList.forEach(function(value, index, list) {
+                if (value.indexOf('uix-trans-') === 0) {
+                    list.remove(value);
+                }
+            });
+            el.classList.remove('uix-reverse');
+        }
+
+        function start() {
+            console.log('Starting...');
+            var el = document.getElementById('foo');
+            setTimeout(function() {
+                console.log('Test 1. Hide...');
+                trace(el, 5);
+                toggle(el, false, function() {
+                    console.log('Test 1. Hide... DONE!');
+                    trace(el);
+                });
+            }, 0);
+            setTimeout(function() {
+                console.log('Test 2. Show...');
+                trace(el, 5);
+                toggle(el, true, function() {
+                    console.log('Test 2. Show... DONE!');
+                    trace(el);
+                });
+            }, 5000);
+            setTimeout(function() {
+                console.log('Test 3. Hide...');
+                trace(el, 5);
+                toggle(el, false, function() {
+                    console.log('Test 3. Hide... DONE!');
+                    trace(el);
+                });
+            }, 7000);
+            setTimeout(function() {
+                console.log('Test 4. Show...');
+                trace(el, 5);
+                toggle(el, true, function() {
+                    console.log('Test 4. Show... DONE!');
+                    trace(el);
+                });
+            }, 9000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            frameEl = document.getElementById('frame');
+            loaderEl = document.getElementById('loader');
+
+            frameEl.addEventListener('click', function(event) {
+                if (event.target.tagName === 'BUTTON') {
+                    if (event.target.classList.contains('prev')) {
+                        loadView(currIndex - 1, 'slide', true, 1000);
+                    } else if (event.target.classList.contains('next')) {
+                        loadView(currIndex + 1, 'slide', false, 1000);
+                    }
+                }
+            }, false);
+
+            loadView(0, 'fade', false, 500);
+
+        }, false);
+
+        document.addEventListener('click', function() {
+            // start();
+        });
+    </script>
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            display: flex;
+            margin: 0;
+            font-family: arial;
+            font-size: 16px;
+        }
+
+        #page {
+            position: relative;
+            flex: 0 0 auto;
+            width: 320px;
+            height: 480px;
+            background: #ccc;
+            border: 4px solid #eee;
+            margin: auto;
+        }
+        #frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f4f4f4;
+            overflow: hidden;
+        }
+        #loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            color: #888;
+            background: #fff;
+        }
+        label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+        }
+
+        .view {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .view > label {
+            font-size: 32px;
+            font-weight: 500;
+            color: rgba(0,0,0,0.5);
+        }
+
+        button {
+            position: absolute;
+            top: 0;
+            font-size: 18px;
+            padding: 8px 24px;
+            color: rgba(0,0,0,0.5);
+            background: transparent;
+            border: 2px solid rgba(0,0,0,0.5);
+            border-radius: 4px;
+            outline: none;
+            margin: 12px;
+        }
+
+        button.prev {
+            left: 0;
+        }
+
+        button.next {
+            right: 0;
+        }
+
+        #loader {
+            transition-duration: 0.25s;
+        }
+    </style>
+    <style type="text/css">
+        .uix-hide {
+            visibility: hidden !important;
+        }
+        .uix-trans-fade {
+            --custom: 0;
+            transition: all 1s linear;
+        }
+        .uix-trans-fade.uix-hide {
+            --custom: 100;
+            opacity: 0;
+        }
+        .uix-trans-slide {
+            --custom: 0;
+            transition: all 0.5s ease-in;
+        }
+        .uix-trans-slide.uix-hide {
+            --custom: 100;
+            transform: translateX(100%);
+        }
+        .uix-trans-slide.uix-hide.uix-reverse {
+            --custom: 100;
+            transform: translateX(-100%);
+        }
+    </style>
+</head>
+<body>
+    <div id="page">
+        <div id="frame"></div>
+        <div id="loader" class="uix-trans-fade uix-hide" style="display: none;"><label>LOADING...</label></div>
+    </div>
+</body>
+</html>

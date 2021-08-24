@@ -35,7 +35,8 @@ var testSuite = {
     nextIndex: 0,
 
     /**
-     * ...
+     * Marco de primer nivel de las pruebas.
+     * @type {Viewport}
      */
     viewport: null,
 
@@ -64,10 +65,13 @@ var testSuite = {
 
 
         var self = this;
-        testPanel.querySelector('.btn-restart').addEventListener('click', function(event) {
+        testPanel.querySelector('.btn-restart').addEventListener('tap', function() {
             window.location = '/test/views/';
         });
-        testPanel.querySelector('.btn-next').addEventListener('click', function(event) {
+        testPanel.querySelector('.btn-start').addEventListener('tap', function() {
+            self.next(true);
+        });
+        testPanel.querySelector('.btn-next').addEventListener('tap', function() {
             self.next();
         });
 
@@ -82,7 +86,7 @@ var testSuite = {
     /**
      * ...
      */
-    next: function() {
+    next: function(cont) {
         var self = this;
         if (this.nextIndex < this.tests.length) {
             var test = this.tests[this.nextIndex++],
@@ -92,7 +96,9 @@ var testSuite = {
             test.handler.call(this, function(err) {
                 uix.removeClass(node, 'running');
                 uix.addClass(node, (err) ? 'failed' : 'passed');
-                self.next();
+                if (cont) {
+                    self.next(cont);
+                }
             });
         }
     },
@@ -114,9 +120,14 @@ testSuite.pushTest({
         var self = this;
         this.viewport.open('/test/views/v1/f44', {
             transition: 'fade'
-        }, function(err) {
+        }, function(err, view) {
             if (err) {
-                return callback(err);
+                callback(err);
+                return;
+            }
+            if (!view) {
+                callback(new Error('View not loaded'));
+                return;
             }
             // Se comprueba que dentro del viewport se encuentre la vista
             var vp = self.viewport.container;
@@ -141,22 +152,29 @@ testSuite.pushTest({
         var self = this;
         this.viewport.open('/test/views/v2/4f6', {
             transition: 'fade'
-        }, function(err) {
+        }, function(err, view) {
             if (err) {
                 return callback(err);
             }
-            // Se comprueba que dentro del viewport se encuentre la vista y solo la vista
-            var vp = self.viewport.container;
-            if (vp.childElementCount !== 1 ||
+            if (!view) {
+                callback(new Error('View not loaded'));
+                return;
+            }
+            // Esperemos a que acabe la transición
+            setTimeout(function() {
+                // Se comprueba que dentro del viewport se encuentre la vista y solo la vista
+                var vp = self.viewport.container;
+                if (vp.childElementCount !== 1 ||
                     !uix.matches(vp.firstElementChild, '.test-view2')) {
-                return callback(new Error('The DOM is wrong'));
-            }
-            // Se comprueba la pila
-            if (self.viewport.views.length !== 2 ||
+                    return callback(new Error('The DOM is wrong'));
+                }
+                // Se comprueba la pila
+                if (self.viewport.views.length !== 2 ||
                     !(self.viewport.views[1].view instanceof View.handlers['test/views/v2'])) {
-                return callback(new Error('The view stack is wrong'));
-            }
-            callback();
+                    return callback(new Error('The view stack is wrong'));
+                }
+                callback();
+            }, 500);
         });
     }
 });
@@ -172,18 +190,19 @@ testSuite.pushTest({
             if (err) {
                 return callback(err);
             }
-            // Se comprueba que dentro del viewport se encuentre la vista y solo la vista
-            var vp = self.viewport.container;
-            if (vp.childElementCount !== 1 ||
-                    !uix.matches(vp.firstElementChild, '.test-view1')) {
-                return callback(new Error('The DOM is wrong'));
-            }
-            // Se comprueba la pila
-            if (self.viewport.views.length !== 1 ||
-                    !(self.viewport.views[0].view instanceof View.handlers['test/views/v1'])) {
-                return callback(new Error('The view stack is wrong'));
-            }
-            callback();
+            // Esperemos a que acabe la transición
+            setTimeout(function() {
+                // Se comprueba que dentro del viewport se encuentre la vista y solo la vista
+                var vp = self.viewport.container;
+                if (vp.childElementCount !== 1 || !uix.matches(vp.firstElementChild, '.test-view1')) {
+                    return callback(new Error('The DOM is wrong'));
+                }
+                // Se comprueba la pila
+                if (self.viewport.views.length !== 1 || !(self.viewport.views[0].view instanceof View.handlers['test/views/v1'])) {
+                    return callback(new Error('The view stack is wrong'));
+                }
+                callback();
+            }, 500);
         });
     }
 });
@@ -199,19 +218,20 @@ testSuite.pushTest({
             if (err) {
                 return callback(err);
             }
-            // Se comprueba que dentro del viewport solo quede una vista
-            var vp = self.viewport.container;
-            if (vp.childElementCount !== 1 ||
-                    !uix.matches(vp.firstElementChild, '.test-view1')) {
-                return callback(new Error('The DOM is wrong'));
-            }
-            // Se comprueba la pila
-            if (self.viewport.views.length !== 1 ||
-                    !(self.viewport.views[0].view instanceof View.handlers['test/views/v1']) ||
+            // Esperemos a que acabe la transición
+            setTimeout(function() {
+                // Se comprueba que dentro del viewport solo quede una vista
+                var vp = self.viewport.container;
+                if (vp.childElementCount !== 1 || !uix.matches(vp.firstElementChild, '.test-view1')) {
+                    return callback(new Error('The DOM is wrong'));
+                }
+                // Se comprueba la pila
+                if (self.viewport.views.length !== 1 || !(self.viewport.views[0].view instanceof View.handlers['test/views/v1']) ||
                     self.viewport.views[0].path !== '/test/views/v1/fa4') {
-                return callback(new Error('The view stack is wrong'));
-            }
-            callback();
+                    return callback(new Error('The view stack is wrong'));
+                }
+                callback();
+            }, 500);
         });
     }
 });
@@ -239,13 +259,16 @@ testSuite.pushTest({
                     if (err) {
                         return callback(err);
                     }
-                    // Se comprueba la pila
-                    var views = self.viewport.views;
-                    if (views[2].path !== '/test/views/v2/999' ||
+                    // Esperemos a que acabe la transición
+                    setTimeout(function() {
+                        // Se comprueba la pila
+                        var views = self.viewport.views;
+                        if (views[2].path !== '/test/views/v2/999' ||
                             views[1].path !== '/test/views/v2/666') {
-                        return callback(new Error('The view stack is wrong'));
-                    }
-                    callback();
+                            return callback(new Error('The view stack is wrong'));
+                        }
+                        callback();
+                    }, 500);
                 });
             });
         });
@@ -269,14 +292,17 @@ testSuite.pushTest({
                 if (err) {
                     return callback(err);
                 }
-                // Se comprueba la pila
-                var views = self.viewport.views;
-                for (var i = 0; i < views.length; i++) {
-                    if (views[i].view instanceof View.handlers['test/views/v3']) {
-                        return callback(new Error('The view stack is wrong'));
+                // Esperemos a que acabe la transición
+                setTimeout(function() {
+                    // Se comprueba la pila
+                    var views = self.viewport.views;
+                    for (var i = 0; i < views.length; i++) {
+                        if (views[i].view instanceof View.handlers['test/views/v3']) {
+                            return callback(new Error('The view stack is wrong'));
+                        }
                     }
-                }
-                callback();
+                    callback();
+                }, 500);
             });
         });
     }
@@ -299,11 +325,14 @@ testSuite.pushTest({
             if (err) {
                 return callback(err);
             }
-            // Se comprueba la pila
-            if (views[2].path !== prev.path || views[2].view !== prev.view) {
-                return callback(new Error('The view stack is wrong'));
-            }
-            callback();
+            // Esperemos a que acabe la transición
+            setTimeout(function() {
+                // Se comprueba la pila
+                if (views[2].path !== prev.path || views[2].view !== prev.view) {
+                    return callback(new Error('The view stack is wrong'));
+                }
+                callback();
+            }, 500);
         });
     }
 });
@@ -326,12 +355,15 @@ testSuite.pushTest({
             if (err) {
                 return callback(err);
             }
-            // Se comprueba la pila
-            var v = views[2];
-            if (v.path !== prev.path || v.view !== prev.view || v.view.loadTimes !== 2) {
-                return callback(new Error('The view stack is wrong'));
-            }
-            callback();
+            // Esperemos a que acabe la transición
+            setTimeout(function() {
+                // Se comprueba la pila
+                var v = views[2];
+                if (v.path !== prev.path || v.view !== prev.view || v.view.loadTimes !== 2) {
+                    return callback(new Error('The view stack is wrong'));
+                }
+                callback();
+            }, 500);
         });
     }
 });
@@ -354,15 +386,18 @@ testSuite.pushTest({
             if (err) {
                 return callback(err);
             }
-            // Se comprueba la pila
-            if (views.length !== 1) {
-                return callback(new Error('The view stack is wrong'));
-            }
-            var v = views[0];
-            if (v.path !== prev.path || v.view !== prev.view || v.view.loadTimes !== 2) {
-                return callback(new Error('The view stack is wrong'));
-            }
-            callback();
+            // Esperemos a que acabe la transición
+            setTimeout(function() {
+                // Se comprueba la pila
+                if (views.length !== 1) {
+                    return callback(new Error('The view stack is wrong'));
+                }
+                var v = views[0];
+                if (v.path !== prev.path || v.view !== prev.view || v.view.loadTimes !== 2) {
+                    return callback(new Error('The view stack is wrong'));
+                }
+                callback();
+            }, 500);
         });
     }
 });
